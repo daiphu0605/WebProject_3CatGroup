@@ -34,7 +34,7 @@ img {
 section {
     position:relative;
     padding:0;
-    background:#F0A830;
+    background:#FFF;
     color:#FFF;
     text-align:center;
 }
@@ -76,10 +76,10 @@ section::before,section::after {
     02. Header 
 ========================================================================== */
 #header {
-    background-image:url(../bg-overlay/night.jpg);
-    -webkit-background-size:/*@@prefixmycss->No equivalent*/;
+    background-image:url(../images/background4.jpg);
+    /* -webkit-background-size:/*@@prefixmycss->No equivalent*/; 
     -moz-background-size:cover;
-    -o-background-size:/*@@prefixmycss->No equivalent*/;
+   /* -o-background-size:/*@@prefixmycss->No equivalent*/;
     background-size:cover;
     background-position:center center;
     background-attachment:fixed;
@@ -219,15 +219,22 @@ section::before,section::after {
     margin-top: 40px;
 }
 
+.story .icon-wrapper-edit {
+  position:relative;
+  height:80px;
+  width:80px;
+  margin-top: 40px;
+}
+
 
 /* ==========================================================================
     05. parallax 
 ========================================================================== */
 .parallax {
-    background:url(../img/parallax1.jpg) fixed no-repeat center center;
-    -webkit-background-size:/*@@prefixmycss->No equivalent*/;
+    background:url(../images/background5.jpg) fixed no-repeat center center;
+    /*-webkit-background-size:/*@@prefixmycss->No equivalent*/;
     -moz-background-size:cover;
-    -o-background-size:/*@@prefixmycss->No equivalent*/;
+    /*-o-background-size:/*@@prefixmycss->No equivalent*/;
     background-size:cover;
     position:relative;
     color:#FFF;
@@ -237,7 +244,7 @@ section::before,section::after {
     padding-bottom:130px;
 }
 .parallax.parallax2 {
-    background-image:url(../img/parallax2.jpg);
+    background-image:url(../images/background6.jpg);
 }
 .bm10 {
     margin-bottom:10px !important;
@@ -277,6 +284,14 @@ section::before,section::after {
     padding-top:30px;
     padding-bottom:15px;
 }
+.menu-titles a {
+    text-shadow:none;
+    color:#ed0121;
+    text-align:center;
+    margin:0 auto;
+    padding-top:30px;
+    padding-bottom:15px;
+}
 #food-menu ul {
     margin:0;
     padding:0;
@@ -290,6 +305,18 @@ section::before,section::after {
     display:block;
     margin:auto;
     margin-top: 40px;
+}
+
+.menu-images-edit img {
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+  border:5px solid #dadada;
+  display:block;
+  margin:auto;
+  margin-top: 40px;
+  height: 400px;
+  width: 300px;
 }
 
 
@@ -345,8 +372,8 @@ section::before,section::after {
     margin-bottom:8px;
     font-size:22px;
 }
-.pricing .pricing-item .pricing-item-details p {
-}
+/* .pricing .pricing-item .pricing-item-details p {
+} */
 .pricing .pricing-item .pricing-item-details a.btn {
     margin-top:10px;
 }
@@ -477,7 +504,7 @@ section::before,section::after {
         display:inline-block;
         float:none;
     }
-    #logo {
+    .logo {
         position:absolute;
         display:block !important;
         width:110px;
@@ -826,8 +853,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .img-edit2 {
-  height: 400px;
-  width: 100px;
+  height: 230px;
+  width: auto;
 }
 
 
