@@ -1,9 +1,17 @@
 const express = require('express');
+var account =require('../models/accounts')
 
 exports.SignIn = (req, res) => {
     var username = req.body.usernam;
     var pass = req.body.pass;
     var Error = "";
-
-    return true;
+    if (account.isAccount(username, pass))
+    {
+        return true;
+    }
+    else {
+        Error = Error + "Wrong Password or Username.\n";
+        res.redner ("sign_in", {layout: 'layout_sign', Error});
+        return false;
+    }
 }
