@@ -6,14 +6,14 @@ const express = require('express');
         var password = req.body.pass;
         var repassword = req.body.repass;
         var ErrorUsername ="";
-        var ErrorConfirmPass = "";
+        var ErrorConfirmPassword = "";
     
         if (repassword != password) {
-            ErrorConfirmPass = ErrorConfirmPass + "Password is not matching.\n";
+            ErrorConfirmPassword = ErrorConfirmPassword + "Password is not matching.\n";
         }
     
         if (ErrorConfirmPass.length != 0 || ErrorUsername.length != 0) {
-            res.render('sign_up', { layout: 'layout_sign', username, ErrorUsername, ErrorConfirmPass });
+            res.render('sign_up', { layout: 'layout_sign', username, ErrorUsername, ErrorConfirmPassword });
         }
     
         else {
