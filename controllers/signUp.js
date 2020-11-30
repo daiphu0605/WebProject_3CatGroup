@@ -6,15 +6,16 @@ const express = require('express');
         var password = req.body.pass;
         var repassword = req.body.repass;
         var ErrorUsername ="";
-        var ErrorConfirmPassword = "";
+        var ErrorConfirmPass = "";
     
-        if (repassword !== password) {
-            ErrorConfirmPassword = ErrorConfirmPassword + "Password is not matching.\n";
+        if (repassword != password) {
+            ErrorConfirmPass = ErrorConfirmPass + "Password is not matching.\n";
         }
     
-        if (ErrorConfirmPassword.length != 0 || ErrorUsername.length != 0) {
-            res.render('sign_up', { layout: 'layout_sign', username, ErrorUsername, ErrorConfirmPassword });
+        if (ErrorConfirmPass.length != 0 || ErrorUsername.length != 0) {
+            res.render('sign_up', { layout: 'layout_sign', username, ErrorUsername, ErrorConfirmPass });
         }
+    
         else {
             res.render('sign_up_fin', { layout: 'layout_sign' });
         }
