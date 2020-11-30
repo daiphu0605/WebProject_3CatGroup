@@ -2917,6 +2917,22 @@ input.num-product::-webkit-inner-spin-button {
   text-transform: uppercase;
 }
 
+.ltext-103-edit {
+  margin-top: 80px;
+  font-family: Poppins-Bold;
+  font-size: 36px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.align-edit {
+  text-align: left;
+}
+
+.color-edit {
+  color: black;
+}
+
 .ltext-104 {
   font-family: Poppins-Bold;
   font-size: 60px;

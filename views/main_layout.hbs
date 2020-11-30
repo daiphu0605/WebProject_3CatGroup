@@ -1,473 +1,481 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> 
-<html class="no-js"> <!--<![endif]-->
+<html lang="en">
 <head>
-    <title>3 Cat's Home</title>
-
-    <!-- meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-
-    <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
-    <!-- css -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
-
-    <!-- google font -->
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Kreon:300,400,700'>
-    
-    <!-- js -->
-    <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+	<title>3 Cat's Book Shop</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
-<body data-spy="scroll" data-target="#navbar" data-offset="120" >
-    <!--[if lt IE 7]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+<body class="animsition">
+	
+	<!-- Header -->
+	<header>
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<!-- Topbar -->
+			<div class="top-bar">
+				<div class="content-topbar flex-sb-m h-full container">
 
-    <div id="menu" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header visible-xs">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><h2>3 Cat's Book Shop</h2></a>
-            </div><!-- navbar-header -->
-        <div id="navbar" class="navbar-collapse collapse">
-            <div class="hidden-xs" id="logo"><a href="#header">
-                <img src="images/logo.png" alt="">
-            </a></div>
+					<div class="right-top-bar flex-w h-full">
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							My Account
+						</a>
+					</div>
+				</div>
+			</div>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#story">Project</a></li>
-                <li><a href="#reservation">Reservation</a></li>
-                <li><a href="#chefs">Our Members</a></li>
+			<div class="wrap-menu-desktop">
+				<nav class="limiter-menu-desktop container">
+					
+					<!-- Logo desktop -->		
+					<a href="/shop" class="logo">
+						<img src="images/icons/3catbookshop.png" alt="IMG-LOGO">
+					</a>
 
-                
-                <li><a href="#facts">Facts</a></li>
-                <li><a href="#food-menu">Some Topics</a></li>
-                <li><a href="#special-offser">Special Offers</a></li>
-                
-                <!--fix for scroll spy active menu element-->
-                <li style="display:none;"><a href="#header"></a></li>
+					<!-- Menu desktop -->
 
-            </ul>
-        </div><!--/.navbar-collapse -->
-        </div><!-- container -->
-    </div><!-- menu -->
+					<!-- Icon header -->
+					<div class="wrap-icon-header flex-w flex-r-m">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
+					</div>
+				</nav>
+			</div>	
+		</div>
 
-    <div id="header">
-        <div class="bg-overlay"></div>
-        <div class="center text-center">
-            <div class="banner">
-                <h1 class="">Book Shop - 3 Cat</h1>
-            </div>
-            <div class="subtitle"><h4>AWESOME BOOK SHOP</h4></div>
-        </div>
-        <div class="bottom text-center">
-            <a id="scrollDownArrow" href="#"><i class="fa fa-chevron-down"></i></a>
-        </div>
-    </div>
-    <!-- /#header -->
+		<!-- Header Mobile -->
+		<div class="wrap-header-mobile">
+			<!-- Logo moblie -->		
+			<div class="logo-mobile">
+				<a href="/"><img src="images/icons/3catbookshop.png" alt="IMG-LOGO"></a>
+			</div>
 
-    <div id="story" class="light-wrapper">
-        <section class="ss-style-top"></section>
-        <div class="container inner">
-            <h2 class="section-title text-center">Our Project</h2>
-            <p class="lead main text-center">Đồ án cuối kỳ môn phát triển ứng dụng web - CQ2018/31</p>
-            {{!-- <div class="row text-center story">
-                <div class="col-sm-4">
-                    <div class="col-wrapper">
-                        <div class="icon-wrapper"> <i class="fa fa-anchor"></i> </div>
-                        <h3>EST. 1879</h3>
-                        <p>Vivamus sagittis lacuson augue laoreet rutrum faucibus dolor auctor. Cras mattis consectetur purus sit amet fermentum ultricies vehicula.</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="col-wrapper">
-                        <div class="icon-wrapper"> <i class="fa  fa-cutlery"></i> </div>
-                        <h3>Cooking Traditions</h3>
-                        <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient monte nascetur ultricies vehicula. </p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="col-wrapper">
-                        <div class="icon-wrapper"> <i class="fa fa-coffee"></i> </div>
-                        <h3>Food Quality</h3>
-                        <p>Curabitur blandit matti tempus porttitor. Donec id elit non mi porta ut gravida at eget metus. Consectetur adipiscing elit ultricies vehicula.</p>
-                    </div>
-                </div>
-            </div> --}}
-            <!-- /.services --> 
-        </div>
-        <!-- /.container -->
-        <section class="ss-style-bottom"></section>
-    </div><!-- #story -->
+			<!-- Icon header -->
+
+			<!-- Button show menu -->
+			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</div>
+		</div>
 
 
-    <div id="facts" class="parallax parallax2 facts">
-        <div class="container inner">
-            {{!-- <div class="row text-center services-3">
-                <div class="col-sm-3">
-                    <div class="col-wrapper">
-                    <div class="icon-border bm10"> <i class="fa fa-beer"></i> </div>
-                    <h4>796518</h4>
-                    <p>Mug of Beer Sold</p>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="col-wrapper">
-                    <div class="icon-border bm10"> <i class="fa fa-play-circle-o"></i> </div>
-                    <h4>39472</h4>
-                    <p>Movies Watched</p>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="col-wrapper">
-                    <div class="icon-border bm10"> <i class="fa fa-truck"></i> </div>
-                    <h4>2188764</h4>
-                    <p>Pizza Deleverd</p>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="col-wrapper">
-                    <div class="icon-border bm10"> <i class="fa fa-users"></i> </div>
-                    <h4>480523</h4>
-                    <p>Customers Worldwide</p>
-                    </div>
-                </div>
-            </div> --}}
-        </div>
-        <!-- /.container --> 
-    </div><!-- #facts -->
+		<!-- Menu Mobile -->
+		<div class="menu-mobile">
+			<ul class="topbar-mobile">
+				
+				<li>
+					<div class="right-top-bar flex-w h-full">
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							My Account
+						</a>
+					</div>
+				</li>
+			</ul>
+
+			<ul class="main-menu-m">
+				<li>
+					<a href="/">Home</a>					
+				</li>
+			</ul>
+		</div>
+
+		<!-- Modal Search -->
+		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+			<div class="container-search-header">
+				<button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+					<img src="images/icons/icon-close2.png" alt="CLOSE">
+				</button>
+
+				<form class="wrap-search-header flex-w p-l-15">
+					<button class="flex-c-m trans-04">
+						<i class="zmdi zmdi-search"></i>
+					</button>
+					<input class="plh3" type="text" name="search" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+	</header>
+	
+
+	
+
+	<!-- Product -->
+	<section class="bg0 p-t-23 p-b-140">
+		<div class="container">
+			<div class="p-b-10">
+				<h3 class="ltext-103-edit cl5">
+					Product List
+				</h3>
+			</div>
+
+			<div class="flex-w flex-sb-m p-b-52">
+				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+						All Books
+					</button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
+						Education 
+					</button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
+						Foreign Books
+					</button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
+						Language 
+					</button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
+						Novel
+					</button>
+
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
+						Business
+					</button>
+				</div>
+
+				<div class="flex-w flex-c-m m-tb-10">
+					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						 Filter
+					</div>
+
+					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						Search
+					</div>
+				</div>
+				
+				<!-- Search product -->
+				<div class="dis-none panel-search w-full p-t-10 p-b-15">
+					<div class="bor8 dis-flex p-l-15">
+						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+							<i class="zmdi zmdi-search"></i>
+						</button>
+
+						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+					</div>	
+				</div>
+
+				<!-- Filter -->
+				<div class="dis-none panel-filter w-full p-t-10">
+					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+						<div class="filter-col1 p-r-15 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Sort By
+							</div>
+
+							<ul>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Default
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Popularity
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Average rating
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+										Newness
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Price: Low to High
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Price: High to Low
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<div class="filter-col2 p-r-15 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Price
+							</div>
+
+							<ul>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+										All
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Under 100000 VNĐ
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										100000 - 200000 VNĐ
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										200000 - 500000 VNĐ
+									</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">
+										Above 500000 VNĐ
+									</a>
+								</li>
+							</ul>
+						</div>
 
 
+						<div class="filter-col4 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Tags
+							</div>
+
+							<div class="flex-w p-t-4 m-r--5">
+								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									Textbook
+								</a>
+
+								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									Fiction
+								</a>
+
+								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									History
+								</a>
+
+								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									Horror
+								</a>
+
+								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									Light Novel
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 
-    <div id="food-menu" class="light-wrapper">
-        <section class="ss-style-top"></section>
-        <div class="container inner">
-            <h2 class="section-title text-center">Some Book Topic</h2>
-            <p class="lead main text-center">There is no sincerer love than the love of book!</p>
-
-                        <div class="row">
-                <div class="col-sm-3 col-md-3">
-                    <div class="menu-images-edit "><img src="images/menu/menu1.jpg" alt="Education"></div>
-                    <div class="menu-titles"><h1><a href="/shop" class="">Education</a></h1></div>                 
-                </div>
-                <div class="col-sm-3 col-md-3">
-                    <div class="menu-images-edit "><img src="images/menu/menu2.jpg" alt="Ice Drinks"></div>
-                    <div class="menu-titles"><h1><a href="/shop" class="">Science</a></h1></div>
-                </div>
-                <div class="col-sm-3 col-md-3">
-                    <div class="menu-images-edit "><img src="images/menu/menu3.jpg" alt="Smoothies"></div>
-                    <div class="menu-titles"><h1><a href="/shop" class="">Fiction</a></h1></div>
-                    
-                </div>
-                <div class="col-sm-3 col-md-3">
-                    <div class="menu-images-edit "><img src="images/menu/menu4.jpg" alt="Deserts"></div>
-                    <div class="menu-titles"><h1><a href="/shop" class="">Horror</a></h1></div>
-                    
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-sm-3 col-md-3">
-                    <div class="menu-images-edit "><img src="images/menu/menu5.jpg" alt="Hot Drinks"></div>
-                    <div class="menu-titles"><h1><a href="/shop" class="">History</a></h1></div>
-                    
-                </div>
-                <div class="col-sm-3 col-md-3">
-                    <div class="menu-images-edit "><img src="images/menu/menu6.jpg" alt="Ice Drinks"></div>
-                    <div class="menu-titles"><h1><a href="/shop" class="">Geography</a></h1></div>
-                    
-                </div>
-                <div class="col-sm-3 col-md-3">
-                    <div class="menu-images-edit "><img src="images/menu/menu7.jpg" alt="Smoothies"></div>
-                    <div class="menu-titles"><h1><a href="/shop" class="">Light Novel</a></h1></div>
-                    
-                </div>
-                <div class="col-sm-3 col-md-3">
-                    <div class="menu-images-edit "><img src="images/menu/menu8.jpg" alt="Deserts"></div>
-                    <div class="menu-titles"><h1><a href="/shop" class="">Cooking</a></h1></div>
-                    
-                </div>
-            </div>
-            
-        </div>
-        <!-- /.container -->
-        <section class="ss-style-bottom"></section>
-    </div><!--/#food-menu-->
+		    {{{body}}}
 
 
+			<!-- Load more -->
+			<div class="flex-c-m flex-w w-full p-t-45">
+				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+					Load More
+				</a>
+			</div>
+		</div>
+	</section>
 
 
-    <div id="special-offser" class="parallax pricing">
-        <div class="container inner">
+	<!-- Footer -->
+	<footer class="bg3 p-t-75 p-b-32">
+		<div class="container">
 
-            <h2 class="section-title text-center">Special Offers</h2>
-            <p class="lead main text-center">There is no sincerer love than the love of book!</p>
-            
-            {{!-- <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    
-                    <div class="pricing-item">
-                        
-                        <a href="#"><img class="img-responsive img-thumbnail" src="img/dish/dish3.jpg" alt=""></a>
-                        
-                        <div class="pricing-item-details">
-                            
-                            <h3><a href="#">Chicken Fried Rice</a></h3>
-                            
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            
-                            <a class="btn btn-danger" href="#">Order now</a>
-                            <div class="clearfix"></div>
-                        </div>
-                        <!--price tag-->
-                        <span class="hot-tag br-red">$26</span>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    
-                    <div class="pricing-item">
-                        
-                        <a href="#"><img class="img-responsive img-thumbnail" src="img/dish/dish2.jpg" alt=""></a>
-                        
-                        <div class="pricing-item-details">
-                            
-                            <h3><a href="#">Hot Fried Chicken</a></h3>
-                            
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            
-                            <a class="btn btn-danger" href="#">Order now</a>
-                            <div class="clearfix"></div>
-                        </div>
-                        <!--price tag-->
-                        <span class="hot-tag br-lblue">$37</span>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="clearfix visible-md"></div>
-                <div class="col-md-6 col-sm-6">
-                    
-                    <div class="pricing-item">
-                        
-                        <a href="#"><img class="img-responsive img-thumbnail" src="img/dish/dish4.jpg" alt=""></a>
-                        
-                        <div class="pricing-item-details">
-                            
-                            <h3><a href="#">Thi Chicken Momo</a></h3>
-                            
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            
-                            <a class="btn btn-danger" href="#">Order now</a>
-                            <div class="clearfix"></div>
-                        </div>
-                        <!--price tag-->
-                        <span class="hot-tag br-green">$54</span>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    
-                    <div class="pricing-item">
-                        
-                        <a href="#"><img class="img-responsive img-thumbnail" src="img/dish/dish1.jpg" alt=""></a>
-                        
-                        <div class="pricing-item-details">
-                            
-                            <h3><a href="#">Cocktail Sushi</a></h3>
-                            
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            
-                            <a class="btn btn-danger" href="#">Order now</a>
-                            <div class="clearfix"></div>
-                        </div>
-                        <!--price tag-->
-                        <span class="hot-tag br-red">$27</span>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div> --}}
+			<div class="p-t-40">
+				<div class="flex-c-m flex-w p-b-18">
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
+					</a>
 
-        </div>
-        <!-- /.container --> 
-    </div><!-- /#special-offser -->
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+					</a>
+
+					<a href="#" class="m-all-1">
+						<img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+					</a>
+				</div>
+
+				<p class="stext-107 cl6 txt-center">
+					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> &amp; distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+				</p>
+			</div>
+		</div>
+	</footer>
 
 
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
 
 
-    <div id="reservation" class="light-wrapper">
-        <section class="ss-style-top"></section>
-        <div class="container inner">
-            <h2 class="section-title text-center">Register</h2>
-            <p class="lead main text-center">Regist your book</p>
-            {{!-- <div class="row">
-                <div class="col-md-6">
-                    <form class="form form-table" method="post" name="">
-                        <div class="form-group">
-                            <h4>Fill the form for table reservation (all fields required)</h4>
-                        </div>
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/slick/slick.min.js"></script>
+	<script src="js/slick-custom.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/parallax100/parallax100.js"></script>
+	<script>
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script>
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+		        delegate: 'a', // the selector for gallery item
+		        type: 'image',
+		        gallery: {
+		        	enabled:true
+		        },
+		        mainClass: 'mfp-fade'
+		    });
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/isotope/isotope.pkgd.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/sweetalert/sweetalert.min.js"></script>
+	<script>
+		$('.js-addwish-b2').on('click', function(e){
+			e.preventDefault();
+		});
 
-                        <div class="row">
-                          <div class="col-lg-6 col-md-6 form-group">
-                            <label class="sr-only" for="first_name1">first name</label>
-                            <input class="form-control hint" type="text" id="first_name1" name="first_name" placeholder="First name" required="">
-                          </div>
-                          <div class="col-lg-6 col-md-6 form-group">
-                            <label class="sr-only" for="last_name1">last name</label>
-                            <input class="form-control hint" type="text" id="last_name1" name="last_name" placeholder="Last name" required="">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-lg-6 col-md-6 form-group">
-                            <label class="sr-only" for="email1">email</label>
-                            <input class="form-control hint" type="email" id="email1" name="email" placeholder="Email@domain.com" required="">
-                          </div>
-                          <div class="col-lg-6 col-md-6 form-group">
-                            <label class="sr-only" for="phone1">phone</label>
-                            <input class="form-control hint" type="text" id="phone1" name="phone" placeholder="Phone" required="">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-lg-6 col-md-6 form-group">
-                            <label class="sr-only" for="reserv_date1">reservation date</label>
-                            <input class="form-control datepicker hasDatepicker hint" type="text" id="reserv_date1" name="reserv_date" placeholder="Reservation date" required="">
-                          </div>
-                          <div class="col-lg-6 col-md-6 form-group">
-                            <label class="sr-only" for="numb_guests1">number of guests</label>
-                            <input class="form-control hint" type="text" id="numb_guests1" name="numb_guests" placeholder="Number of guests" required="">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-lg-6 col-md-6 form-group">
-                            <label class="sr-only" for="alt_reserv_date1">time from</label>
-                            <input class="form-control datepicker hasDatepicker hint" type="text" id="alt_reserv_date1" name="alt_reserv_date" placeholder="Time from" required="">
-                          </div>
-                          <div class="col-lg-6 col-md-6 form-group">
-                            <label class="sr-only" for="time1">time</label>
-                            <input class="form-control timepicker ui-timepicker-input hint" type="text" id="time1" name="time" placeholder="Time to" required="" autocomplete="off">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-lg-12 col-md-12">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-lg-12 col-md-12">
-                            <button type="submit" class="btn btn-danger btn-lg">Reserve!</button>
-                          </div>
-                        </div>
-                      </form>
-                </div><!-- col-md-6 -->
-                <div class="col-md-5 col-md-offset-1">
-                    
-                    <h3><i class="fa fa-clock-o fa-fw"></i>Hours</h3>
-                    <h4>Breakfast</h4>
-                    <p>Mon to Fri: 7:30 AM - 11:30 AM<br>Sat &amp; Sun: 8:00 AM - 9:00 AM</p>
-                    <h4>Lunch</h4>
-                    <p>Mon to Fri: 12:00 PM - 5:00 PM</p>
-                    <h4>Dinner</h4>
-                    <p>Mon to Sat: 6:00 PM -  1:00 AM<br>Sun: 5:30 PM - 12:00 AM</p>
+		$('.js-addwish-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
 
-                    <h3><i class="fa fa-map-marker fa-fw"></i>Directions</h3>
-                    <p>4120 Lenox Avenue, New York, NY, 10035 76 Saint Nicholas Avenue</p>
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
 
-                    <h3><i class="fa fa-mobile fa-fw"></i>Contacts</h3>
-                    <p>Email: <a href="mailto:yourname@meatking.com">yourname@meatking.com</a></p>
-                    <p>Phone: +234 3456 678</p> --}}
+		$('.js-addwish-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
-                {{!-- </div><!-- col-md-6 -->
-            </div> --}}
-            <!-- /.services --> 
-        </div>
-        <!-- /.container -->
-        <section class="ss-style-bottom"></section>
-    </div><!-- #reservation -->
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
 
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
 
+		/*---------------------------------------------*/
 
-    <div id="chefs" class="parallax pricing">
-        <div class="container inner">
+		$('.js-addcart-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+	
+	</script>
+<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
 
-            <h2 class="section-title text-center">Our Members</h2>
-            <p class="lead main text-center">There is no sincerer love than the love of book!</p>
-            
-            <div class="row text-center chefs">
-                <div class="col-sm-4">
-                    <div class="col-wrapper">
-                        <div class="icon-wrapper-edit">
-                            <img class="img-edit2" src="images/members/cat1.jpg">
-                        </div>
-                        <h3>Đinh Hoàng Minh</h3>
-                        <p>18120206</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="col-wrapper">
-                        <div class="icon-wrapper-edit">
-                            <img class="img-edit2" src="images/members/cat3.jpg">
-                        </div>
-                        <h3>Huỳnh Long Nam</h3>
-                        <p>18120212</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="col-wrapper">
-                        <div class="icon-wrapper-edit">
-                            <img class="img-edit2" src="images/members/cat2.jpg">
-                        </div>
-                        <h3>Nguyễn Hà Đại Thiên Phú</h3>
-                        <p>18120223</p>
-                    </div>
-                </div>
-            </div>
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
 
-        </div>
-        <!-- /.container --> 
-    </div><!-- /#chefs -->
-
-
-    <footer id="footer" class="dark-wrapper">
-        <section class="ss-style-top"></section>
-        <div class="container inner">
-            <div class="row">
-                <div class="col-sm-6">
-                    &copy; Copyright MeatKing 2014
-                    <br/>Theme By <a class="themeBy" href="http://www.Themewagon.com">ThemeWagon</a>
-                </div>
-                <div class="col-sm-6">
-                    <div class="social-bar">
-                        <a href="#" class="fa fa-instagram tooltipped" title=""></a>
-                        <a href="#" class="fa fa-youtube-square tooltipped" title=""></a>
-                        <a href="#" class="fa fa-facebook-square tooltipped" title=""></a>
-                        <a href="#" class="fa fa-pinterest-square tooltipped" title=""></a>
-                        <a href="#" class="fa fa-google-plus-square tooltipped" title=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /.container -->
-    </footer>
-
-    <script src="js/jquery-2.1.3.min.js"></script>
-    <script src="js/jquery.actual.min.js"></script>
-    <script src="js/jquery.scrollTo.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
 </body>
 </html>
