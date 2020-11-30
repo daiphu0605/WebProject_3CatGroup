@@ -12,10 +12,6 @@ var signIn = require('./routes/signin');
 var signUp = require('./routes/signup');
 
 var app = express();
-var connection=require('./models/connection')
-//
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
