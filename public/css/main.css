@@ -504,7 +504,7 @@ section::before,section::after {
         display:inline-block;
         float:none;
     }
-    .logo {
+    #logo {
         position:absolute;
         display:block !important;
         width:110px;
