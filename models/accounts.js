@@ -1,3 +1,4 @@
+
 var connection = require('./connection');
 
 exports.FindUserName = async (username) => {
@@ -6,8 +7,8 @@ exports.FindUserName = async (username) => {
 }
 
 exports.AddAccount = (username, password) => {
- var sql = "INSERT INTO hcmus_book_store.user_info (username, password) VALUES ";
- sql = sql + "('" + username + "', '" + password + "')";
+ var sql = "INSERT INTO hcmus_book_store.user_info (username, password, role) VALUES ";
+ sql = sql + "('"+username+"', '"+password+"', 'user')";
  
  connection.query(sql, function (err, results) {
     if (err) throw err;
@@ -18,22 +19,6 @@ exports.AddAccount = (username, password) => {
 exports.isAccount = async (username, password) => {
     const Result = GetAcc(username,password);
     return Result;
-    /*async () => {
-        try{
-            let Results = await GetAcc(username, password);
-            if (Results !=0 ){
-            return true;
-            }
-            else {
-                return false;
-            }
-        }
-        catch (err)
-        {
-            throw err;
-        };
-    }
-    return bool;*/
 }   
 
 async function GetAcc (username, password) {
