@@ -1,4 +1,8 @@
+
 var connection = require('./connection');
+
+
+
 
 
 exports.FindUserName = (username) => {
@@ -14,8 +18,8 @@ exports.FindUserName = (username) => {
 }
 
 exports.AddAccount = (username, password) => {
- var sql = "INSERT INTO hcmus_book_store.user_info (username, password) VALUES ";
- sql = sql + "('" + username + "', '" + password + "')";
+ var sql = "INSERT INTO hcmus_book_store.user_info (username, password, role) VALUES ";
+ sql = sql + "('"+username+"', '"+password+"', 'user')";
  
  connection.query(sql, function (err, results) {
     if (err) throw err;
@@ -24,6 +28,7 @@ exports.AddAccount = (username, password) => {
 }
 
 exports.isAccount = (username, password) => {
+
     var sql = "SELECT username, password FROM hcmus_book_store.user_info " 
     sql = sql + "WHERE username = '"+ username +"' and password = '"+ password +"';";
     //sql = sql + "WHERE username = 'hlnam' and password = '123';";
