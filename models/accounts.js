@@ -1,16 +1,8 @@
 var connection = require('./connection');
 
-
-exports.FindUserName = (username) => {
-    var sql = "SELECT username FROM hcmus_book_store.user_info WHERE username = '"+ username+"'";
-    nResults = connection.query(sql,(err, results) => {
-        if (err) throw err;
-        //console.log(results);
-    }).__proto__._handleFinalResultPacket.length;
-    if (nResults != 0) {
-        return true;
-    }
-    return false;
+exports.FindUserName = async (username) => {
+    const Result = GetUsername(username);
+    return Result;
 }
 
 exports.AddAccount = (username, password) => {
@@ -23,20 +15,54 @@ exports.AddAccount = (username, password) => {
  })
 }
 
-exports.isAccount = (username, password) => {
-    var sql = "SELECT username, password FROM hcmus_book_store.user_info " 
-    sql = sql + "WHERE username = '"+ username +"' and password = '"+ password +"';";
-    //sql = sql + "WHERE username = 'hlnam' and password = '123';";
-    var nResults = 0;
-
-    nResults = connection.query(sql,(err, results) => {
-        if (err) throw err;
-        //console.log(results);
-    }).__proto__._handleFinalResultPacket.length;
-    if (nResults != 0) {
-        return true;
+exports.isAccount = async (username, password) => {
+    const Result = GetAcc(username,password);
+    return Result;
+    /*async () => {
+        try{
+            let Results = await GetAcc(username, password);
+            if (Results !=0 ){
+            return true;
+            }
+            else {
+                return false;
+            }
+        }
+        catch (err)
+        {
+            throw err;
+        };
     }
-    return false;
+    return bool;*/
+}   
+
+async function GetAcc (username, password) {
+    var Result = await new Promise ((resolve, reject)=>{
+        var sql = "SELECT username, password FROM hcmus_book_store.user_info " 
+        sql = sql + "WHERE username = '"+ username +"' and password = '"+ password +"';";
+        connection.query(sql,(err, results) => {
+            if (err) return reject(err);
+            var len = results.length;
+            return resolve(len)
+        })
+    });
+    return Result;
 }
+
+async function GetUsername(username){
+    var Result = await new Promise ((resolve, reject)=>{
+            var sql = "SELECT username FROM hcmus_book_store.user_info WHERE username = '"+ username+"'";
+            connection.query(sql,(err, results) => {
+            if (err) return reject(err);
+            return resolve(results.length);
+        })
+    });
+    return Result;
+}
+
+
+
+
+
 
 //Result.length != 0

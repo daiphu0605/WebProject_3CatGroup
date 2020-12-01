@@ -1,14 +1,14 @@
 const express = require('express');
 var account =require('../models/accounts')
 
-    exports.SignUp = (req, res) => {
+    exports.SignUp = async (req, res) => {
         var username = req.body.username;
         var password = req.body.pass;
         var repassword = req.body.repass;
         var ErrorUsername ="";
         var ErrorConfirmPassword = "";
 
-        if (account.FindUserName(username))
+        if (await account.FindUserName(username))
         {
             ErrorUsername = ErrorUsername + "Username is existed.\n";
         }

@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res, next) => {
-     res.redirect('/');;
+     res.redirect('/shop');;
 });
 
 module.exports = router;

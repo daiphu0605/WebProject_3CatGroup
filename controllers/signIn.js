@@ -1,17 +1,17 @@
 const express = require('express');
 var account =require('../models/accounts')
 
-exports.SignIn = (req, res) => {
+exports.SignIn = async (req, res) => {
     var username = req.body.username;
     var pass = req.body.pass;
     var Error = "";
-    if (account.isAccount(username, pass))
+    var bool = await account.isAccount(username, pass);
+    if (bool)
     {
-        return true;
+         res.redirect('/shop');
     }
     else {
         Error = Error + "Wrong Password or Username.\n";
         res.render ('sign_in', {layout: 'layout_sign', username, Error});
-        return false;
     }
 }

@@ -7,10 +7,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res) => {
-    if (signIn.SignIn(req,res))
-    {
-         res.redirect('/');
-    }
+    signIn.SignIn(req,res)
 });
 
 module.exports = router;
