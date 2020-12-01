@@ -3,13 +3,11 @@ var connection = require('./connection');
 
 exports.FindUserName = (username) => {
     var sql = "SELECT username FROM hcmus_book_store.user_info WHERE username = '"+ username+"'";
-    var Result = [];
-    connection.query(sql,(err, results) => {
+    nResults = connection.query(sql,(err, results) => {
         if (err) throw err;
-        Result = results;
-        console.log(results);
-    });
-    if (Result.length != 0) {
+        //console.log(results);
+    }).__proto__._handleFinalResultPacket.length;
+    if (nResults != 0) {
         return true;
     }
     return false;
@@ -28,12 +26,13 @@ exports.AddAccount = (username, password) => {
 exports.isAccount = (username, password) => {
     var sql = "SELECT username, password FROM hcmus_book_store.user_info " 
     sql = sql + "WHERE username = '"+ username +"' and password = '"+ password +"';";
+    //sql = sql + "WHERE username = 'hlnam' and password = '123';";
     var nResults = 0;
-    connection.query(sql,(err, results) => {
+
+    nResults = connection.query(sql,(err, results) => {
         if (err) throw err;
-        nResults = results.length;
-        console.log(results);
-    });
+        //console.log(results);
+    }).__proto__._handleFinalResultPacket.length;
     if (nResults != 0) {
         return true;
     }
