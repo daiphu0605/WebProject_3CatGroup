@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const shopRouter = require('./routes/shop');
 
 var signIn = require('./routes/signin');
 var signUp = require('./routes/signup');
@@ -28,7 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use('/shop', shopRouter);
+//app.use('/shop/:id', shopRouter);
 
 app.use('/signin', signIn);
 app.use('/signUp', signUp);
