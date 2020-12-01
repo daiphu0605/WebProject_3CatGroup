@@ -7,12 +7,11 @@ exports.SignIn = async (req, res) => {
     var Error = "";
     if (await account.isAccount(username, pass))
     {
-        return true;
+         res.redirect('/shop');
     }
     else {
         Error = Error + "Wrong Password or Username.\n";
 
         res.render ('sign_in', {layout: 'layout_sign', username, Error});
-        return false;
     }
 }
