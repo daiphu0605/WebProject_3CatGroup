@@ -1,11 +1,11 @@
 const express = require('express');
 var account =require('../models/accounts')
 
-exports.SignIn = (req, res) => {
+exports.SignIn = async (req, res) => {
     var username = req.body.username;
     var pass = req.body.pass;
     var Error = "";
-    if (account.isAccount(username, pass))
+    if (await account.isAccount(username, pass))
     {
         return true;
     }
