@@ -26,16 +26,18 @@ exports.AddAccount = (username, password) => {
 }
 
 exports.isAccount = (username, password) => {
-    var sql = "SELECT username password FROM hcmus_book_store.user_info " 
-    sql = sql + "WHERE username = '"+ username+"' and password = '"+ password+"'";
-    var Result = [];
+    var sql = "SELECT username, password FROM hcmus_book_store.user_info " 
+    sql = sql + "WHERE username = '"+ username +"' and password = '"+ password +"';";
+    var nResults = 0;
     connection.query(sql,(err, results) => {
         if (err) throw err;
-        Result = results;
+        nResults = results.length;
         console.log(results);
     });
-    if (Result.length != 0) {
+    if (nResults != 0) {
         return true;
     }
     return false;
 }
+
+//Result.length != 0
