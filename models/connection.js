@@ -8,6 +8,7 @@ var connection=mysql.createConnection({
   
   }
   )
+
   
   connection.connect(function(error){
     if (!!error){
@@ -20,4 +21,5 @@ var connection=mysql.createConnection({
 
   )
 
-  module.exports=connection;
+
+  module.exports = connection;
