@@ -19,13 +19,11 @@ exports.index = async (req, res, next) => {
     res.render('shop/list', {layout: 'bookshop', books, page});
 };
 
-exports.book = (req, res, next) => {
+exports.book = async (req, res, next) => {
     //const item = req.body.book_id;
     // Get detailbooks from model
-    const detailbooks = bookModel.list;
+    var BookID = req.params.id;
+    const detail = await bookService.getBookByID(BookID);
 
-    const detail = detailbooks[parseInt(req.params.id)]; 
-
-    // Pass data to view to display list of books
     res.render('detailBook/detail', {layout: 'detaillayout', detail});
 };
