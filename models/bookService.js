@@ -1,6 +1,6 @@
 var connection=require('./connection');
 var express = require("express");
-var router = express.Router();
+
 
 const LIMITED_ITEM_PER_PAGE = 12;
 
