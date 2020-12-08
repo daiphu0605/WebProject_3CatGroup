@@ -5,12 +5,15 @@ exports.index = async (req, res, next) => {
     //Get current page, default by 1
     const curPage = +req.query.page || 1;
 
-    
+    //Get catogoryID
+    const catID = req.query.catogory || "";
 
-    const page = await bookService.pageNumber(curPage);
+
+    //Get Page infomation
+    const page = await bookService.pageNumber(curPage, catID);
 
     // Get books from model
-    const books = await bookService.books(curPage);
+    const books = await bookService.books(curPage, catID);
 
     // Pass data to view to display list of books
     res.render('shop/list', {layout: 'bookshop', books, page});

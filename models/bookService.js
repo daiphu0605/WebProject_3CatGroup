@@ -13,17 +13,48 @@ var pageDetail = {
     totalPage: 0
 }
 
-async function getBooks(page){
+async function getBookIDByCatID(catID) {
     var result = await new Promise ((resolve, reject)=>{
-        var offset = LIMITED_ITEM_PER_PAGE * (page - 1);
-        var sql = "SELECT * FROM hcmus_book_store.book_info LIMIT "+LIMITED_ITEM_PER_PAGE+" OFFSET "+offset+"";
+        var sql = "SELECT id_book FROM hcmus_book_store.list_categories WHERE id_category = '"+catID+"'";
 
-        console.log(sql);
-        connection.query(sql,(err, rows) => {
+        connection.query(sql,(err, temp) => {
             if (err) return reject(err);
-            return resolve(rows);
+            return resolve(temp);
         })
     });
+    return result;
+}
+
+async function getBooks(page, catID){
+    var result;
+    var offset = LIMITED_ITEM_PER_PAGE * (page - 1);
+    if(catID != "") {
+        var ListBookID = await getBookIDByCatID(catID);
+        result = await new Promise ((resolve, reject)=>{
+            var sql = "SELECT * FROM hcmus_book_store.book_info WHERE id IN (";
+            ListBookID.forEach(element => sql += "'" + element['id_book'] + "',");
+            sql = sql.substr(0, sql.length - 1);
+            sql = sql + ") LIMIT " + LIMITED_ITEM_PER_PAGE + " OFFSET " + offset + ";";
+
+            console.log(sql);
+
+            connection.query(sql,(err, result) => {
+                if (err) return reject(err);
+                return resolve(result);
+            })
+
+        });
+    }
+    else {
+        result = await new Promise ((resolve, reject)=>{
+            var sql = "SELECT * FROM hcmus_book_store.book_info LIMIT "+LIMITED_ITEM_PER_PAGE+" OFFSET "+offset+"";
+            connection.query(sql,(err, result) => {
+                if (err) return reject(err);
+                return resolve(result);
+            })
+        });
+    }
+    
     return result;
 }
 
@@ -51,14 +82,14 @@ async function getTotalPage(){
     return result;
 }
 
-exports.books = async(page) =>{
-    const listBooks = await getBooks(page);
+exports.books = async(page, catID) =>{
+    const listBooks = await getBooks(page, catID);
     return listBooks;
 }
 
-exports.pageNumber = async(page) =>{
+exports.pageNumber = async(page, catID) =>{
     pageDetail.currentPage = page;
-    pageDetail.totalPage = await getTotalPage();
+    pageDetail.totalPage = await getTotalPage(catID);
 
 
     if(pageDetail.currentPage <= 1) {
