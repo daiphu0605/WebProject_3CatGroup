@@ -30,11 +30,6 @@ exports.Shop = (req,res,next) => {
 async function index (req, res, next) {
     //Get current page, default by 1
     const curPage = +req.query.page || 1;
-    //const page = await bookService.pageNumber(curPage);
-
-    // Get books from model
-    //const books = await bookService.books(curPage);
-
 
     //Get catogoryID
     const catID = req.query.catogory || "";
