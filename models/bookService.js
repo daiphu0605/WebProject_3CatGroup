@@ -1,9 +1,7 @@
 var connection=require('./connection');
-<<<<<<< HEAD
 var express = require("express");
 
-=======
->>>>>>> f0715fed349c36ecfe545b2ca667cc262c279e8d
+
 
 const LIMITED_ITEM_PER_PAGE = 12;
 
