@@ -1,0 +1,45 @@
+{
+ 
+    "development": {
+ 
+        "username": "hcmus_book_store",
+ 
+        "password": "fBGHJJdjS8WaEjJB",
+ 
+        "database": "hcmus_book_store",
+ 
+        "host": "45.77.129.37",
+ 
+        "dialect": "mysql"
+ 
+    },
+ 
+    "test": {
+ 
+        "username": "",
+ 
+        "password": null,
+ 
+        "database": "",
+ 
+        "host": "",
+ 
+        "dialect": "mysql"
+ 
+    },
+ 
+    "production": {
+ 
+        "username": "",
+ 
+        "password": null,
+ 
+        "database": "",
+ 
+        "host": "127.0.0.1",
+ 
+        "dialect": "mysql"
+ 
+    }
+ 
+}
