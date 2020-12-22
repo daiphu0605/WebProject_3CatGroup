@@ -1,11 +1,18 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 ////my functions
 ////////////////////////////////////////////////////////////////////////////////////////
-function replaceProducts(page){
+function replaceProducts(currentpage,page){
+    // $.getJSON("/api/shop/book-list-old", {currentpage}, function(oldbooks){
+            
+    // })
+
     $.getJSON("/api/shop/book-list", {page}, function(books){
         var template = Handlebars.compile($('#product-list').html());
         var productRender = template({books});
         $('#products').html(productRender);
+
+        var urlString = "/shop?page=" + page;
+        window.history.pushState(books,"3 Cat Shop", urlString);
     })
 }
 

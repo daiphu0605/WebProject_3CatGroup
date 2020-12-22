@@ -17,3 +17,7 @@ async function getbook (req, res, next) {
 
     return books;
 };
+
+exports.oldbookapi = async (req, res, next) => {
+    res.json(await getbook(req, res, next))
+}

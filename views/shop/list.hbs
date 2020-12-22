@@ -310,41 +310,41 @@
 
 		<!-- Page -->
 		<div class="flex-c-m flex-w w-full p-t-45">
-			<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts(1);">
+			<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.currentPage}},1);">
 				First
 			</button>
 
 			{{#if page.prevPrevPage}}
-				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.prevPrevPage}});">
+				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.currentPage}},{{page.prevPrevPage}});">
 					{{page.prevPrevPage}}
 				</button>
 			{{/if}}
 {{!-- /shop?page={{page.prevPage}} --}}
 			{{#if page.prevPage}}
-				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.prevPage}});">
+				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.currentPage}},{{page.prevPage}});">
 					{{page.prevPage}}
 				</button>
 			{{/if}}
 
 			{{#if page.currentPage}}
-				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04">
+				<button class="flex-c-m stext-101 cl0 size-103-edit bg3 bor1 hov-btn1-edit p-lr-15 trans-04">
 					{{page.currentPage}}
 				</button>
 			{{/if}}
 {{!-- /shop?page={{page.nextPage}} --}}
 			{{#if page.nextPage}}
-				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.nextPage}});">
+				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1-edit p-lr-15 trans-04" onclick="replaceProducts({{page.currentPage}},{{page.nextPage}});">
 					{{page.nextPage}}
 				</button>
 			{{/if}}
 
 			{{#if page.nextNextPage}}
-				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.nextNextPage}});">
+				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.currentPage}},{{page.nextNextPage}});">
 					{{page.nextNextPage}}
 				</button>
 			{{/if}}
 {{!-- /shop?page={{page.totalPage}} --}}
-			<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.totalPage}});">
+			<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.currentPage}},{{page.totalPage}});">
 				Last
 			</button>
 		</div>
