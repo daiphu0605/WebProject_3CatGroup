@@ -264,7 +264,7 @@
 
 		{{!-- List Books --}}
 		
-		<div class="row isotope-grid">
+		<div class="row isotope-grid" id="products">
 			<ul>
 			{{#each books}}
 			<li>
@@ -305,48 +305,87 @@
 
 		</div>
 
+
+		
+
 		<!-- Page -->
 		<div class="flex-c-m flex-w w-full p-t-45">
-			<a href="/shop?page=1" class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04">
+			<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts(1);">
 				First
-			</a>
+			</button>
 
 			{{#if page.prevPrevPage}}
-				<a href="/shop?page={{page.prevPrevPage}}" class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04">
+				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.prevPrevPage}});">
 					{{page.prevPrevPage}}
-				</a>
+				</button>
 			{{/if}}
-
+{{!-- /shop?page={{page.prevPage}} --}}
 			{{#if page.prevPage}}
-				<a href="/shop?page={{page.prevPage}}" class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04">
+				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.prevPage}});">
 					{{page.prevPage}}
-				</a>
+				</button>
 			{{/if}}
 
 			{{#if page.currentPage}}
-				<a href="/shop?page={{page.currentPage}}" class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04">
+				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04">
 					{{page.currentPage}}
-				</a>
+				</button>
 			{{/if}}
-
+{{!-- /shop?page={{page.nextPage}} --}}
 			{{#if page.nextPage}}
-				<a href="/shop?page={{page.nextPage}}" class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04">
+				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.nextPage}});">
 					{{page.nextPage}}
-				</a>
+				</button>
 			{{/if}}
 
 			{{#if page.nextNextPage}}
-				<a href="/shop?page={{page.nextNextPage}}" class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04">
+				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.nextNextPage}});">
 					{{page.nextNextPage}}
-				</a>
+				</button>
 			{{/if}}
-
-			<a href="/shop?page={{page.totalPage}}" class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04">
+{{!-- /shop?page={{page.totalPage}} --}}
+			<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts({{page.totalPage}});">
 				Last
-			</a>
+			</button>
 		</div>
 		
 
 		
 	</div>
 </section>
+
+<script type="text/x-handlebars" id="product-list">
+	\{{#each books}}
+		<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+			<!-- Block2 -->
+			<div class="block2">
+				<div class="block2-pic hov-img0">
+					<img class="img-edit1" src="\{{this.image}}" alt="IMG-PRODUCT" >
+
+					<a href="/shop/{{id}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+						Quick View
+					</a>
+				</div>
+
+				<div class="block2-txt flex-w flex-t p-t-14">
+					<div class="block2-txt-child1 flex-col-l ">
+						<a href="" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+							\{{this.title}}
+						</a>
+
+						<span class="stext-105 cl3">
+							\{{this.base_price}} VND
+						</span>
+					</div>
+
+					<div class="block2-txt-child2 flex-r p-t-3">
+						<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+							<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
+							<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	\{{/each}}
+</script>

@@ -53,3 +53,4 @@ exports.book = async (req, res, next) => {
 
     res.render('detailBook/detail', {layout: 'detaillayout', detail});
 };
+

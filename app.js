@@ -11,6 +11,9 @@ const shopRouter = require('./routes/shop');
 var signIn = require('./routes/signin');
 var signUp = require('./routes/signup');
 
+//api
+var apiShop = require('./routes/api/shop')
+
 var app = express();
 var connection=require('./models/connection')
 //
@@ -34,6 +37,9 @@ app.use('/shop', shopRouter);
 
 app.use('/signin', signIn);
 app.use('/signUp', signUp);
+
+//api
+app.use('/api/shop',apiShop);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
