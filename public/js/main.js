@@ -11,8 +11,9 @@ function replaceProducts(currentpage,page){
         var productRender = template({books});
         $('#products').html(productRender);
 
-        var urlString = "/shop?page=" + page;
-        window.history.pushState(books,"3 Cat Shop", urlString);
+        $('html, body').animate({ scrollTop: $('#books-list-header').offset().top }, 'slow');
+        //var urlString = "/shop?page=" + page;
+        //window.history.pushState(books,"3 Cat Shop", urlString);
     })
 }
 
