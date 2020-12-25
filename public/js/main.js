@@ -6,15 +6,28 @@ function replaceProducts(currentpage,page){
             
     // })
 
-    $.getJSON("/api/shop/book-list", {page}, function(books){
-        var template = Handlebars.compile($('#product-list').html());
-        var productRender = template({books});
-        $('#products').html(productRender);
+    $.getJSON("/api/shop/page", {page}, function(temppage){
+        $.getJSON("/api/shop/book-list", {page}, function(books){
+            //get template
+            var booktemplate = Handlebars.compile($('#product-list').html());
+            var pagetemplate = Handlebars.compile($('#page-list').html());
 
-        $('html, body').animate({ scrollTop: $('#books-list-header').offset().top }, 'slow');
-        //var urlString = "/shop?page=" + page;
-        //window.history.pushState(books,"3 Cat Shop", urlString);
+            //get data
+            var productHTML = booktemplate({books});
+            var pageHTML = pagetemplate(temppage);
+
+            //display html
+            $('#products').html(productHTML);
+            $('#page').html(pageHTML);
+
+    
+            //scroll to top of page
+            $('html, body').animate({ scrollTop: $('#books-list-header').offset().top }, 'slow');
+            //var urlString = "/shop?page=" + page;
+            //window.history.pushState(books,"3 Cat Shop", urlString);
+        })
     })
+    
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////

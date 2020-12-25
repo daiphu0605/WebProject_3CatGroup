@@ -93,6 +93,14 @@ exports.pageNumber = async(page, catID) =>{
     pageDetail.totalPage = await getTotalPage(catID);
 
 
+    if (pageDetail.currentPage < 1) {
+        pageDetail.currentPage = 1;
+    }
+
+    if (pageDetail.currentPage > pageDetail.totalPage) {
+        pageDetail.currentPage = pageDetail.totalPage
+    }
+
     if(pageDetail.currentPage <= 1) {
         pageDetail.prevPage = 0;
     }
@@ -135,4 +143,254 @@ exports.getBookByID = async(BookID) =>{
         })
     });
     return result;
+}
+
+exports.getCategoryURL = async(sort, price, author, publisher) => {
+
+    var urlString = "/shop";
+    var flag = 0;
+
+    if (sort != "") {
+        urlString += "?sort=" + sort;
+        flag++;
+    }
+
+    if (price != "") {
+        if (flag > 0) {
+            urlString += "&price=" + price;
+        }
+        else {
+            urlString += "?price=" + price;
+        }
+        flag++;
+    }
+
+    if (author != "") {
+        if (flag > 0) {
+            urlString += "&author=" + author;
+        }
+        else {
+            urlString += "?author=" + author;
+        }
+        flag++;
+    }
+
+    if (publisher != "") {
+        if (flag > 0) {
+            urlString += "&publisher=" + publisher;
+        }
+        else {
+            urlString += "?publisher=" + publisher;
+        }
+        flag++;
+    }
+
+    if (flag > 0) {
+        urlString += "&";
+    }
+    else {
+        urlString += "?";
+    }
+
+    return urlString;
+}
+
+exports.getSortURL = async(category, price, author, publisher) => {
+
+    var urlString = "/shop";
+    var flag = 0;
+
+    if (category != "") {
+        urlString += "?category=" + category;
+        flag++;
+    }
+
+    if (price != "") {
+        if (flag > 0) {
+            urlString += "&price=" + price;
+        }
+        else {
+            urlString += "?price=" + price;
+        }
+        flag++;
+    }
+
+    if (author != "") {
+        if (flag > 0) {
+            urlString += "&author=" + author;
+        }
+        else {
+            urlString += "?author=" + author;
+        }
+        flag++;
+    }
+
+    if (publisher != "") {
+        if (flag > 0) {
+            urlString += "&publisher=" + publisher;
+        }
+        else {
+            urlString += "?publisher=" + publisher;
+        }
+        flag++;
+    }
+
+    if (flag > 0) {
+        urlString += "&";
+    }
+    else {
+        urlString += "?";
+    }
+
+    return urlString;
+}
+
+exports.getPriceURL = async(category, sort, author, publisher) => {
+
+    var urlString = "/shop";
+    var flag = 0;
+
+    if (category != "") {
+        urlString += "?category=" + category;
+        flag++;
+    }
+
+    if (sort != "") {
+        if (flag > 0) {
+            urlString += "&sort=" + sort;
+        }
+        else {
+            urlString += "?sort=" + sort;
+        }
+        flag++;
+    }
+
+    if (author != "") {
+        if (flag > 0) {
+            urlString += "&author=" + author;
+        }
+        else {
+            urlString += "?author=" + author;
+        }
+        flag++;
+    }
+
+    if (publisher != "") {
+        if (flag > 0) {
+            urlString += "&publisher=" + publisher;
+        }
+        else {
+            urlString += "?publisher=" + publisher;
+        }
+        flag++;
+    }
+
+    if (flag > 0) {
+        urlString += "&";
+    }
+    else {
+        urlString += "?";
+    }
+
+    return urlString;
+}
+
+exports.getAuthorURL = async(category, sort, price, publisher) => {
+
+    var urlString = "/shop";
+    var flag = 0;
+
+    if (category != "") {
+        urlString += "?category=" + category;
+        flag++;
+    }
+
+    if (sort != "") {
+        if (flag > 0) {
+            urlString += "&sort=" + sort;
+        }
+        else {
+            urlString += "?sort=" + sort;
+        }
+        flag++;
+    }
+
+    if (price != "") {
+        if (flag > 0) {
+            urlString += "&price=" + price;
+        }
+        else {
+            urlString += "?price=" + price;
+        }
+        flag++;
+    }
+
+    if (publisher != "") {
+        if (flag > 0) {
+            urlString += "&publisher=" + publisher;
+        }
+        else {
+            urlString += "?publisher=" + publisher;
+        }
+        flag++;
+    }
+
+    if (flag > 0) {
+        urlString += "&";
+    }
+    else {
+        urlString += "?";
+    }
+
+    return urlString;
+}
+
+exports.getPublisherURL = async(category, sort, price, author) => {
+
+    var urlString = "/shop";
+    var flag = 0;
+
+    if (category != "") {
+        urlString += "?category=" + category;
+        flag++;
+    }
+
+    if (sort != "") {
+        if (flag > 0) {
+            urlString += "&sort=" + sort;
+        }
+        else {
+            urlString += "?sort=" + sort;
+        }
+        flag++;
+    }
+
+    if (price != "") {
+        if (flag > 0) {
+            urlString += "&price=" + price;
+        }
+        else {
+            urlString += "?price=" + price;
+        }
+        flag++;
+    }
+
+    if (author != "") {
+        if (flag > 0) {
+            urlString += "&author=" + author;
+        }
+        else {
+            urlString += "?author=" + author;
+        }
+        flag++;
+    }
+
+    if (flag > 0) {
+        urlString += "&";
+    }
+    else {
+        urlString += "?";
+    }
+
+    return urlString;
 }
