@@ -48,7 +48,7 @@ async function index (req, res, next) {
 
 
     //Get Page infomation
-    const page = await bookService.pageNumber(curPage, category);
+    const page = await bookService.pageNumber(curPage, category, price);
 
     // Get books from model
     const books = await bookService.getBooks(page.currentPage, category, sort, price);

@@ -26,9 +26,12 @@ async function getBookIDByCatID(catID) {
     return result;
 }
 
-async function getTotalPage(){
+async function getTotalPage(category, price){
+    var sql = "SELECT COUNT(*) FROM hcmus_book_store.book_info ";
+    var bodyStr = await getBodyString(category, "", price);
+    sql += bodyStr + ";";
+
     var result = await new Promise ((resolve, reject)=>{
-        var sql = "SELECT COUNT(*) FROM hcmus_book_store.book_info";
         connection.query(sql,(err, temp) => {
             if (err) return reject(err);            
 
@@ -131,9 +134,8 @@ async function getPriceString(whereStr, price){
 }
 
 
-async function getSqlString(page, category, sort, price){
-    var sql = "SELECT * FROM hcmus_book_store.book_info ";
-    var offset = LIMITED_ITEM_PER_PAGE * (page - 1);
+async function getBodyString(category, sort, price){
+    var result = "";
 
     //order by
     var sortStr = await getSortString(sort);
@@ -146,7 +148,18 @@ async function getSqlString(page, category, sort, price){
     var priceStr = await getPriceString(whereStr, price);
     whereStr += priceStr;
 
-    sql += whereStr + sortStr + "LIMIT "+LIMITED_ITEM_PER_PAGE+" OFFSET "+offset+"";
+    result = whereStr + sortStr;
+
+    return result;
+}
+
+async function getSqlString(page, category, sort, price){
+    var sql = "SELECT * FROM hcmus_book_store.book_info ";
+    var offset = LIMITED_ITEM_PER_PAGE * (page - 1);
+
+    var bodyStr = await getBodyString(category, sort, price);
+
+    sql += bodyStr + "LIMIT "+LIMITED_ITEM_PER_PAGE+" OFFSET "+offset+"";
 
     sql += ";";
     return sql;
@@ -194,9 +207,9 @@ exports.getBooks = async(page, category, sort, price) =>{
     return result;
 }
 
-exports.pageNumber = async(page, catID) =>{
+exports.pageNumber = async(page, category, price) =>{
     pageDetail.currentPage = page;
-    pageDetail.totalPage = await getTotalPage(catID);
+    pageDetail.totalPage = await getTotalPage(category, price);
 
 
     if (pageDetail.currentPage < 1) {
