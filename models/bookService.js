@@ -394,3 +394,54 @@ exports.getPublisherURL = async(category, sort, price, author) => {
 
     return urlString;
 }
+
+exports.getSortCode = async(sort) => {
+
+    var code = 0;
+
+    if (sort == ""){
+        code = 0;
+    }
+    else if (sort == "popularity"){
+        code = 1;
+    }
+    else if (sort == "rating"){
+        code = 2;
+    }
+    else if (sort == "newest"){
+        code = 3;
+    }
+    else if (sort == "oldest"){
+        code = 4;
+    }
+    else if (sort == "low-high"){
+        code = 5;
+    }
+    else if (sort == "high-low"){
+        code = 6;
+    }
+    return code;
+}
+
+exports.getPriceCode = async(price) => {
+
+    var code = 0;
+
+    if (price == ""){
+        code = 0;
+    }
+    else if (price == "100000"){
+        code = 1;
+    }
+    else if (price == "100000-200000"){
+        code = 2;
+    }
+    else if (price == "200000-500000"){
+        code = 3;
+    }
+    else if (price == "500000"){
+        code = 4;
+    }
+
+    return code;
+}

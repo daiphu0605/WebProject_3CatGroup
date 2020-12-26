@@ -52,12 +52,9 @@ async function index (req, res, next) {
     // Get books from model
     const books = await bookService.books(page.currentPage, category);
 
-    console.log(books);
-
     //get new url
     const categoryURL = await bookService.getCategoryURL(sort, price, author, publisher);
     const defaultcategoryURL = categoryURL.substring(0,categoryURL.length-1);
-
 
     const sortURL = await bookService.getSortURL(category, price, author, publisher);
     const defaultsortURL = sortURL.substring(0,sortURL.length-1);
@@ -71,10 +68,11 @@ async function index (req, res, next) {
     const publisherURL = await bookService.getPublisherURL(category, sort, price, author);
     const defaultpublisherURL = categoryURL.substring(0,publisherURL.length-1);
 
-    
+    const sortCode = await bookService.getSortCode(sort);
+    const priceCode = await bookService.getPriceCode(price);
     
     // Pass data to view to display list of books
-    res.render('shop/list', {layout: 'bookshop', books, page, category, defaultcategoryURL, categoryURL, sort, defaultsortURL, sortURL, price, defaultpriceURL, priceURL});
+    res.render('shop/list', {layout: 'bookshop', books, page, category, defaultcategoryURL, categoryURL, sortCode, defaultsortURL, sortURL, priceCode, defaultpriceURL, priceURL});
 };
 
 exports.book = async (req, res, next) => {

@@ -45,43 +45,43 @@
 
 						<ul>
 							<li class="p-b-6">
-								<a href="{{defaultsortURL}}" class="filter-link stext-106 trans-04">
+								<a href="{{defaultsortURL}}" class="filter-link stext-106 trans-04" id="sort0">
 									Mặc định
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="{{sortURL}}sort=popularity" class="filter-link stext-106 trans-04">
+								<a href="{{sortURL}}sort=popularity" class="filter-link stext-106 trans-04" id="sort1">
 									Phổ biến nhất
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="{{sortURL}}sort=rating" class="filter-link stext-106 trans-04">
+								<a href="{{sortURL}}sort=rating" class="filter-link stext-106 trans-04" id="sort2">
 									Đánh giá
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="{{sortURL}}sort=newest" class="filter-link stext-106 trans-04 filter-link-active">
+								<a href="{{sortURL}}sort=newest" class="filter-link stext-106 trans-04" id="sort3">
 									Mới nhất
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="{{sortURL}}sort=oldest" class="filter-link stext-106 trans-04">
-									Cữ nhất
+								<a href="{{sortURL}}sort=oldest" class="filter-link stext-106 trans-04" id="sort4">
+									Cũ nhất
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="{{sortURL}}sort=low-high" class="filter-link stext-106 trans-04">
+								<a href="{{sortURL}}sort=low-high" class="filter-link stext-106 trans-04" id="sort5">
 									Giá: Cao đến thấp
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="{{sortURL}}sort=high-low" class="filter-link stext-106 trans-04">
+								<a href="{{sortURL}}sort=high-low" class="filter-link stext-106 trans-04" id="sort6">
 									Giá: Thấp đến cao
 								</a>
 							</li>
@@ -95,31 +95,31 @@
 
 						<ul>
 							<li class="p-b-6">
-								<a href="{{defaultpriceURL}}" class="filter-link stext-106 trans-04 filter-link-active">
+								<a href="{{defaultpriceURL}}" class="filter-link stext-106 trans-04" id="price0">
 									Tất cả
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="{{priceURL}}price=100" class="filter-link stext-106 trans-04">
+								<a href="{{priceURL}}price=100000" class="filter-link stext-106 trans-04" id="price1">
 									Dưới 100000 VNĐ
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="{{priceURL}}price=100-200" class="filter-link stext-106 trans-04">
+								<a href="{{priceURL}}price=100000-200000" class="filter-link stext-106 trans-04" id="price2">
 									100000 - 200000 VNĐ
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="{{priceURL}}price=200-500" class="filter-link stext-106 trans-04">
+								<a href="{{priceURL}}price=200000-500000" class="filter-link stext-106 trans-04" id="price3">
 									200000 - 500000 VNĐ
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="{{priceURL}}price=500" class="filter-link stext-106 trans-04">
+								<a href="{{priceURL}}price=500000" class="filter-link stext-106 trans-04" id="price4">
 									Trên 500000 VNĐ
 								</a>
 							</li>
@@ -134,11 +134,11 @@
 						</div>
 
 						<div class="flex-w p-t-4 m-r--5">
-							<a href="{{defaultcategoryURL}}catogory=novel" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 filter-link-active">
+							<a href="{{defaultcategoryURL}}catogory=novel" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
 								Tất cả
 							</a>
 
-							<a href="{{categoryURL}}catogory=novel" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 filter-link-active">
+							<a href="{{categoryURL}}catogory=novel" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
 								Tiểu thuyết
 							</a>
 
@@ -261,6 +261,15 @@
 		
 	</div>
 </section>
+
+<iframe id="myFrame" src="#" class="collapse"></iframe>
+
+<script>
+document.getElementById("myFrame").onload = function() {
+	highlightSort({{sortCode}}); 
+	highlightPrice({{priceCode}});
+	};
+</script>
 
 <script type="text/x-handlebars-template" id="product-list">
 	\{{#each books}}

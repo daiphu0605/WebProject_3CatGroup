@@ -1,11 +1,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 ////my functions
 ////////////////////////////////////////////////////////////////////////////////////////
-function replaceProducts(currentpage,page){
+function replaceProducts(currentpage, page){
     // $.getJSON("/api/shop/book-list-old", {currentpage}, function(oldbooks){
             
     // })
-
+    console.log(currentpage);
     $.getJSON("/api/shop/page", {page}, function(temppage){
         $.getJSON("/api/shop/book-list", {page}, function(books){
             //get template
@@ -28,6 +28,48 @@ function replaceProducts(currentpage,page){
         })
     })
     
+}
+
+function highlightSort(code){
+    if (code == 0){
+        $('#sort0').addClass('filter-link-active');
+    }
+    else if (code == 1){
+        $('#sort1').addClass('filter-link-active');
+    }
+    else if (code == 2){
+        $('#sort2').addClass('filter-link-active');
+    }
+    else if (code == 3){
+        $('#sort3').addClass('filter-link-active');
+    }
+    else if (code == 4){
+        $('#sort4').addClass('filter-link-active');
+    }
+    else if (code == 5){
+        $('#sort5').addClass('filter-link-active');
+    }
+    else if (code == 6){
+        $('#sort6').addClass('filter-link-active');
+    }
+}
+
+function highlightPrice(code){
+    if (code == 0){
+        $('#price0').addClass('filter-link-active');
+    }
+    else if (code == 1){
+        $('#price1').addClass('filter-link-active');
+    }
+    else if (code == 2){
+        $('#price2').addClass('filter-link-active');
+    }
+    else if (code == 3){
+        $('#price3').addClass('filter-link-active');
+    }
+    else if (code == 4){
+        $('#price4').addClass('filter-link-active');
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
