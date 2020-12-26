@@ -74,71 +74,6 @@ async function getSortString(sort){
     return result;
 }
 
-async function getCategoryID(category){
-    var result = "";
-
-    if(category == "novel"){
-        result = "C01";
-    }
-    else if (category == "foreign-book"){
-        result = "C02";
-    }
-    else if (category == "education"){
-        result = "C03";
-    }
-    else if (category == "language"){
-        result = "C04";
-    }
-    else if (category == "light-novel"){
-        result = "C05";
-    }
-    else if (category == "business"){
-        result = "C06";
-    }
-    else if (category == "fiction"){
-        result = "C07";
-    }
-    else if (category == "history"){
-        result = "C08";
-    }
-    else if (category == "geography"){
-        result = "C09";
-    }
-    else if (category == "horror"){
-        result = "C10";
-    }
-    else if (category == "textbook"){
-        result = "C11";
-    }
-    else if (category == "romance"){
-        result = "C12";
-    }
-    else if (category == "sport"){
-        result = "C13";
-    }
-    else if (category == "food"){
-        result = "C14";
-    }
-    else if (category == "music"){
-        result = "C15";
-    }
-    else if (category == "science"){
-        result = "C16";
-    }
-    else if (category == "mentality"){
-        result = "C17";
-    }
-    else if (category == "art"){
-        result = "C18";
-    }
-    else if (category == "children"){
-        result = "C19";
-    }
-    
-    return result;
-}
-
-
 async function getCategoryString(category){
     var result = "";
 
@@ -162,24 +97,64 @@ async function getCategoryString(category){
     return result;
 }
 
+async function getPriceString(whereStr, price){
+    var result = "";
 
-async function getSqlString(page, category, sort){
+    if(price == "") {
+        var result = "";
+    }
+    else {
+        if(price == "100000") {
+            result = "base_price <= '100000' ";
+        }
+        else if (price == "100000-200000") {
+            result = "base_price >= '100000' AND base_price <= '200000' ";
+        }
+        else if (price == "200000-500000") {
+            result = "base_price >= '200000' AND base_price <= '500000' ";
+        }
+        else if (price == "500000") {
+            result = "base_price >= '500000' ";
+        }
+    }
+
+    if(result != ""){
+        if(whereStr == "") {
+            result = "WHERE " + result;
+        }
+        else {
+            result = "AND " + result;
+        }
+    }
+
+    return result;
+}
+
+
+async function getSqlString(page, category, sort, price){
     var sql = "SELECT * FROM hcmus_book_store.book_info ";
     var offset = LIMITED_ITEM_PER_PAGE * (page - 1);
 
-    var categoryStr = await getCategoryString(category);
+    //order by
     var sortStr = await getSortString(sort);
-    
 
-    sql += categoryStr + sortStr + "LIMIT "+LIMITED_ITEM_PER_PAGE+" OFFSET "+offset+"";
+    //where
+    var whereStr = "";
+    var categoryStr = await getCategoryString(category);
+    whereStr += categoryStr;
+
+    var priceStr = await getPriceString(whereStr, price);
+    whereStr += priceStr;
+
+    sql += whereStr + sortStr + "LIMIT "+LIMITED_ITEM_PER_PAGE+" OFFSET "+offset+"";
 
     sql += ";";
     return sql;
 }
 
-exports.getBooks = async(page, category, sort) =>{
+exports.getBooks = async(page, category, sort, price) =>{
     var result;
-    var sql = await getSqlString(page, category, sort);
+    var sql = await getSqlString(page, category, sort, price);
 
 
     result = await new Promise ((resolve, reject)=>{
@@ -576,3 +551,69 @@ exports.getPriceCode = async(price) => {
 
     return code;
 }
+
+async function getCategoryID(category){
+    var result = "";
+
+    if(category == "novel"){
+        result = "C01";
+    }
+    else if (category == "foreign-book"){
+        result = "C02";
+    }
+    else if (category == "education"){
+        result = "C03";
+    }
+    else if (category == "language"){
+        result = "C04";
+    }
+    else if (category == "light-novel"){
+        result = "C05";
+    }
+    else if (category == "business"){
+        result = "C06";
+    }
+    else if (category == "fiction"){
+        result = "C07";
+    }
+    else if (category == "history"){
+        result = "C08";
+    }
+    else if (category == "geography"){
+        result = "C09";
+    }
+    else if (category == "horror"){
+        result = "C10";
+    }
+    else if (category == "textbook"){
+        result = "C11";
+    }
+    else if (category == "romance"){
+        result = "C12";
+    }
+    else if (category == "sport"){
+        result = "C13";
+    }
+    else if (category == "food"){
+        result = "C14";
+    }
+    else if (category == "music"){
+        result = "C15";
+    }
+    else if (category == "science"){
+        result = "C16";
+    }
+    else if (category == "mentality"){
+        result = "C17";
+    }
+    else if (category == "art"){
+        result = "C18";
+    }
+    else if (category == "children"){
+        result = "C19";
+    }
+    
+    return result;
+}
+
+
