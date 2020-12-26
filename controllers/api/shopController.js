@@ -17,7 +17,7 @@ async function getbook (req, res, next) {
     const catID = req.query.catogory || "";
 
     // Get books from model
-    const books = await bookService.books(curPage, catID);
+    const books = await bookService.getBooks(curPage, catID);
 
     return books;
 };

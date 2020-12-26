@@ -46,11 +46,12 @@ async function index (req, res, next) {
     //Get publisher
     const publisher = req.query.publisher || "";
 
+
     //Get Page infomation
     const page = await bookService.pageNumber(curPage, category);
 
     // Get books from model
-    const books = await bookService.books(page.currentPage, category);
+    const books = await bookService.getBooks(page.currentPage, category, sort);
 
     //get new url
     const categoryURL = await bookService.getCategoryURL(sort, price, author, publisher);

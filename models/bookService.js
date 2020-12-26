@@ -26,39 +26,6 @@ async function getBookIDByCatID(catID) {
     return result;
 }
 
-async function getBooks(page, catID){
-    var result;
-    var offset = LIMITED_ITEM_PER_PAGE * (page - 1);
-    if(catID != "") {
-        var ListBookID = await getBookIDByCatID(catID);
-        result = await new Promise ((resolve, reject)=>{
-            var sql = "SELECT * FROM hcmus_book_store.book_info WHERE id IN (";
-            ListBookID.forEach(element => sql += "'" + element['id_book'] + "',");
-            sql = sql.substr(0, sql.length - 1);
-            sql = sql + ") LIMIT " + LIMITED_ITEM_PER_PAGE + " OFFSET " + offset + ";";
-
-            console.log(sql);
-
-            connection.query(sql,(err, result) => {
-                if (err) return reject(err);
-                return resolve(result);
-            })
-
-        });
-    }
-    else {
-        result = await new Promise ((resolve, reject)=>{
-            var sql = "SELECT * FROM hcmus_book_store.book_info LIMIT "+LIMITED_ITEM_PER_PAGE+" OFFSET "+offset+"";
-            connection.query(sql,(err, result) => {
-                if (err) return reject(err);
-                return resolve(result);
-            })
-        });
-    }
-    
-    return result;
-}
-
 async function getTotalPage(){
     var result = await new Promise ((resolve, reject)=>{
         var sql = "SELECT COUNT(*) FROM hcmus_book_store.book_info";
@@ -83,9 +50,173 @@ async function getTotalPage(){
     return result;
 }
 
-exports.books = async(page, catID) =>{
-    const listBooks = await getBooks(page, catID);
-    return listBooks;
+async function getSortString(sort){
+    var result = "";
+
+    if(sort == ""){
+        result = "";
+    }
+    else if (sort == "popularity"){
+    }
+    else if (sort == "rating"){
+    }
+    else if (sort == "newest"){
+    }
+    else if (sort == "oldest"){
+    }
+    else if (sort == "low-high"){
+        result = "ORDER BY base_price ASC ";
+    }
+    else if (sort == "high-low"){
+        result = "ORDER BY base_price DESC ";
+    }
+
+    return result;
+}
+
+async function getCategoryID(category){
+    var result = "";
+
+    if(category == "novel"){
+        result = "C01";
+    }
+    else if (category == "foreign-book"){
+        result = "C02";
+    }
+    else if (category == "education"){
+        result = "C03";
+    }
+    else if (category == "language"){
+        result = "C04";
+    }
+    else if (category == "light-novel"){
+        result = "C05";
+    }
+    else if (category == "business"){
+        result = "C06";
+    }
+    else if (category == "fiction"){
+        result = "C07";
+    }
+    else if (category == "history"){
+        result = "C08";
+    }
+    else if (category == "geography"){
+        result = "C09";
+    }
+    else if (category == "horror"){
+        result = "C10";
+    }
+    else if (category == "textbook"){
+        result = "C11";
+    }
+    else if (category == "romance"){
+        result = "C12";
+    }
+    else if (category == "sport"){
+        result = "C13";
+    }
+    else if (category == "food"){
+        result = "C14";
+    }
+    else if (category == "music"){
+        result = "C15";
+    }
+    else if (category == "science"){
+        result = "C16";
+    }
+    else if (category == "mentality"){
+        result = "C17";
+    }
+    else if (category == "art"){
+        result = "C18";
+    }
+    else if (category == "children"){
+        result = "C19";
+    }
+    
+    return result;
+}
+
+
+async function getCategoryString(category){
+    var result = "";
+
+
+    if(category == "") {
+        var result = "";
+    }
+    else {
+        var catID = await getCategoryID(category);
+        console.log(catID);
+
+        if (catID != ""){
+            var ListBookID = await getBookIDByCatID(catID);
+            result = "WHERE id IN (";
+            ListBookID.forEach(element => result += "'" + element['id_book'] + "',");
+            result = result.substr(0, result.length - 1);
+            result += ") ";
+        }
+    }
+
+    return result;
+}
+
+
+async function getSqlString(page, category, sort){
+    var sql = "SELECT * FROM hcmus_book_store.book_info ";
+    var offset = LIMITED_ITEM_PER_PAGE * (page - 1);
+
+    var categoryStr = await getCategoryString(category);
+    var sortStr = await getSortString(sort);
+    
+
+    sql += categoryStr + sortStr + "LIMIT "+LIMITED_ITEM_PER_PAGE+" OFFSET "+offset+"";
+
+    sql += ";";
+    return sql;
+}
+
+exports.getBooks = async(page, category, sort) =>{
+    var result;
+    var sql = await getSqlString(page, category, sort);
+
+
+    result = await new Promise ((resolve, reject)=>{
+        connection.query(sql,(err, result) => {
+            if (err) return reject(err);
+            return resolve(result);
+        })
+    });
+
+    /*if(category != "") {
+
+        var ListBookID = await getBookIDByCatID(catID);
+        result = await new Promise ((resolve, reject)=>{
+            var sql = "SELECT * FROM hcmus_book_store.book_info WHERE id IN (";
+            ListBookID.forEach(element => sql += "'" + element['id_book'] + "',");
+            sql = sql.substr(0, sql.length - 1);
+            sql = sql + ") LIMIT " + LIMITED_ITEM_PER_PAGE + " OFFSET " + offset + ";";
+
+            connection.query(sql,(err, result) => {
+                if (err) return reject(err);
+                return resolve(result);
+            })
+
+        });
+    }
+    else {
+        result = await new Promise ((resolve, reject)=>{
+            var sql = "SELECT * FROM hcmus_book_store.book_info LIMIT "+LIMITED_ITEM_PER_PAGE+" OFFSET "+offset+"";
+
+            connection.query(sql,(err, result) => {
+                if (err) return reject(err);
+                return resolve(result);
+            })
+        });
+    }*/
+    
+    return result;
 }
 
 exports.pageNumber = async(page, catID) =>{
