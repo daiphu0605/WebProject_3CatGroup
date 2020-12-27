@@ -26,9 +26,9 @@ async function getBookIDByCatID(catID) {
     return result;
 }
 
-async function getTotalPage(category, price){
+async function getTotalPage(category, price, author, publisher, supplier){
     var sql = "SELECT COUNT(*) FROM hcmus_book_store.book_info ";
-    var bodyStr = await getBodyString(category, "", price);
+    var bodyStr = await getBodyString(category, "", price, author, publisher, supplier);
     sql += bodyStr + ";";
 
     var result = await new Promise ((resolve, reject)=>{
@@ -60,12 +60,16 @@ async function getSortString(sort){
         result = "";
     }
     else if (sort == "popularity"){
+
     }
     else if (sort == "rating"){
+
     }
     else if (sort == "newest"){
+
     }
     else if (sort == "oldest"){
+
     }
     else if (sort == "low-high"){
         result = "ORDER BY base_price ASC ";
@@ -133,8 +137,77 @@ async function getPriceString(whereStr, price){
     return result;
 }
 
+async function getAuthorString(whereStr, author){
+    var result = "";
 
-async function getBodyString(category, sort, price){
+    if(author == "") {
+        var result = "";
+    }
+    else {
+        author = author.replace("+", " ");
+        result = " author LIKE '%" + author + "%' ";
+    }
+
+    if(result != ""){
+        if(whereStr == "") {
+            result = "WHERE " + result;
+        }
+        else {
+            result = "AND " + result;
+        }
+    }
+
+    return result;
+}
+
+async function getPublisherString(whereStr, publisher){
+    var result = "";
+
+    if(publisher == "") {
+        var result = "";
+    }
+    else {
+        publisher = publisher.replace("+", " ");
+        result = " publisher LIKE '%" + publisher + "%' ";
+    }
+
+    if(result != ""){
+        if(whereStr == "") {
+            result = "WHERE " + result;
+        }
+        else {
+            result = "AND " + result;
+        }
+    }
+
+    return result;
+}
+
+async function getSupplierString(whereStr, supplier){
+    var result = "";
+
+    if(supplier == "") {
+        var result = "";
+    }
+    else {
+        supplier = supplier.replace("+", " ");
+        result = " supplier LIKE '%" + supplier + "%' ";
+    }
+
+    if(result != ""){
+        if(whereStr == "") {
+            result = "WHERE " + result;
+        }
+        else {
+            result = "AND " + result;
+        }
+    }
+
+    return result;
+}
+
+
+async function getBodyString(category, sort, price, author, publisher, supplier){
     var result = "";
 
     //order by
@@ -148,16 +221,27 @@ async function getBodyString(category, sort, price){
     var priceStr = await getPriceString(whereStr, price);
     whereStr += priceStr;
 
+    var authorStr = await getAuthorString(whereStr, author);
+    whereStr += authorStr;
+
+    var publisherStr = await getPublisherString(whereStr, publisher);
+    whereStr += publisherStr;
+
+    var supplierStr = await getSupplierString(whereStr, supplier);
+    whereStr += supplierStr;
+
     result = whereStr + sortStr;
 
     return result;
 }
 
-async function getSqlString(page, category, sort, price){
+
+
+async function getSqlString(page, category, sort, price, author, publisher, supplier){
     var sql = "SELECT * FROM hcmus_book_store.book_info ";
     var offset = LIMITED_ITEM_PER_PAGE * (page - 1);
 
-    var bodyStr = await getBodyString(category, sort, price);
+    var bodyStr = await getBodyString(category, sort, price, author, publisher, supplier);
 
     sql += bodyStr + "LIMIT "+LIMITED_ITEM_PER_PAGE+" OFFSET "+offset+"";
 
@@ -165,9 +249,9 @@ async function getSqlString(page, category, sort, price){
     return sql;
 }
 
-exports.getBooks = async(page, category, sort, price) =>{
+exports.getBooks = async(page, category, sort, price, author, publisher, supplier) =>{
     var result;
-    var sql = await getSqlString(page, category, sort, price);
+    var sql = await getSqlString(page, category, sort, price, author, publisher, supplier);
 
 
     result = await new Promise ((resolve, reject)=>{
@@ -207,9 +291,9 @@ exports.getBooks = async(page, category, sort, price) =>{
     return result;
 }
 
-exports.pageNumber = async(page, category, price) =>{
+exports.pageNumber = async(page, category, price, author, publisher, supplier,) =>{
     pageDetail.currentPage = page;
-    pageDetail.totalPage = await getTotalPage(category, price);
+    pageDetail.totalPage = await getTotalPage(category, price, author, publisher, supplier);
 
 
     if (pageDetail.currentPage < 1) {

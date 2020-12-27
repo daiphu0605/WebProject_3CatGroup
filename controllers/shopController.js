@@ -51,10 +51,10 @@ async function index (req, res, next) {
 
 
     //Get Page infomation
-    const page = await bookService.pageNumber(curPage, category, price);
+    const page = await bookService.pageNumber(curPage, category, price, author, publisher, supplier,);
 
     // Get books from model
-    const books = await bookService.getBooks(page.currentPage, category, sort, price);
+    const books = await bookService.getBooks(page.currentPage, category, sort, price, author, publisher, supplier,);
 
     //get new url
     const categoryURL = await bookService.getURL(category, sort, price, author, publisher, supplier, 1);
@@ -66,14 +66,14 @@ async function index (req, res, next) {
     const priceURL = await bookService.getURL(category, sort, price, author, publisher, supplier, 3);
     const defaultpriceURL = priceURL.substring(0,priceURL.length-1);
 
-    const authorURL = await bookService.getURL(category, sort, price, author, publisher, supplier, 4);
+    /*const authorURL = await bookService.getURL(category, sort, price, author, publisher, supplier, 4);
     const defaultauthorURL = authorURL.substring(0,authorURL.length-1);
 
     const publisherURL = await bookService.getURL(category, sort, price, author, publisher, supplier, 5);
     const defaultpublisherURL = publisherURL.substring(0,publisherURL.length-1);
 
     const supplierURL = await bookService.getURL(category, sort, price, author, publisher, supplier, 6);
-    const defaultsupplierURL = supplierURL.substring(0,supplierURL.length-1);
+    const defaultsupplierURL = supplierURL.substring(0,supplierURL.length-1);*/
 
     const sortCode = await bookService.getSortCode(sort);
     const priceCode = await bookService.getPriceCode(price);
