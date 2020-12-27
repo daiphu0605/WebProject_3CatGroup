@@ -40,6 +40,9 @@ async function index (req, res, next) {
     //Get price
     const price = req.query.price || "";
 
+    //Get Supplier
+    const supplier = req.query.supplier || "";
+
     //Get Author
     const author = req.query.author || "";
 
@@ -54,20 +57,23 @@ async function index (req, res, next) {
     const books = await bookService.getBooks(page.currentPage, category, sort, price);
 
     //get new url
-    const categoryURL = await bookService.getCategoryURL(sort, price, author, publisher);
+    const categoryURL = await bookService.getURL(category, sort, price, author, publisher, supplier, 1);
     const defaultcategoryURL = categoryURL.substring(0,categoryURL.length-1);
 
-    const sortURL = await bookService.getSortURL(category, price, author, publisher);
+    const sortURL = await bookService.getURL(category, sort, price, author, publisher, supplier, 2);
     const defaultsortURL = sortURL.substring(0,sortURL.length-1);
 
-    const priceURL = await bookService.getPriceURL(category, sort, author, publisher);
+    const priceURL = await bookService.getURL(category, sort, price, author, publisher, supplier, 3);
     const defaultpriceURL = priceURL.substring(0,priceURL.length-1);
 
-    const authorURL = await bookService.getAuthorURL(category, sort, price, publisher);
+    const authorURL = await bookService.getURL(category, sort, price, author, publisher, supplier, 4);
     const defaultauthorURL = authorURL.substring(0,authorURL.length-1);
 
-    const publisherURL = await bookService.getPublisherURL(category, sort, price, author);
-    const defaultpublisherURL = categoryURL.substring(0,publisherURL.length-1);
+    const publisherURL = await bookService.getURL(category, sort, price, author, publisher, supplier, 5);
+    const defaultpublisherURL = publisherURL.substring(0,publisherURL.length-1);
+
+    const supplierURL = await bookService.getURL(category, sort, price, author, publisher, supplier, 6);
+    const defaultsupplierURL = supplierURL.substring(0,supplierURL.length-1);
 
     const sortCode = await bookService.getSortCode(sort);
     const priceCode = await bookService.getPriceCode(price);
