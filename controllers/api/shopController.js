@@ -13,6 +13,9 @@ async function getbook (req, res, next) {
     //Get current page, default by 1
     const curPage = +req.query.page || 1;
 
+    //Get Search
+    const search = req.query.search || "";
+
     //Get catogoryID
     const category = req.query.category || "";
 
@@ -32,7 +35,7 @@ async function getbook (req, res, next) {
     const publisher = req.query.publisher || "";
 
     // Get books from model
-    const books = await bookService.getBooks(curPage, category, sort, price, author, publisher, supplier,);
+    const books = await bookService.getBooks(curPage, search, category, sort, price, author, publisher, supplier,);
 
 
     return books;
@@ -41,6 +44,9 @@ async function getbook (req, res, next) {
 async function getpage (req, res, next) {
     //Get current page, default by 1
     const curPage = +req.query.page || 1;
+
+    //Get Search
+    const search = req.query.search || "";
 
     //Get catogoryID
     const category = req.query.category || "";
@@ -61,7 +67,7 @@ async function getpage (req, res, next) {
     const publisher = req.query.publisher || "";
 
     //Get Page infomation
-    const page = await bookService.getPageApi(curPage, category, sort, price, author, publisher, supplier,);
+    const page = await bookService.getPageApi(curPage, search, category, sort, price, author, publisher, supplier,);
 
     return page;
 };

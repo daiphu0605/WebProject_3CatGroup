@@ -21,6 +21,7 @@ var pageDetailAPI = {
     prevPage: 0,
     prevPrevPage: 0,
     totalPage: 0,
+    search: "",
     category: "",
     sort: "",
     price: "",
@@ -382,10 +383,16 @@ exports.pageNumber = async(page, search, category, price, author, publisher, sup
     return pageDetail;
 }
 
-exports.getPageApi = async(page, category, sort, price, author, publisher, supplier,) =>{
+exports.getPageApi = async(page, search, category, sort, price, author, publisher, supplier,) =>{
     pageDetailAPI.currentPage = page;
-    pageDetailAPI.totalPage = await getTotalPage(category, price, author, publisher, supplier);
-
+    var temp = await getTotalPage(search, category, price, author, publisher, supplier);
+     
+    if (temp == "error"){
+        pageDetailAPI.totalPage = 1;
+    }
+    else {
+        pageDetailAPI.totalPage = temp;
+    }
 
     if (pageDetailAPI.currentPage < 1) {
         pageDetailAPI.currentPage = 1;
@@ -423,6 +430,7 @@ exports.getPageApi = async(page, category, sort, price, author, publisher, suppl
         pageDetailAPI.nextNextPage = pageDetailAPI.nextPage + 1;
     }
 
+    pageDetailAPI.search = search;
     pageDetailAPI.category = category;
     pageDetailAPI.sort = sort;
     pageDetailAPI.price = price;

@@ -27,15 +27,12 @@
 			<!-- Search product -->
 			<div class="dis-none panel-search w-full p-t-10 p-b-15">
 				<form>
-				<div class="bor8 dis-flex p-l-15">
-					
+					<div class="bor8 dis-flex p-l-15">
 						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 							<i class="zmdi zmdi-search"></i>
 						</button>
-
 						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search" placeholder="Search">
-					
-				</div>
+					</div>
 				</form>	
 			</div>
 
@@ -222,18 +219,18 @@
 
 		<!-- Page -->
 		<div class="flex-c-m flex-w w-full p-t-45" id="page">
-			<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}', '1', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
+			<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}', '1', '{{search}}', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
 				Đầu
 			</button>
 
 			{{#if page.prevPrevPage}}
-				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}', '{{page.prevPrevPage}}', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
+				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}', '{{page.prevPrevPage}}', '{{search}}', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
 					{{page.prevPrevPage}}
 				</button>
 			{{/if}}
 {{!-- /shop?page={{page.prevPage}} --}}
 			{{#if page.prevPage}}
-				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}', '{{page.prevPage}}', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
+				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}', '{{page.prevPage}}', '{{search}}', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
 					{{page.prevPage}}
 				</button>
 			{{/if}}
@@ -245,18 +242,18 @@
 			{{/if}}
 {{!-- /shop?page={{page.nextPage}} --}}
 			{{#if page.nextPage}}
-				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}', '{{page.nextPage}}', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
+				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}', '{{page.nextPage}}', '{{search}}', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
 					{{page.nextPage}}
 				</button>
 			{{/if}}
 
 			{{#if page.nextNextPage}}
-				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}','{{page.nextNextPage}}', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
+				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}','{{page.nextNextPage}}', '{{search}}', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
 					{{page.nextNextPage}}
 				</button>
 			{{/if}}
 {{!-- /shop?page={{page.totalPage}} --}}
-			<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}','{{page.totalPage}}', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
+			<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}','{{page.totalPage}}', '{{search}}', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
 				Cuối
 			</button>
 		</div>
@@ -312,18 +309,18 @@ document.getElementById("myFrame").onload = function() {
 </script>
 
 <script type="text/x-handlebars-template" id="page-list">
-	<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}', '1','\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
+	<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}', '1', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
 		Đầu
 	</button>
 
 	\{{#if this.prevPrevPage}}
-		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}','/{{this.prevPrevPage}}','\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
+		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}','/{{this.prevPrevPage}}', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
 			\{{this.prevPrevPage}}
 		</button>
 	\{{/if}}
 {{!-- /shop?page={{page.prevPage}} --}}
 	\{{#if this.prevPage}}
-		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('\{{this.currentPage}}','\{{this.prevPage}}','\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
+		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('\{{this.currentPage}}','\{{this.prevPage}}', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
 			\{{this.prevPage}}
 		</button>
 	\{{/if}}
@@ -335,18 +332,18 @@ document.getElementById("myFrame").onload = function() {
 	\{{/if}}
 {{!-- /shop?page={{page.nextPage}} --}}
 	\{{#if this.nextPage}}
-		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}','/{{this.nextPage}}','\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
+		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}','/{{this.nextPage}}', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
 			\{{this.nextPage}}
 		</button>
 	\{{/if}}
 
 	\{{#if this.nextNextPage}}
-		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}','/{{this.nextNextPage}}','\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
+		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}','/{{this.nextNextPage}}', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
 			\{{this.nextNextPage}}
 		</button>
 	\{{/if}}
 {{!-- /shop?page={{page.totalPage}} --}}
-	<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}','/{{this.totalPage}}','\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
+	<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}', '/{{this.totalPage}}', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
 		Cuối
 	</button>
 </script>
