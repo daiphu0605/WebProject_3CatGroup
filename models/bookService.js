@@ -41,14 +41,14 @@ async function getBookIDByCatID(catID) {
     return result;
 }
 
-async function getTotalPage(category, price, author, publisher, supplier){
+async function getTotalPage(search, category, price, author, publisher, supplier){
     var sql = "SELECT COUNT(*) FROM hcmus_book_store.book_info ";
-    var bodyStr = await getBodyString(category, "", price, author, publisher, supplier);
+    var bodyStr = await getBodyString(search, category, "", price, author, publisher, supplier);
     sql += bodyStr + ";";
 
     var result = await new Promise ((resolve, reject)=>{
         connection.query(sql,(err, temp) => {
-            if (err) return reject(err);            
+            if (err) return resolve("error");          
 
             var item = temp[0];
             var numOfItems = item["COUNT(*)"];
@@ -113,6 +113,29 @@ async function getCategoryString(category){
             ListBookID.forEach(element => result += "'" + element['id_book'] + "',");
             result = result.substr(0, result.length - 1);
             result += ") ";
+        }
+    }
+
+    return result;
+}
+
+async function getSearchString(whereStr, search){
+    var result = "";
+
+    if(search == "") {
+        var result = "";
+    }
+    else {
+        search = search.replace("+", " ");
+        result = " title LIKE '%" + search + "%' ";
+    }
+
+    if(result != ""){
+        if(whereStr == "") {
+            result = "WHERE " + result;
+        }
+        else {
+            result = "AND " + result;
         }
     }
 
@@ -222,7 +245,7 @@ async function getSupplierString(whereStr, supplier){
 }
 
 
-async function getBodyString(category, sort, price, author, publisher, supplier){
+async function getBodyString(search, category, sort, price, author, publisher, supplier){
     var result = "";
 
     //order by
@@ -232,6 +255,9 @@ async function getBodyString(category, sort, price, author, publisher, supplier)
     var whereStr = "";
     var categoryStr = await getCategoryString(category);
     whereStr += categoryStr;
+
+    var searchStr = await getSearchString(whereStr, search);
+    whereStr += searchStr;
 
     var priceStr = await getPriceString(whereStr, price);
     whereStr += priceStr;
@@ -252,11 +278,11 @@ async function getBodyString(category, sort, price, author, publisher, supplier)
 
 
 
-async function getSqlString(page, category, sort, price, author, publisher, supplier){
+async function getSqlString(page, search, category, sort, price, author, publisher, supplier){
     var sql = "SELECT * FROM hcmus_book_store.book_info ";
     var offset = LIMITED_ITEM_PER_PAGE * (page - 1);
 
-    var bodyStr = await getBodyString(category, sort, price, author, publisher, supplier);
+    var bodyStr = await getBodyString(search, category, sort, price, author, publisher, supplier);
 
     sql += bodyStr + "LIMIT "+LIMITED_ITEM_PER_PAGE+" OFFSET "+offset+"";
 
@@ -264,14 +290,14 @@ async function getSqlString(page, category, sort, price, author, publisher, supp
     return sql;
 }
 
-exports.getBooks = async(page, category, sort, price, author, publisher, supplier) =>{
+exports.getBooks = async(page, search, category, sort, price, author, publisher, supplier) =>{
     var result;
-    var sql = await getSqlString(page, category, sort, price, author, publisher, supplier);
+    var sql = await getSqlString(page, search, category, sort, price, author, publisher, supplier);
 
 
     result = await new Promise ((resolve, reject)=>{
         connection.query(sql,(err, result) => {
-            if (err) return reject(err);
+            if (err) return resolve("error");
             return resolve(result);
         })
     });
@@ -306,10 +332,16 @@ exports.getBooks = async(page, category, sort, price, author, publisher, supplie
     return result;
 }
 
-exports.pageNumber = async(page, category, price, author, publisher, supplier,) =>{
+exports.pageNumber = async(page, search, category, price, author, publisher, supplier,) =>{
     pageDetail.currentPage = page;
-    pageDetail.totalPage = await getTotalPage(category, price, author, publisher, supplier);
-
+    var temp = await getTotalPage(search, category, price, author, publisher, supplier);
+     
+    if (temp == "error"){
+        pageDetail.totalPage = 1;
+    }
+    else {
+        pageDetail.totalPage = temp;
+    }
 
     if (pageDetail.currentPage < 1) {
         pageDetail.currentPage = 1;
@@ -415,11 +447,14 @@ exports.getBookByID = async(BookID) => {
 }
 
 
-exports.getURL = async(category, sort, price, author, publisher, supplier, mode) => {
+exports.getURL = async(search, category, sort, price, author, publisher, supplier, mode) => {
     var urlString = "/shop";
     var flag = 0;
 
-    if (mode == 1) {
+    if (mode == 0) {
+        search = "";
+    }
+    else if (mode == 1) {
         category = "";
     }
     else if (mode == 2) {
@@ -438,8 +473,18 @@ exports.getURL = async(category, sort, price, author, publisher, supplier, mode)
         supplier = "";
     }
 
+    if (search != "") {
+        urlString += "?search=" + search;
+        flag++;
+    }
+
     if (category != "") {
-        urlString += "?category=" + category;
+        if (flag > 0) {
+            urlString += "&category=" + category;
+        }
+        else {
+            urlString += "?category=" + category;
+        }
         flag++;
     }
 
