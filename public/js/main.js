@@ -1,13 +1,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 ////my functions
 ////////////////////////////////////////////////////////////////////////////////////////
-function replaceProducts(currentpage, page){
+function replaceProducts(currentpage, page, category, sort, price, supplier, author, publisher){
     // $.getJSON("/api/shop/book-list-old", {currentpage}, function(oldbooks){
             
     // })
     console.log(currentpage);
-    $.getJSON("/api/shop/page", {page}, function(temppage){
-        $.getJSON("/api/shop/book-list", {page}, function(books){
+    $.getJSON("/api/shop/page", {page, category, sort, price, supplier, author, publisher}, function(temppage){
+        $.getJSON("/api/shop/book-list", {page, category, sort, price, supplier, author, publisher}, function(books){
             //get template
             var booktemplate = Handlebars.compile($('#product-list').html());
             var pagetemplate = Handlebars.compile($('#page-list').html());

@@ -14,10 +14,26 @@ async function getbook (req, res, next) {
     const curPage = +req.query.page || 1;
 
     //Get catogoryID
-    const catID = req.query.catogory || "";
+    const category = req.query.category || "";
+
+    //Get Sort type
+    const sort = req.query.sort || "";
+
+    //Get price
+    const price = req.query.price || "";
+
+    //Get Supplier
+    const supplier = req.query.supplier || "";
+
+    //Get Author
+    const author = req.query.author || "";
+
+    //Get publisher
+    const publisher = req.query.publisher || "";
 
     // Get books from model
-    const books = await bookService.getBooks(curPage, catID);
+    const books = await bookService.getBooks(curPage, category, sort, price, author, publisher, supplier,);
+
 
     return books;
 };
@@ -27,11 +43,25 @@ async function getpage (req, res, next) {
     const curPage = +req.query.page || 1;
 
     //Get catogoryID
-    const catID = req.query.catogory || "";
+    const category = req.query.category || "";
 
+    //Get Sort type
+    const sort = req.query.sort || "";
+
+    //Get price
+    const price = req.query.price || "";
+
+    //Get Supplier
+    const supplier = req.query.supplier || "";
+
+    //Get Author
+    const author = req.query.author || "";
+
+    //Get publisher
+    const publisher = req.query.publisher || "";
 
     //Get Page infomation
-    const page = await bookService.pageNumber(curPage, catID);
+    const page = await bookService.getPageApi(curPage, category, sort, price, author, publisher, supplier,);
 
     return page;
 };

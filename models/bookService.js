@@ -14,6 +14,21 @@ var pageDetail = {
     totalPage: 0
 }
 
+var pageDetailAPI = {
+    currentPage: 1,
+    nextPage: 0,
+    nextNextPage: 0,
+    prevPage: 0,
+    prevPrevPage: 0,
+    totalPage: 0,
+    category: "",
+    sort: "",
+    price: "",
+    author: "",
+    publisher: "",
+    supplier: ""
+}
+
 async function getBookIDByCatID(catID) {
     var result = await new Promise ((resolve, reject)=>{
         var sql = "SELECT id_book FROM hcmus_book_store.list_categories WHERE id_category = '"+catID+"'";
@@ -333,6 +348,57 @@ exports.pageNumber = async(page, category, price, author, publisher, supplier,) 
     }
 
     return pageDetail;
+}
+
+exports.getPageApi = async(page, category, sort, price, author, publisher, supplier,) =>{
+    pageDetailAPI.currentPage = page;
+    pageDetailAPI.totalPage = await getTotalPage(category, price, author, publisher, supplier);
+
+
+    if (pageDetailAPI.currentPage < 1) {
+        pageDetailAPI.currentPage = 1;
+    }
+
+    if (pageDetailAPI.currentPage > pageDetailAPI.totalPage) {
+        pageDetailAPI.currentPage = pageDetailAPI.totalPage
+    }
+
+    if(pageDetailAPI.currentPage <= 1) {
+        pageDetailAPI.prevPage = 0;
+    }
+    else {
+        pageDetailAPI.prevPage = pageDetailAPI.currentPage - 1;
+    }
+
+    if(pageDetailAPI.prevPage <= 1) {
+        pageDetailAPI.prevPrevPage = 0;
+    }
+    else {
+        pageDetailAPI.prevPrevPage = pageDetailAPI.prevPage - 1;
+    }
+
+    if(pageDetailAPI.currentPage >= pageDetailAPI.totalPage) {
+        pageDetailAPI.nextPage = 0;
+    }
+    else {
+        pageDetailAPI.nextPage = pageDetailAPI.currentPage + 1;
+    }
+
+    if(pageDetailAPI.nextPage >= pageDetailAPI.totalPage || pageDetailAPI.nextPage == 0) {
+        pageDetailAPI.nextNextPage = 0;
+    }
+    else {
+        pageDetailAPI.nextNextPage = pageDetailAPI.nextPage + 1;
+    }
+
+    pageDetailAPI.category = category;
+    pageDetailAPI.sort = sort;
+    pageDetailAPI.price = price;
+    pageDetailAPI.publisher = publisher;
+    pageDetailAPI.author = author;
+    pageDetailAPI.supplier = supplier;
+
+    return pageDetailAPI;
 }
 
 exports.getBookByID = async(BookID) => {

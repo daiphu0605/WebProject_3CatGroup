@@ -79,7 +79,7 @@ async function index (req, res, next) {
     const priceCode = await bookService.getPriceCode(price);
     
     // Pass data to view to display list of books
-    res.render('shop/list', {layout: 'bookshop', books, page, category, defaultcategoryURL, categoryURL, sortCode, defaultsortURL, sortURL, priceCode, defaultpriceURL, priceURL});
+    res.render('shop/list', {layout: 'bookshop', books, page, category, defaultcategoryURL, categoryURL, sort, sortCode, defaultsortURL, sortURL, price, priceCode, defaultpriceURL, priceURL, supplier, author, publisher});
 };
 
 exports.book = async (req, res, next) => {
