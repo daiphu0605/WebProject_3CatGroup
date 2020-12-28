@@ -76,16 +76,16 @@ async function getSortString(sort){
         result = "";
     }
     else if (sort == "popularity"){
-
+        result = "ORDER BY views DESC ";
     }
     else if (sort == "rating"){
 
     }
     else if (sort == "newest"){
-
+        result = "ORDER BY day_add DESC ";
     }
     else if (sort == "oldest"){
-
+        result = "ORDER BY day_add ASC ";
     }
     else if (sort == "low-high"){
         result = "ORDER BY base_price ASC ";
@@ -446,12 +446,37 @@ exports.getBookByID = async(BookID) => {
     var result = await new Promise ((resolve, reject) => {
         var sql = "SELECT * FROM hcmus_book_store.book_info WHERE id = '" + BookID + "';";
         connection.query(sql,(err, temp) => {
-            if (err) return reject(err);
+            if (err) return resolve("error");            
             var result = temp[0];
             return resolve(result);
         })
     });
+
+    await increaseView(BookID);
+
     return result;
+}
+
+async function increaseView(BookID){
+
+    var bookView = await new Promise ((resolve, reject) => {
+        var sql = "SELECT views FROM hcmus_book_store.book_info WHERE id = '" + BookID + "';";
+        connection.query(sql,(err, temp) => {
+            if (err) return resolve("error");
+            var item = temp[0];            
+            var result = item['views'];
+            return resolve(result);
+        })
+    });
+
+    if (bookView != "error") {
+        var view = parseInt(bookView);
+        if (view != NaN) {
+            view++;
+            var sql = "UPDATE hcmus_book_store.book_info SET views = '" + view + "' WHERE (id = '" + BookID +"');";
+            connection.query(sql,(err, temp) => { if (err) return "error"; });
+        }
+    }
 }
 
 

@@ -193,13 +193,9 @@
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="/shop/{{id}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										{{title}}
 									</a>
-
-									<span class="stext-105 cl3">
-										{{base_price}} VNĐ
-									</span>
 								</div>
 
 								<div class="block2-txt-child2 flex-r p-t-3">
@@ -207,6 +203,16 @@
 										<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
 									</a>
+								</div>
+
+								<div class="block2-txt-child3 flex-w flex-t flex-col-l" style="display: inline-block;">
+									<span class="stext-105 cl3 float-left-item">
+										{{base_price}} VNĐ
+									</span>
+									<p class="stext-105 cl6 float-right-item view-text-margin" style="color: color:rgb(148, 148, 148);">
+										{{views}}
+									</p>
+									<img class="view-img float-right-item" src="images/icons/visibility.png" alt="view" >
 								</div>
 							</div>
 						</div>
@@ -287,13 +293,9 @@ document.getElementById("myFrame").onload = function() {
 
 				<div class="block2-txt flex-w flex-t p-t-14">
 					<div class="block2-txt-child1 flex-col-l ">
-						<a href="" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+						<a href="/shop/\{{this.id}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 							\{{this.title}}
 						</a>
-
-						<span class="stext-105 cl3">
-							\{{this.base_price}} VNĐ
-						</span>
 					</div>
 
 					<div class="block2-txt-child2 flex-r p-t-3">
@@ -302,6 +304,17 @@ document.getElementById("myFrame").onload = function() {
 							<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
 						</a>
 					</div>
+
+					<div class="block2-txt-child3 flex-w flex-t flex-col-l" style="display: inline-block;">
+						<span class="stext-105 cl3 float-left-item">
+							\{{this.base_price}} VNĐ
+						</span>
+						<p class="stext-105 cl6 float-right-item view-text-margin" style="color: color:rgb(148, 148, 148);">
+							\{{this.views}}
+						</p>
+						<img class="view-img float-right-item" src="images/icons/visibility.png" alt="view" >
+					</div>
+
 				</div>
 			</div>
 		</div>
