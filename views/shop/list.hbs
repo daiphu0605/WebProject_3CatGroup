@@ -177,8 +177,8 @@
 		</div>
 
 		{{!-- List Books --}}
-		
-		<div class="row isotope-grid" id="products">
+		<div id="products">
+			<div class="row isotope-grid">
 			{{#each books}}
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 						<!-- Block2 -->
@@ -219,6 +219,10 @@
 					</div>
 			{{/each}}
 		</div>
+
+
+		</div>
+		
 
 
 		
@@ -279,6 +283,7 @@ document.getElementById("myFrame").onload = function() {
 </script>
 
 <script type="text/x-handlebars-template" id="product-list">
+<div class="row isotope-grid">
 	\{{#each books}}
 		<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 			<!-- Block2 -->
@@ -319,15 +324,16 @@ document.getElementById("myFrame").onload = function() {
 			</div>
 		</div>
 	\{{/each}}
+	</div>
 </script>
 
 <script type="text/x-handlebars-template" id="page-list">
-	<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}', '1', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
+	<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('\{{this.currentPage}}', '1', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
 		Đầu
 	</button>
 
 	\{{#if this.prevPrevPage}}
-		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}','/{{this.prevPrevPage}}', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
+		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('\{{this.currentPage}}','\{{this.prevPrevPage}}', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
 			\{{this.prevPrevPage}}
 		</button>
 	\{{/if}}
@@ -345,18 +351,18 @@ document.getElementById("myFrame").onload = function() {
 	\{{/if}}
 {{!-- /shop?page={{page.nextPage}} --}}
 	\{{#if this.nextPage}}
-		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}','/{{this.nextPage}}', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
+		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('\{{this.currentPage}}','\{{this.nextPage}}', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
 			\{{this.nextPage}}
 		</button>
 	\{{/if}}
 
 	\{{#if this.nextNextPage}}
-		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}','/{{this.nextNextPage}}', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
+		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('\{{this.currentPage}}','\{{this.nextNextPage}}', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
 			\{{this.nextNextPage}}
 		</button>
 	\{{/if}}
 {{!-- /shop?page={{page.totalPage}} --}}
-	<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('/{{this.currentPage}}', '/{{this.totalPage}}', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
+	<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('\{{this.currentPage}}', '\{{this.totalPage}}', '\{{this.search}}', '\{{this.category}}','\{{this.sort}}','\{{this.price}}','\{{this.supplier}}','\{{this.author}}','\{{this.publisher}}');">
 		Cuối
 	</button>
 </script>
