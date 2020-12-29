@@ -238,7 +238,7 @@
 					{{page.prevPrevPage}}
 				</button>
 			{{/if}}
-{{!-- /shop?page={{page.prevPage}} --}}
+
 			{{#if page.prevPage}}
 				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}', '{{page.prevPage}}', '{{search}}', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
 					{{page.prevPage}}
@@ -250,7 +250,7 @@
 					{{page.currentPage}}
 				</button>
 			{{/if}}
-{{!-- /shop?page={{page.nextPage}} --}}
+
 			{{#if page.nextPage}}
 				<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}', '{{page.nextPage}}', '{{search}}', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
 					{{page.nextPage}}
@@ -262,7 +262,7 @@
 					{{page.nextNextPage}}
 				</button>
 			{{/if}}
-{{!-- /shop?page={{page.totalPage}} --}}
+			
 			<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="replaceProducts('{{page.currentPage}}','{{page.totalPage}}', '{{search}}', '{{category}}', '{{sort}}', '{{price}}', '{{supplier}}', '{{author}}', '{{publisher}}');">
 				Cuối
 			</button>
