@@ -44,7 +44,7 @@ app.use('/shop', shopRouter);
 //app.use('/shop/:id', shopRouter);
 
 app.use('/signin', signIn);
-app.use('/signUp', signUp);
+app.use('/signup', signUp);
 
 //api
 app.use('/api/shop',apiShop);
