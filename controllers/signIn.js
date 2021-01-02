@@ -1,17 +1,24 @@
-const express = require('express');
-var account =require('../models/accounts')
+let account = require('../models/account')
+let passport = require('../passport/passport');
 
-exports.SignIn = async (req, res) => {
-    var username = req.body.username;
-    var pass = req.body.pass;
-    var Error = "";
-    if (await account.isAccount(username, pass))
-    {
-         res.redirect('/shop');
-    }
-    else {
-        Error = Error + "Wrong Password or Username.\n";
 
-        res.render ('sign_in', {layout: 'layout_sign', username, Error});
-    }
+
+exports.signInPage = (req,res,next) => {
+    res.render('sign_in',{layout: 'layout_sign'});
+}
+
+exports.signIn = (req,res,next) => {
+    passport.authenticate('local-signin', function (err, user, info) {
+        if(err) {
+            return next(err);
+        }
+        if (!user) {
+            return res.render('sign_in',{layout: 'layout_sign', Error: info});
+        }
+        console.log(user.username);
+        req.login(user, function(err) {
+            if (err) { return next(err); }
+            return res.redirect('/shop');
+        });
+    })(req, res, next);
 }

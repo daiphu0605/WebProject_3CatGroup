@@ -1,29 +1,27 @@
-const express = require('express');
-var account =require('../models/accounts')
+let account =require('../models/account');
+let passport = require('../passport/passport')
 
-    exports.SignUp = async (req, res) => {
-        var username = req.body.username;
-        var password = req.body.pass;
-        var repassword = req.body.repass;
-        var ErrorUsername ="";
-        var ErrorConfirmPassword = "";
+exports.signUpPage = (req,res,next) => {
+    res.render('sign_up', {layout: 'layout_sign'});
+}
 
-        if (await account.FindUserName(username))
-        {
-            ErrorUsername = ErrorUsername + "Username is existed.\n";
+exports.signUp = (req,res, next) =>{
+    passport.authenticate('local-signup', function(err, user, info) {
+        if (err)  {
+            return next(err);
         }
-    
-        if (repassword !== password) {
-            ErrorConfirmPassword = ErrorConfirmPassword + "Password is not matching.\n";
+        if (!user) {
+            switch (info) {
+                case "Username has existed":
+                    return res.render('sign_up', {layout: 'layout_sign', ErrorUsername: info});
+                case "Password not match":
+                    return res.render('sign_up', {layout: 'layout_sign', ErrorConfirmPassword: info, username: req.body.username});
+            }
         }
-    
-        if (ErrorConfirmPassword.length != 0 || ErrorUsername.length != 0) {
-            res.render('sign_up', { layout: 'layout_sign', username, ErrorUsername, ErrorConfirmPassword });
-        }
-        else {
-            account.AddAccount(username, password);
-            res.render('sign_up_fin', { layout: 'layout_sign' });
-        }
-    }
-
+        req.login(user, function(err) {
+            if (err) { return next(err); }
+            return res.render('sign_up_fin', {layout: 'layout_sign'});
+        });
+    }) (req, res, next);
+} 
 
