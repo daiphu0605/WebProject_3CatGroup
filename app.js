@@ -50,12 +50,16 @@ app.use(passport.session());
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function(req, res, next){
+  res.locals.user = req.user;
+  next();
+})
 
-
+////main router
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/shop', shopRouter);
-//app.use('/shop/:id', shopRouter);
+
 
 app.use('/signin', signIn);
 app.use('/signup', signUp);
