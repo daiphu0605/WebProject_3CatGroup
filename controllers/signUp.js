@@ -6,12 +6,17 @@ exports.signUpPage = (req,res,next) => {
 }
 
 exports.signUp = (req,res, next) =>{
-    passport.authenticate('local-signup', function(err, username, info) {
+    passport.authenticate('local-signup', function(err, user, info) {
         if (err)  {
             return next(err);
         }
-        if (!username) {
-            return res.render('sign_up', {layout: 'layout_sign', Error: info});
+        if (!user) {
+            switch (info) {
+                case "Username has existed":
+                    return res.render('sign_up', {layout: 'layout_sign', ErrorUsername: info});
+                case "Password not match":
+                    return res.render('sign_up', {layout: 'layout_sign', ErrorConfirmPassword: info, username: req.body.username});
+            }
         }
         req.login(user, function(err) {
             if (err) { return next(err); }
@@ -20,6 +25,3 @@ exports.signUp = (req,res, next) =>{
     }) (req, res, next);
 } 
 
-exports.signUpFin = (req, res, next) => {
-     res.redirect('/shop');
-}

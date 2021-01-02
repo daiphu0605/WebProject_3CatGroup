@@ -41,7 +41,7 @@ app.use(express.urlencoded({ extended: false }));
 
 //passport
 app.use(session({ 
-  secret: 'keyboard cat', 
+  secret: 'anything', 
   resave: true, 
   saveUninitialized: true 
 }));
