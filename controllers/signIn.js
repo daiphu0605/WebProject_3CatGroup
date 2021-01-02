@@ -18,6 +18,6 @@ exports.signIn = (req,res,next) => {
         req.login(user, function(err) {
             if (err) { return next(err); }
             return res.redirect('/shop');
-        }) (req, res, next);
-    });
+        });
+    })(req, res, next);
 }

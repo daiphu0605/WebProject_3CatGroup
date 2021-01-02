@@ -7,15 +7,28 @@ passport.use('local-signup', new LocalStrategy({
     passwordField: 'password'
   },
   async function (username, password, done) {
-    var user = account.isUsername(username);
-    if (user) {
+    account.isUsername(username).then((user) => {
+      if (user) {
         return done(null, false, "Username has existed")
-    }
-    account.AddAccount(username, password);
-    return (null, username);
+      }
+      account.AddAccount(username, password);
+      return (null, username);
+    });
   }
 ));
 
+passport.use('local-signin', new LocalStrategy({
+    usernameField: 'username',
+    passwordField: 'password'
+},
+async function(username, password, done) {
+    account.isAccount(username, password).then((user) =>{
+      if (typeof (user) === 'string'){
+        return done(null, false, user);
+      }
+      return done(null, user);
+    });
+}));
 
 
 passport.serializeUser(function(username, done) {

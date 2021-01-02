@@ -5,10 +5,11 @@ const md5 = require('md5')
 exports.isAccount = async (username, password) => {
     var Result = await new Promise((resolve, reject) => {
         var sql = new SQL();
-        sql.select("username, password");
+        sql.Select("username, password");
         sql.From("hcmus_book_store.user_info");
-        sql.Where("username = " + username);
-        connection.query(sql, (err, results) => {
+        sql.Where("username = '" + username + "'");
+        console.log(sql.Query());
+        connection.query(sql.Query(), (err, results) => {
             if (err) return reject(err);
             return resolve(results);
         });
@@ -26,10 +27,10 @@ exports.isAccount = async (username, password) => {
 exports.isUsername = async (username) => {
     var Result = await new Promise((resolve, reject) => {
         var sql = new SQL();
-        sql.select("username");
+        sql.Select("username");
         sql.From("hcmus_book_store.user_info");
-        sql.Where("username = " + username);
-        connection.query(sql, (err, results) => {
+        sql.Where("username = '" + username + "'");
+        connection.query(sql.Query(), (err, results) => {
             if (err) return reject(err);
             return resolve(results);
         });
@@ -55,10 +56,10 @@ exports.getUserByName = async (username) => {
     var Result = await new Promise((resolve, reject) => {
         var sql = new SQL();
         var sql = new SQL();
-        sql.select("username, password");
+        sql.Select("username, password");
         sql.From("hcmus_book_store.user_info");
-        sql.Where("username = " + username);
-        connection.query(sql, (err, results) => {
+        sql.Where("username = '" + username + "'");
+        connection.query(sql.Query(), (err, results) => {
             if (err) return reject(err);
             return resolve(results);
         });
