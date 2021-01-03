@@ -10,6 +10,7 @@ var session = require("express-session")
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const shopRouter = require('./routes/shop');
+const cartRouter = require('./routes/cart');
 
 
 var signIn = require('./routes/sign_in');
@@ -63,7 +64,7 @@ app.use(function(req, res, next){
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/shop', shopRouter);
-
+app.use('/cart', cartRouter);
 
 
 app.use('/signin', signIn);

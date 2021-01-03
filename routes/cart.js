@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const cartController = require('../../controllers/api/cartController');
+const cartController = require('../controllers/cartController');
 
-router.get('/get-cart', (req, res, next) => {
+/* GET list of books. */
+router.get('/', (req, res, next) => {
     cartController.index(req, res, next);
 });
 
-router.get('/add-to-cart', (req, res, next) => {
+/*router.get('/add-to-cart', (req, res, next) => {
     cartController.addCart(req, res, next);
 });
 
@@ -20,6 +21,6 @@ router.get('/increase', (req, res, next) => {
 
 router.get('/reduce', (req, res, next) => {
     cartController.reduceCart(req, res, next);
-});
+});*/
 
 module.exports = router;

@@ -29,8 +29,7 @@ exports.checkCart = async(oldCart) => {
     return cart;
 }
 
-exports.add = async(curCart,Book) => {
-    
+async function addct(curCart,Book){
     var storedItem = curCart.items[Book.id];
     if (!storedItem) {
         storedItem = curCart.items[Book.id] = {item: Book, qty: 0, price: 0};
@@ -39,6 +38,41 @@ exports.add = async(curCart,Book) => {
     storedItem.price = storedItem.item.base_price * storedItem.qty;
     curCart.totalQty++;
     curCart.totalPrice += storedItem.item.base_price;
+    
+    return curCart;
+}
+
+async function reducect(curCart,id){
+    curCart.items[id].qty--;
+    curCart.items[id].price -= curCart.items[id].item.base_price;
+    curCart.totalQty--;
+    curCart.totalPrice -= curCart.items[id].item.base_price;
+
+    if(curCart.items[id].qty <= 0) {
+        delete curCart.items[id];
+    }
+    
+    return curCart;
+}
+
+
+
+exports.add = async(curCart,Book) => {
+    curCart = await addct(curCart,Book);
+    return curCart;
+}
+
+exports.remove = async(curCart,id) => {
+    
+    curCart.totalQty -= curCart.items[id].qty;
+    curCart.totalPrice -= curCart.items[id].price;
+    delete curCart.items[id];
+
+    return curCart;
+}
+
+exports.reduce = async(curCart,id) => {
+    curCart = await reducect(curCart,id);
     
     return curCart;
 }

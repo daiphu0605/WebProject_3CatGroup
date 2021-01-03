@@ -890,6 +890,17 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*------------------------------------------------------------------
 [ Menu ]*/
+.mcenter{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mx-center{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: auto;
+}
 
 .menu-desktop {
   display: -webkit-box;
@@ -3785,6 +3796,7 @@ input.num-product::-webkit-inner-spin-button {
   .m-0-xl {margin: 0;}
   .m-lr-0-xl {margin-left: 0; margin-right: 0;}
   .m-lr-15-xl {margin-left: 15px; margin-right: 15px;}
+  .m-lr-50-xl {margin-left: 50px; margin-right: 50px;}
   .m-l-0-xl {margin-left: 0;}
   .m-r-0-xl {margin-right: 0;}
   .m-l-15-xl {margin-left: 15px;}

@@ -82,6 +82,117 @@ function highlightPrice(code){
     }
 }
 
+function checkSignIn(){
+    swal.fire({
+        title: 'Cảnh báo',
+        text: "Bạn cần đăng nhập để thanh toán",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sign In'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location = "/signin";
+        }
+      })
+}
+
+function checkCart(){
+    swal.fire(
+        'Cảnh báo',
+        'Bạn chưa thêm sách vào giỏ hàng',
+        'warning'
+      )
+}
+
+function increaseBook(id) {
+    $.getJSON("/api/cart/increase", {id}, function(cart){ 
+        console.log(cart);
+        var icontemplate = Handlebars.compile($('#icon-template').html());
+        var carttemplate = Handlebars.compile($('#cart-template').html());
+        var cartlisttemplate = Handlebars.compile($('#cart-list-template').html());
+        var iconHTML = icontemplate(cart);
+        var cartHTML = carttemplate(cart);
+        var cartlistHTML = cartlisttemplate(cart);
+        $('#icon-cart').html(iconHTML);
+        $('#cart-detail').html(cartHTML);
+        $('#cur-cart-list').html(cartlistHTML);
+    })
+}
+
+function reduceBook(id) {
+    $.getJSON("/api/cart/reduce", {id}, function(cart){
+        console.log(cart);
+        var icontemplate = Handlebars.compile($('#icon-template').html());
+        var carttemplate = Handlebars.compile($('#cart-template').html());
+        var cartlisttemplate = Handlebars.compile($('#cart-list-template').html());
+        var iconHTML = icontemplate(cart);
+        var cartHTML = carttemplate(cart);
+        var cartlistHTML = cartlisttemplate(cart);
+        $('#icon-cart').html(iconHTML);
+        $('#cart-detail').html(cartHTML);
+        $('#cur-cart-list').html(cartlistHTML);
+    })
+}
+
+/*function updateCart(){
+    $.getJSON("/api/cart/get-cart", {}, function(mycart){ 
+        console.log(mycart);
+        mycart.items.forEach(element => {
+            var id = "#book" + element.item.id;
+            var value = $(id).value;
+            value = parseInt(value);
+
+            var check = cart.items[i].qty - value;
+
+            if(value == 0){
+                $.getJSON("/api/cart/remove", {id}, function(cart){
+                    var icontemplate = Handlebars.compile($('#icon-template').html());
+                    var carttemplate = Handlebars.compile($('#cart-template').html());
+                    var cartlisttemplate = Handlebars.compile($('#cart-list-template').html());
+                    var iconHTML = icontemplate(cart);
+                    var cartHTML = carttemplate(cart);
+                    var cartlistHTML = carttemplate(cart);
+                    $('#icon-cart').html(iconHTML);
+                    $('#cart-detail').html(cartHTML);
+                    $('#cur-cart-list').html(cartlistHTML);
+                });
+            }
+            else if(check > 0)
+            {
+                value = check;
+                $.getJSON("/api/cart/increase", {id,value}, function(cart){
+                    var icontemplate = Handlebars.compile($('#icon-template').html());
+                    var carttemplate = Handlebars.compile($('#cart-template').html());
+                    var cartlisttemplate = Handlebars.compile($('#cart-list-template').html());
+                    var iconHTML = icontemplate(cart);
+                    var cartHTML = carttemplate(cart);
+                    var cartlistHTML = carttemplate(cart);
+                    $('#icon-cart').html(iconHTML);
+                    $('#cart-detail').html(cartHTML);
+                    $('#cur-cart-list').html(cartlistHTML);
+                });
+            }
+            else if (check < 0){
+                value = -check;
+                $.getJSON("/api/cart/reduce", {id, value}, function(cart){
+                    var icontemplate = Handlebars.compile($('#icon-template').html());
+                    var carttemplate = Handlebars.compile($('#cart-template').html());
+                    var cartlisttemplate = Handlebars.compile($('#cart-list-template').html());
+                    var iconHTML = icontemplate(cart);
+                    var cartHTML = carttemplate(cart);
+                    var cartlistHTML = carttemplate(cart);
+                    $('#icon-cart').html(iconHTML);
+                    $('#cart-detail').html(cartHTML);
+                    $('#cur-cart-list').html(cartlistHTML);
+                });
+            }
+        });
+
+    });
+}*/
+
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
