@@ -1,11 +1,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 ////my functions
 ////////////////////////////////////////////////////////////////////////////////////////
+
 function replaceProducts(currentpage, page, search, category, sort, price, supplier, author, publisher){
     // $.getJSON("/api/shop/book-list-old", {currentpage}, function(oldbooks){
             
     // })
-    console.log(currentpage);
     $.getJSON("/api/shop/page", {page, search, category, sort, price, supplier, author, publisher}, function(temppage){
         $.getJSON("/api/shop/book-list", {page, search, category, sort, price, supplier, author, publisher}, function(books){
             //get template
@@ -27,7 +27,14 @@ function replaceProducts(currentpage, page, search, category, sort, price, suppl
             //window.history.pushState(books,"3 Cat Shop", urlString);
         })
     })
-    
+}
+
+function AddToCart(id){
+    $.getJSON("/api/cart/add-to-cart", {id}, function(cart){     
+        var icontemplate = Handlebars.compile($('#icon-template').html());
+        var iconHTML = icontemplate(cart);
+        $('#icon-cart').html(iconHTML);
+    })
 }
 
 function highlightSort(code){

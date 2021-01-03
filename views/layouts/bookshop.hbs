@@ -459,6 +459,18 @@
 				swal(nameProduct, "is added to cart !", "success");
 			});
 		});
+
+		$('.js-addcart-b2').on('click', function(e){
+			e.preventDefault();
+		});
+
+		$('.js-addcart-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+				$(this).off('click');
+			});
+		});
 	
 	</script>
 <!--===============================================================================================-->
