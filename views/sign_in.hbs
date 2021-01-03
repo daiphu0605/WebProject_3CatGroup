@@ -1,36 +1,54 @@
-<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-    <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
-        <form class="login100-form validate-form" method="POST">
-            <span class="login100-form-title p-b-37">
-                Sign In
-            </span>
-            <div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
-                <input class="input100" type="text" name="username" placeholder="username" value="{{username}}">
-                <span class="focus-input100"></span>
-            </div>
-            <div class="wrap-input100 validate-input m-b-25" data-validate="Enter password">
-                <input class="input100" type="password" name="password" placeholder="password">
-                <span class="focus-input100"></span>
-            </div>
-            <div class="text-center p-b-20">
-                <span class="txt1">{{Error}}</span>
-            </div>
-            <div class="container-login100-form-btn">
-                <button type="submit" class="login100-form-btn"> 
-                    Sign In 
-                </button>
-            </div>
-
-
-            <div class="text-center p-t-57 p-b-20">
-                <span class="txt1">If you do not have account</span>
-            </div>
-            <div class="text-center">
-                <a href="/signup" class="txt2 hov1">
-                    Sign Up
-                </a>
-            </div>
-        </form>
-    </div>
+<div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="inputEmailAddress">Email</label>
+                                            <input class="form-control py-4" id="inputEmailAddress" type="email" name="email" placeholder="Enter email address" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="inputPassword">Password</label>
+                                            <input class="form-control py-4" id="inputPassword" type="password" name="password" placeholder="Enter password" />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" id="rememberPasswordCheck" name="rememberPassword" type="checkbox" />
+                                                <label class="custom-control-label" for="rememberPasswordCheck">Remember password</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                            <a class="small" href="/forget-password">Forgot Password?</a>
+                                            <submit class="btn btn-primary">Login</submit>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <div class="small"><a href="/signup">Need an account? Sign up!</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div id="layoutAuthentication_footer">
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
 </div>
-<div id="dropDownSelect1"></div>
