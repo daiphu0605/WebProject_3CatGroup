@@ -857,6 +857,11 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   width: 20px;
 }
 
+.view-img1 {
+  height: 25px;
+  width: 25px;
+}
+
 .img-edit2 {
   height: 230px;
   width: auto;

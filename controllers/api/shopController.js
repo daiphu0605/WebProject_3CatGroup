@@ -2,11 +2,11 @@ var bookService = require('../../models/bookService');
 var search = require('../../models/search');
 
 exports.bookapi = async (req, res, next) => {
-    res.json(await getbook(req, res, next))
+    res.json(await getbook(req, res, next));
 }
 
 exports.pageapi = async (req, res, next) => {
-    res.json(await getpage(req, res, next))
+    res.json(await getpage(req, res, next));
 }
 
 async function getbook (req, res, next) {

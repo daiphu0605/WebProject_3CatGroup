@@ -11,13 +11,16 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const shopRouter = require('./routes/shop');
 
+
 var signIn = require('./routes/sign_in');
 var signUp = require('./routes/sign_up');
 var signOut = require('./routes/sign_out');
 
 //api
 var apiShop = require('./routes/api/shop');
+var apiCart = require('./routes/api/cart');
 
+///////////
 var app = express();
 var connection=require('./models/connection');
 //
@@ -52,6 +55,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next){
   res.locals.user = req.user;
+  res.locals.cart = req.session.cart;
   next();
 })
 
@@ -61,11 +65,13 @@ app.use('/users', usersRouter);
 app.use('/shop', shopRouter);
 
 
+
 app.use('/signin', signIn);
 app.use('/signup', signUp);
 app.use('/signout', signOut);
 //api
-app.use('/api/shop',apiShop);
+app.use('/api/shop', apiShop);
+app.use('/api/cart', apiCart);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
