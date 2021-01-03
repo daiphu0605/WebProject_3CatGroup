@@ -32,8 +32,11 @@ function replaceProducts(currentpage, page, search, category, sort, price, suppl
 function AddToCart(id){
     $.getJSON("/api/cart/add-to-cart", {id}, function(cart){     
         var icontemplate = Handlebars.compile($('#icon-template').html());
+        var carttemplate = Handlebars.compile($('#cart-template').html());
         var iconHTML = icontemplate(cart);
+        var cartHTML = carttemplate(cart);
         $('#icon-cart').html(iconHTML);
+        $('#cart-detail').html(cartHTML);
     })
 }
 

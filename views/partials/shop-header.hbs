@@ -71,15 +71,21 @@
                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                         <i class="zmdi zmdi-search"></i>
                     </div>
-                    <div id="icon-cart">
+                    <div>
                         {{#if cart.totalQty}}
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart" id="icon-cart">
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="{{cart.totalQty}}">
                                 <i class="zmdi zmdi-shopping-cart"></i>
-                            </div>                        
+                            </div>   
+                        </div> 
+                                                 
                         {{else}}
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart" id="icon-cart">
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-cart">
                                 <i class="zmdi zmdi-shopping-cart"></i>
                             </div>
+                        </div> 
+                            
                         {{/if}}
                     </div>
                     
