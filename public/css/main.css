@@ -2816,6 +2816,10 @@ input.num-product::-webkit-inner-spin-button {
   margin-left: -30px;
 }
 
+.mar-t-50{
+  margin-top: 50px;
+}
+
 .stext-112-edit {
   font-family: Poppins-Regular;
   font-size: 13px;

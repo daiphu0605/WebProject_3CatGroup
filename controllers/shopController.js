@@ -82,8 +82,12 @@ exports.book = async (req, res, next) => {
     //const item = req.body.book_id;
     // Get detailbooks from model
     var BookID = req.params.id;
+    //get book
     const detail = await bookService.getBookByID(BookID);
 
-    res.render('detailBook/detail', {layout: 'detaillayout', detail});
+    //get related book
+    var books = await bookService.getRelatedBook(detail.id);
+
+    res.render('detailBook/detail', {layout: 'detaillayout', detail, books});
 };
 
