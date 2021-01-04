@@ -136,6 +136,156 @@ function reduceBook(id) {
     })
 }
 
+function check(value, id){
+    if(value == ""){
+        if(id == "name") {
+            $("#name-info").addClass('error').html('Không được để trống tên');
+            return false;
+        }
+        else if (id == "province") {
+            $("#province-info").addClass('error').html('Không được để trống tỉnh / thành phố');
+            return false;
+        }
+        else if (id == "district") {
+            $("#district-info").addClass('error').html('Không được để trống quận / huyện');
+            return false;
+        }
+        else if (id == "ward") {
+            $("#ward-info").addClass('error').html('Không được để trống phường / xã');
+            return false;
+        }
+        else if (id == "address") {
+            $("#address-info").addClass('error').html('Không được để trống địa chỉ');
+            return false;
+        }
+        else if (id == "phone") {
+            $("#phone-info").addClass('error').html('Không được để trống số điện thoại');
+            return false;
+        }
+    }
+    else {
+        if(id == "name") {
+            $("#name-info").removeClass('error').html('');
+            return true;
+        }
+        else if (id == "province") {
+            $("#province-info").removeClass('error').html('');
+            return true;
+        }
+        else if (id == "district") {
+            $("#district-info").removeClass('error').html('');
+            return true;
+        }
+        else if (id == "ward") {
+            $("#ward-info").removeClass('error').html('');
+            return true;
+        }
+        else if (id == "address") {
+            $("#address-info").removeClass('error').html('');
+            return true;
+        }
+        else if (id == "phone") {
+            //var phoneno = /^\d{10}$/;
+            var phoneno = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+            if(value.match(phoneno) && value.length <= 12){
+                return true;
+            }
+            else{
+                $("#phone-info").addClass('error').html('Sai định dạng số điện thoại');
+                return false;
+            }
+        }
+    }
+}
+
+function completedClick(quantity) {
+    var data = new Array();
+    var ids = new Array();
+    data[0] = document.getElementById('name').value;
+    ids[0] = 'name';
+    data[1] = document.getElementById('phone').value;
+    ids[1] = 'phone';
+    data[2] = document.getElementById('province').value;
+    ids[2] = 'province';
+    data[3] = document.getElementById('district').value;
+    ids[3] = 'district';
+    data[4] = document.getElementById('ward').value;
+    ids[4] = 'ward';
+    data[5] = document.getElementById('address').value;
+    ids[5] = 'address';
+    
+    var radio1 = document.getElementById('online');
+    var radio2 = document.getElementById('offline');
+
+    if(quantity != '0') {
+        var count = 0;
+        for (i in data){
+            var mcheck = check(data[i],ids[i]);
+            if(mcheck == true){
+                count++;
+            }
+        }
+
+        if(count < 6){
+            swal.fire(
+                'Lỗi',
+                'Thiếu thông tin thanh toán',
+                'error'
+              )
+        }
+        else {
+            if(radio1.checked || radio2.checked){
+                var method;
+                if(radio1.checked){
+                    method = radio1.value;
+                }
+                else{
+                    method = radio2.value;
+                }
+                
+                var name = data[0];
+                var phone = data[1];
+                var province = data[2];
+                var district = data[3];
+                var ward = data[4];
+                var address = data[5];
+                $.getJSON("/api/cart/save-cart", {name, phone, province, district, ward, address, method}, function(success){ 
+                    if(success) {
+                        swal.fire(
+                            'Thành công',
+                            'Bạn đã thêm đơn hàng',
+                            'success'
+                          )
+                    }
+                    else {
+                        swal.fire(
+                            'Lỗi',
+                            'Không thể thêm đơn hàng',
+                            'error'
+                          )
+                    }
+                    window.location = "/shop";
+                });
+
+            }
+            else{
+                swal.fire(
+                    'Lỗi',
+                    'Chưa chọn phương thức thanh toán',
+                    'error'
+                  )
+            }
+        }
+    }
+    else {
+        swal.fire(
+            'Lỗi',
+            'Giỏ hàng trống',
+            'error'
+          )
+    }
+}
+
 /*function updateCart(){
     $.getJSON("/api/cart/get-cart", {}, function(mycart){ 
         console.log(mycart);

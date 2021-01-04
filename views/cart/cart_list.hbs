@@ -8,11 +8,15 @@
                     <div class="wrap-table-shopping-cart">
                         <table class="table-shopping-cart">
                             <tr class="table_head">
-                                <th class="column-1">Product</th>
+                                <th class="column-1">Sản phẩm</th>
                                 <th class="column-2"></th>
-                                <th class="column-3">Price</th>
-                                <th class="column-4">Quantity</th>
-                                <th class="column-5">Total</th>
+                                <th class="column-3">
+                                    <p class="mar-30">
+                                        Giá
+                                    </p>
+                                </th>
+                                <th class="column-4">Số lượng</th>
+                                <th class="column-5">Tổng</th>
                             </tr>
                             {{#each cart.items}}
                                 <tr class="table_row">
@@ -40,23 +44,14 @@
                                             </button>
                                         </div>
                                     </td>
-                                    <td class="column-5">{{price}} VNĐ</td>
+                                    <td class="column-5">{{price}}</td>
                                 </tr>
                             {{/each}}
 
                         </table>
                     </div>
 
-                    <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-                        <div class="flex-w flex-m m-r-20 m-tb-5">
-                            <input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
-                                
-                            <div class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
-                                Thêm mã giảm giá
-                            </div>
-                        </div>
-
-                    </div>
+                    
                 </div>
             </div>
 
@@ -84,7 +79,7 @@
                         {{#if cart.totalQty}}
                             <div class="mcenter">
                                 <div class="header-cart-buttons flex-w w-full mcenter">
-                                    <a href="/cart" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 mcenter">
+                                    <a href="/checkout" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 mcenter">
                                         Thanh toán
                                     </a>
                                 </div>
@@ -132,11 +127,15 @@
                     <div class="wrap-table-shopping-cart">
                         <table class="table-shopping-cart">
                             <tr class="table_head">
-                                <th class="column-1">Product</th>
+                                <th class="column-1">Sản phẩm</th>
                                 <th class="column-2"></th>
-                                <th class="column-3">Price</th>
-                                <th class="column-4">Quantity</th>
-                                <th class="column-5">Total</th>
+                                <th class="column-3">
+                                    <p class="mar-30">
+                                        Giá
+                                    </p>
+                                </th>
+                                <th class="column-4">Số lượng</th>
+                                <th class="column-5">Tổng</th>
                             </tr>
                             \{{#each this.items}}
                                 <tr class="table_row">
@@ -164,23 +163,14 @@
                                             </button>
                                         </div>
                                     </td>
-                                    <td class="column-5">\{{price}} VNĐ</td>
+                                    <td class="column-5">\{{price}}</td>
                                 </tr>
                             \{{/each}}
 
                         </table>
                     </div>
 
-                    <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-                        <div class="flex-w flex-m m-r-20 m-tb-5">
-                            <input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
-                                
-                            <div class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
-                                Thêm mã giảm giá
-                            </div>
-                        </div>
-
-                    </div>
+                   
                 </div>
             </div>
 
@@ -208,7 +198,7 @@
                         \{{#if cart.totalQty}}
                             <div class="mcenter">
                                 <div class="header-cart-buttons flex-w w-full mcenter">
-                                    <a href="/cart" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 mcenter">
+                                    <a href="/checkout" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 mcenter">
                                         Thanh toán
                                     </a>
                                 </div>

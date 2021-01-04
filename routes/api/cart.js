@@ -6,6 +6,10 @@ router.get('/get-cart', (req, res, next) => {
     cartController.index(req, res, next);
 });
 
+router.get('/save-cart', (req, res, next) => {
+    cartController.saveCart(req, res, next);
+});
+
 router.get('/add-to-cart', (req, res, next) => {
     cartController.addCart(req, res, next);
 });

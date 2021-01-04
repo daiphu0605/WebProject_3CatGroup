@@ -2355,6 +2355,12 @@ button.mfp-close {
   overflow: hidden;
 }
 
+.wrap-num-product-edit {
+  width: 140px;
+  height: 45px;
+  overflow: hidden;
+}
+
 .btn-num-product-up,
 .btn-num-product-down {
   width: 45px;
@@ -2795,6 +2801,30 @@ input.num-product::-webkit-inner-spin-button {
   text-transform: uppercase;
 }
 
+.mar-r-10{
+  margin-right: 19px;
+}
+.mar-t-10{
+  margin-top: -10px;
+  margin-left: 10px;
+}
+.mar-30{
+  margin-left: 30px;
+}
+
+.mar-l-30{
+  margin-left: -30px;
+}
+
+.stext-112-edit {
+  font-family: Poppins-Regular;
+  font-size: 13px;
+  line-height: 1.6923;
+  text-transform: uppercase;
+  margin-top: -5px;
+  margin-left: 10px;
+}
+
 .stext-113 {
   font-family: Poppins-Light;
   font-size: 14px;
@@ -2805,6 +2835,18 @@ input.num-product::-webkit-inner-spin-button {
   font-family: Poppins-Italic;
   font-size: 15px;
   line-height: 1.666667;
+}
+
+.span-inline{
+  display: inline-block;
+}
+
+.mar-top-30 {
+  margin-top: 30px;
+}
+
+.mar-10 {
+  margin-top: -10px;
 }
 
 .stext-115 {
@@ -3926,6 +3968,10 @@ input.num-product::-webkit-inner-spin-button {
   }
 
   
+}
+
+.error{
+  color: red;
 }
 
 

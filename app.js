@@ -11,7 +11,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const shopRouter = require('./routes/shop');
 const cartRouter = require('./routes/cart');
-
+const checkoutRouter = require('./routes/checkout');
 
 var signIn = require('./routes/sign_in');
 var signUp = require('./routes/sign_up');
@@ -65,6 +65,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/shop', shopRouter);
 app.use('/cart', cartRouter);
+app.use('/checkout', checkoutRouter);
 
 
 app.use('/signin', signIn);

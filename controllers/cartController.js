@@ -7,3 +7,10 @@ exports.index = async (req, res, next) => {
     
     res.render('cart/cart_list', {layout: 'cart_main_layout', cart});
 };
+
+exports.checkout = async (req, res, next) => {
+    var temp = req.session.cart ? req.session.cart : {};
+    var cart = await cartService.checkCart(temp);
+    
+    res.render('cart/cart_shipping_form', {layout: 'cart_main_layout', cart});
+};
