@@ -3,9 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 
 function replaceProducts(currentpage, page, search, category, sort, price, supplier, author, publisher){
-    // $.getJSON("/api/shop/book-list-old", {currentpage}, function(oldbooks){
-            
-    // })
+    
     $.getJSON("/api/shop/page", {page, search, category, sort, price, supplier, author, publisher}, function(temppage){
         $.getJSON("/api/shop/book-list", {page, search, category, sort, price, supplier, author, publisher}, function(books){
             //get template
@@ -23,8 +21,6 @@ function replaceProducts(currentpage, page, search, category, sort, price, suppl
     
             //scroll to top of page
             $('html, body').animate({ scrollTop: $('#books-list-header').offset().top }, 'slow');
-            //var urlString = "/shop?page=" + page;
-            //window.history.pushState(books,"3 Cat Shop", urlString);
         })
     })
 }
@@ -108,7 +104,6 @@ function checkCart(){
 
 function increaseBook(id) {
     $.getJSON("/api/cart/increase", {id}, function(cart){ 
-        console.log(cart);
         var icontemplate = Handlebars.compile($('#icon-template').html());
         var carttemplate = Handlebars.compile($('#cart-template').html());
         var cartlisttemplate = Handlebars.compile($('#cart-list-template').html());
@@ -123,7 +118,6 @@ function increaseBook(id) {
 
 function reduceBook(id) {
     $.getJSON("/api/cart/reduce", {id}, function(cart){
-        console.log(cart);
         var icontemplate = Handlebars.compile($('#icon-template').html());
         var carttemplate = Handlebars.compile($('#cart-template').html());
         var cartlisttemplate = Handlebars.compile($('#cart-list-template').html());
@@ -284,6 +278,61 @@ function completedClick(quantity) {
             'error'
           )
     }
+}
+
+function submitReview(id){
+    var review = document.getElementById('review').value;
+    var temp = review.replace(" ","");
+    if (temp == ""){
+        swal.fire(
+            'Lỗi',
+            'Chưa nhập bình luận',
+            'error'
+          );
+    }
+    else{
+        $.getJSON("/api/shop/review", {id,review}, function(package){
+            if(package == null) {
+                swal.fire(
+                    'Lỗi',
+                    'Không thể thêm bình luận',
+                    'error'
+                  );
+            }
+            else{
+                var reviewtemplate = Handlebars.compile($('#preview-form-template').html());
+                var pagetemplate = Handlebars.compile($('#page-list').html());
+                var reviewHTML = reviewtemplate(package);
+                var pageHTML = pagetemplate(package.page);
+                $('#preview-list').html(reviewHTML);
+                $('#page').html(pageHTML);
+                document.getElementById('review').value = "";
+                  //scroll to top of comment
+                $('html, body').animate({ scrollTop: $('#my-tab').offset().top }, 'slow');
+            }
+        })
+    }
+}
+
+function changeReview(page,id){
+    $.getJSON("/api/shop/change-review", {page, id}, function(package){
+        //get template
+        var reviewtemplate = Handlebars.compile($('#preview-form-template').html());
+        var pagetemplate = Handlebars.compile($('#page-list').html());
+
+        
+        //get data
+        var reviewHTML = reviewtemplate(package);
+        var pageHTML = pagetemplate(package.page);
+
+        //display html
+        $('#preview-list').html(reviewHTML);
+        $('#page').html(pageHTML);
+
+
+        //scroll to top of comment
+        $('html, body').animate({ scrollTop: $('#my-tab').offset().top }, 'slow');
+    })
 }
 
 /*function updateCart(){

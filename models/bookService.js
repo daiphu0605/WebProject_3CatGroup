@@ -5,6 +5,8 @@ var express = require("express");
 
 const LIMITED_ITEM_PER_PAGE = 12;
 
+const LIMITED_REVIEW_PER_PAGE = 6;
+
 var pageDetail = {
     currentPage: 1,
     nextPage: 0,
@@ -12,6 +14,16 @@ var pageDetail = {
     prevPage: 0,
     prevPrevPage: 0,
     totalPage: 0
+}
+
+var pageReviewDetail = {
+    currentPage: 1,
+    nextPage: 0,
+    nextNextPage: 0,
+    prevPage: 0,
+    prevPrevPage: 0,
+    totalPage: 0,
+    id: 0
 }
 
 var pageDetailAPI = {
@@ -73,6 +85,32 @@ async function getTotalPage(search, category, price, author, publisher, supplier
             }
             else {
                 result = parseInt(numOfItems / LIMITED_ITEM_PER_PAGE) + 1;
+            }
+            
+            return resolve(result);
+        })
+    });
+    return result;
+}
+
+async function getTotalPageReview(id){
+    var sql = "SELECT COUNT(*) FROM hcmus_book_store.book_reviews ";
+    sql += "WHERE book_id = '" + id + "';";
+
+    var result = await new Promise ((resolve, reject)=>{
+        connection.query(sql,(err, temp) => {
+            if (err) return resolve(null);          
+
+            var item = temp[0];
+            var numOfItems = item["COUNT(*)"];
+            var result;
+
+            
+            if(numOfItems % LIMITED_REVIEW_PER_PAGE == 0) {
+                result = parseInt(numOfItems / LIMITED_REVIEW_PER_PAGE);
+            }
+            else {
+                result = parseInt(numOfItems / LIMITED_REVIEW_PER_PAGE) + 1;
             }
             
             return resolve(result);
@@ -425,6 +463,71 @@ exports.getPageApi = async(page, search, category, sort, price, author, publishe
     return pageDetailAPI;
 }
 
+exports.getPageReview = async(id,page) =>{
+    pageReviewDetail.currentPage = page;
+    var temp = await getTotalPageReview(id);
+    pageReviewDetail.id = id;
+     
+    if (temp == null){
+        pageReviewDetail.totalPage = 0;
+    }
+    else {
+        pageReviewDetail.totalPage = temp;
+    }
+
+    if (pageReviewDetail.currentPage < 1) {
+        pageReviewDetail.currentPage = 1;
+    }
+
+    if (pageReviewDetail.currentPage > pageReviewDetail.totalPage) {
+        pageReviewDetail.currentPage = pageReviewDetail.totalPage
+    }
+
+    if(pageReviewDetail.currentPage <= 1) {
+        pageReviewDetail.prevPage = 0;
+    }
+    else {
+        pageReviewDetail.prevPage = pageReviewDetail.currentPage - 1;
+    }
+
+    if(pageReviewDetail.prevPage <= 1) {
+        pageReviewDetail.prevPrevPage = 0;
+    }
+    else {
+        pageReviewDetail.prevPrevPage = pageReviewDetail.prevPage - 1;
+    }
+
+    if(pageReviewDetail.currentPage >= pageReviewDetail.totalPage) {
+        pageReviewDetail.nextPage = 0;
+    }
+    else {
+        pageReviewDetail.nextPage = pageReviewDetail.currentPage + 1;
+    }
+
+    if(pageReviewDetail.nextPage >= pageReviewDetail.totalPage || pageReviewDetail.nextPage == 0) {
+        pageReviewDetail.nextNextPage = 0;
+    }
+    else {
+        pageReviewDetail.nextNextPage = pageReviewDetail.nextPage + 1;
+    }
+
+    return pageReviewDetail;
+}
+
+exports.getReviews = async(id, page) =>{
+    var offset = LIMITED_REVIEW_PER_PAGE * (page - 1);
+    var sql = "SELECT * FROM hcmus_book_store.book_reviews ";
+    sql += "WHERE book_id = '" + id + "' ORDER BY preview_id DESC LIMIT " + LIMITED_REVIEW_PER_PAGE + " OFFSET " + offset + ";";
+
+    var result = await new Promise ((resolve, reject)=>{
+        connection.query(sql,(err, result) => {
+            if (err) return resolve(null);
+            return resolve(result);
+        })
+    });
+    return result;
+}
+
 exports.getBookByID = async(BookID) => {
     
     var result = await new Promise ((resolve, reject) => {
@@ -724,5 +827,52 @@ async function getCategoryID(category){
     
     return result;
 }
+
+exports.addReview = async(id,review,user) => {
+    var sql = "SELECT COUNT(*) FROM hcmus_book_store.book_reviews;";
+    var code = await new Promise ((resolve, reject) => {
+        connection.query(sql,(err, result) => {
+            if (err) return resolve(null);
+            var item = result[0];
+            var code = item["COUNT(*)"];
+            return resolve(code);
+        })
+    });
+
+    let date_ob = new Date();
+    let date = ("0" + date_ob.getDate()).slice(-2);
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    let year = date_ob.getFullYear();
+    let hours = date_ob.getHours();
+    let minutes = date_ob.getMinutes();
+    let seconds = date_ob.getSeconds();
+    var datetime = year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
+
+    var result;
+    if (code != null){
+        sql = "INSERT INTO hcmus_book_store.book_reviews VALUES (";
+        sql += "'" + id + "', '" + code + "', '" + user.fullname + "', '" + review + "', '" + datetime + "', '" + user.avatar + "');";
+        var checkSaveInfo = await new Promise ((resolve, reject) => {
+            connection.query(sql,(err, result) => {
+                if (err) return resolve("error");    
+                return resolve("success");
+            })
+        });
+        
+        if(checkSaveInfo == "error"){
+            result = false;
+        }
+        else{
+            result = true;
+        }
+    }
+    else{
+        result = false;
+    }
+
+    return result;
+    
+}
+
 
 

@@ -94,7 +94,7 @@
 			</div>
 		</div>
 
-		<div class="bor10 m-t-50 p-t-43 p-b-40">
+		<div class="bor10 m-t-50 p-t-43 p-b-40" id="my-tab">
 			<!-- Tab01 -->
 			<div class="tab01">
 				<!-- Nav tabs -->
@@ -108,7 +108,7 @@
 					</li>
 
 					<li class="nav-item p-b-10">
-						<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
+						<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews</a>
 					</li>
 				</ul>
 
@@ -226,78 +226,99 @@
 							<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 								<div class="p-b-30 m-lr-15-sm">
 									<!-- Review -->
-									<div class="flex-w flex-t p-b-68">
-										<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-											<img src="../images/avatar-01.jpg" alt="AVATAR">
-										</div>
+									<div id="preview-list">
+										{{#if reviews}}
+											{{#each reviews}}
+											<div class="flex-w flex-t p-b-68">
+												<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+													<img src="../{{avatar}}" alt="AVATAR">
+												</div>
 
-										<div class="size-207">
-											<div class="flex-w flex-sb-m p-b-17">
-												<span class="mtext-107 cl2 p-r-20">
-													Ariana Grande
-												</span>
+												<div class="size-207">
+													<div class="flex-w flex-sb-m p-b-17">
+														<span class="mtext-107 cl2 p-r-20">
+															{{fullname}}
+														</span>
+													</div>
 
-												<span class="fs-18 cl11">
-													<i class="zmdi zmdi-star"></i>
-													<i class="zmdi zmdi-star"></i>
-													<i class="zmdi zmdi-star"></i>
-													<i class="zmdi zmdi-star"></i>
-													<i class="zmdi zmdi-star-half"></i>
-												</span>
+													<p class="stext-102 cl6">
+														{{review}}
+													</p>
+												</div>
 											</div>
+											{{/each}}	
+										{{/if}}
+									</div>
 
-											<p class="stext-102 cl6">
-												Quod autem in homine praestantissimum atque optimum est, id deseruit. Apud ceteros autem philosophos
-											</p>
-										</div>
+									<!-- Page -->
+									<div class="flex-c-m flex-w w-full p-t-45" id="page">
+										{{#if page.totalPage}}
+										<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="changeReview('1', '{{page.id}}');">
+											Đầu
+										</button>
+
+										{{#if page.prevPrevPage}}
+											<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="changeReview('{{page.prevPrevPage}}', '{{page.id}}');">
+												{{page.prevPrevPage}}
+											</button>
+										{{/if}}
+
+										{{#if page.prevPage}}
+											<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="changeReview('{{page.prevPage}}', '{{page.id}}');">
+												{{page.prevPage}}
+											</button>
+										{{/if}}
+
+										{{#if page.currentPage}}
+											<button class="flex-c-m stext-101 cl0 size-103-edit bg3 bor1 p-lr-15 trans-04">
+												{{page.currentPage}}
+											</button>
+										{{/if}}
+
+										{{#if page.nextPage}}
+											<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="changeReview('{{page.nextPage}}', '{{page.id}}');">
+												{{page.nextPage}}
+											</button>
+										{{/if}}
+
+										{{#if page.nextNextPage}}
+											<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="changeReview('{{page.nextNextPage}}', '{{page.id}}');">
+												{{page.nextNextPage}}
+											</button>
+										{{/if}}
+										
+										<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="changeReview('{{page.totalPage}}', '{{page.id}}');">
+											Cuối
+										</button>
+
+										{{/if}}
 									</div>
 									
+									{{#if user}}
 									<!-- Add review -->
-									<form class="w-full">
-										<h5 class="mtext-108 cl2 p-b-7">
-											Add a review
-										</h5>
+									<div class="mar-t-50" id="preview-form">
+										<div class="w-full">
+											<h5 class="mtext-108 cl2 p-b-7">
+												Add a review
+											</h5>
 
-										<p class="stext-102 cl6">
-											Your email address will not be published. Required fields are marked *
-										</p>
+											<p class="stext-102 cl6">
+												Thêm bình luận của bạn về sản phẩm
+											</p>
 
-										<div class="flex-w flex-m p-t-50 p-b-23">
-											<span class="stext-102 cl3 m-r-16">
-												Your Rating
-											</span>
+											<div class="row p-b-25">
+												<div class="col-12 p-b-5">
+													<label class="stext-102 cl3" for="review">Your review</label>
+													<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
+												</div>
+											</div>
 
-											<span class="wrap-rating fs-18 cl11 pointer">
-												<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-												<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-												<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-												<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-												<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-												<input class="dis-none" type="number" name="rating">
-											</span>
+											<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onclick="submitReview('{{detail.id}}');">
+												Submit
+											</button>
 										</div>
-
-										<div class="row p-b-25">
-											<div class="col-12 p-b-5">
-												<label class="stext-102 cl3" for="review">Your review</label>
-												<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
-											</div>
-
-											<div class="col-sm-6 p-b-5">
-												<label class="stext-102 cl3" for="name">Name</label>
-												<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text" name="name">
-											</div>
-
-											<div class="col-sm-6 p-b-5">
-												<label class="stext-102 cl3" for="email">Email</label>
-												<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email" type="text" name="email">
-											</div>
-										</div>
-
-										<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-											Submit
-										</button>
-									</form>
+									</div>
+									{{/if}}
 								</div>
 							</div>
 						</div>
@@ -308,6 +329,7 @@
 	</div>
 </section>
 
+<!-- related product-->
 {{#if books}}
 <section class="sec-relate-product bg0 p-t-45 p-b-105">
 	<div class="container">
@@ -364,3 +386,91 @@
 	</div>
 </section>
 {{/if}}
+
+
+
+<script type="text/x-handlebars-template" id="page-list">
+	<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="changeReview('1', '\{{this.id}}');">
+		Đầu
+	</button>
+
+	\{{#if this.prevPrevPage}}
+		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="changeReview('\{{this.prevPrevPage}}', '\{{this.id}}');">
+			\{{this.prevPrevPage}}
+		</button>
+	\{{/if}}
+{{!-- /shop?page={{page.prevPage}} --}}
+	\{{#if this.prevPage}}
+		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="changeReview('\{{this.prevPage}}', '\{{this.id}}');">
+			\{{this.prevPage}}
+		</button>
+	\{{/if}}
+
+	\{{#if this.currentPage}}
+		<button class="flex-c-m stext-101 cl0 size-103-edit bg3 bor1 p-lr-15 trans-04">
+			\{{this.currentPage}}
+		</button>
+	\{{/if}}
+{{!-- /shop?page={{page.nextPage}} --}}
+	\{{#if this.nextPage}}
+		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="changeReview('\{{this.nextPage}}', '\{{this.id}}');">
+			\{{this.nextPage}}
+		</button>
+	\{{/if}}
+
+	\{{#if this.nextNextPage}}
+		<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="changeReview('\{{this.nextNextPage}}', '\{{this.id}}');">
+			\{{this.nextNextPage}}
+		</button>
+	\{{/if}}
+{{!-- /shop?page={{page.totalPage}} --}}
+	<button class="flex-c-m stext-101 cl5 size-103-edit bg2 bor1 hov-btn1 p-lr-15 trans-04" onclick="changeReview('\{{this.totalPage}}', '\{{this.id}}');">
+		Cuối
+	</button>
+</script>
+
+
+<script type="text/x-handlebars-template" id="preview-form-template">
+	\{{#each reviews}}
+	<div class="flex-w flex-t p-b-68">
+		<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+			<img src="../\{{avatar}}" alt="AVATAR">
+		</div>
+
+		<div class="size-207">
+			<div class="flex-w flex-sb-m p-b-17">
+				<span class="mtext-107 cl2 p-r-20">
+					\{{fullname}}
+				</span>
+			</div>
+
+			<p class="stext-102 cl6">
+				\{{review}}
+			</p>
+		</div>
+	</div>
+	\{{/each}}
+</script>
+
+{{!-- <script type="text/x-handlebars-template" id="preview-form-template">
+	<form class="w-full">
+		<h5 class="mtext-108 cl2 p-b-7">
+			Add a review
+		</h5>
+
+		<p class="stext-102 cl6">
+			Thêm bình luận của bạn về sản phẩm
+		</p>
+
+		<div class="row p-b-25">
+			<div class="col-12 p-b-5">
+				<label class="stext-102 cl3" for="review">Your review</label>
+				<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
+			</div>
+		</div>
+
+		<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10" onclick="submitPreview();">
+			Submit
+		</button>
+	</form>
+</script> --}}

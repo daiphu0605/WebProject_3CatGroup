@@ -88,6 +88,12 @@ exports.book = async (req, res, next) => {
     //get related book
     var books = await bookService.getRelatedBook(detail.id);
 
-    res.render('detailBook/detail', {layout: 'detaillayout', detail, books});
+    //get reviews
+    var reviews = await bookService.getReviews(BookID, 1);
+
+    //get review page
+    var page = await bookService.getPageReview(BookID, 1);
+
+    res.render('detailBook/detail', {layout: 'detaillayout', detail, books, reviews, page});
 };
 
