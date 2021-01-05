@@ -1,0 +1,61 @@
+<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg"></div>
+<section class="bg0 p-t-75 p-b-85">
+    <div class="container">
+    {{#if user}}
+        {{#if cart_history}}
+        <div class="row">
+            <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+                <div class="m-l-25 m-r--38 m-lr-0-xl">
+                    <div class="wrap-table-shopping-cart">
+                        <table class="table-shopping-cart">
+                            <tr class="table_head">
+                                <th class="column-1">Sản phẩm</th>
+                                <th class="column-2"></th>
+                                <th class="column-3">
+                                    <p class="mar-30">
+                                        Giá
+                                    </p>
+                                </th>
+                                <th class="column-4">Số lượng</th>
+                                <th class="column-5">Tổng</th>
+                            </tr>
+                            {{#each cart_history}}
+                                <tr class="table_row">
+                                    <td class="column-1">
+                                        <div class="how-itemcart1">
+                                            <img src="../../{{item.image}}" alt="IMG">
+                                        </div>
+                                    </td>
+                                    <td class="column-2">{{item.title}}</td>
+                                    <td class="column-3">{{price}}</td>
+                                    <td class="column-4">
+                                        <div class="wrap-num-product-edit flex-w m-l-auto m-r-0">
+                                            <p class="mx-center">
+                                                {{qty}}
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td class="column-5">{{total}}</td>
+                                </tr>
+                            {{/each}}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="p-b-10">
+            <h3 class="ltext-103 cl5">
+                Lịch sử trống
+            </h3>
+        </div>
+        {{/if}}
+    {{else}}
+        <div class="p-b-10">
+            <h3 class="ltext-103 cl5">
+                Cần đăng nhập để thực hiện chứ năng này
+            </h3>
+        </div>
+    {{/if}}
+    </div>
+</section>

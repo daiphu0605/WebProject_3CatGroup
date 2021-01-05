@@ -1,0 +1,57 @@
+
+<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg"></div>
+<section class="bg0 p-t-75 p-b-85" id="cur-cart-list">
+    <div class="container">
+        {{#if user}}
+            {{#if history}}
+            <div class="row">
+                <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+                    <div class="m-l-25 m-r--38 m-lr-0-xl">
+                        <div class="wrap-table-shopping-cart">
+                            <table class="table-shopping-cart">
+                                <tr class="table_head">
+                                    <th class="column-1-h">Tên</th>
+                                    <th class="column-2-h">Thời gian</th>
+                                    <th class="column-3-h">Số tiền</th>
+                                    <th class="column-4-h">Số lượng</th>
+                                    <th class="column-5-h"></th>
+                                </tr>
+                                {{#each history}}
+                                    <tr class="table_row-edit">
+                                        <td>{{name}}</td>
+                                        <td class="column-2-h">{{order_time}}</td>
+                                        <td>{{total_money}}</td>
+                                        <td>{{quantity}}</td>
+                                        <td>
+                                            <a href="/cart/history/{{order_id}}" class="flex-c-m stext-101 cl5 size-103-edit1 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+                                                Xem
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+
+                            </table>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="p-b-10">
+                <h3 class="ltext-103 cl5">
+                    Lịch sử trống
+                </h3>
+            </div>
+            {{/if}}
+        {{else}}
+            <div class="p-b-10">
+                <h3 class="ltext-103 cl5">
+                    Cần đăng nhập để thực hiện chứ năng này
+                </h3>
+            </div>
+        {{/if}}
+    </div>
+</section>
+
+

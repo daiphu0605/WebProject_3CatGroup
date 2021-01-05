@@ -2498,9 +2498,23 @@ input.num-product::-webkit-inner-spin-button {
   padding-left: 50px;
 }
 
+.table-shopping-cart .column-1-h {
+  width: 250px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 15px;
+  text-align: center;
+}
+
 .table-shopping-cart .column-2 {
   width: 220px;
   font-size: 15px;
+}
+
+.table-shopping-cart .column-2-h {
+  width: 250px;
+  font-size: 15px;
+  text-align: center;
 }
 
 .table-shopping-cart .column-3 {
@@ -2508,9 +2522,21 @@ input.num-product::-webkit-inner-spin-button {
   font-size: 16px;
 }
 
+.table-shopping-cart .column-3-h {
+  width: 150px;
+  font-size: 15px;
+  text-align: center;
+}
+
 .table-shopping-cart .column-4 {
   width: 145px;
   text-align: right;
+}
+
+.table-shopping-cart .column-4-h {
+  width: 150px;
+  font-size: 15px;
+  text-align: center;
 }
 
 .table-shopping-cart .column-5 {
@@ -2520,8 +2546,17 @@ input.num-product::-webkit-inner-spin-button {
   font-size: 16px;
 }
 
+.table-shopping-cart .column-5-h {
+  width: 200px;
+  text-align: center;
+}
+
 .table-shopping-cart .table_row {
   height: 185px;
+}
+
+.table-shopping-cart .table_row-edit {
+  height: 120px;
 }
 
 .table-shopping-cart .table_row td {
@@ -3096,6 +3131,15 @@ input.num-product::-webkit-inner-spin-button {
 .size-103-edit {
   min-width: 46px;
   height: 46px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+
+.size-103-edit1 {
+  min-width: 46px;
+  max-width: 100px;
+  height: 35px;
   margin-left: 5px;
   margin-right: 5px;
 }

@@ -8,11 +8,15 @@ var cart = {
 }
 
 exports.getBookByID = async(BookID) => {
-    
+    var result = await getBook(BookID);
+    return result;
+}
+
+async function getBook(BookID){
     var result = await new Promise ((resolve, reject) => {
         var sql = "SELECT * FROM hcmus_book_store.book_info WHERE id = '" + BookID + "';";
         connection.query(sql,(err, temp) => {
-            if (err) return resolve("error");            
+            if (err) return resolve(null);            
             var result = temp[0];
             return resolve(result);
         });
@@ -33,7 +37,7 @@ exports.saveNewCart = async(user,cart,name,phone,province,district,ward,address,
     var sql = "SELECT COUNT(*) FROM hcmus_book_store.order_info;";
     var code = await new Promise ((resolve, reject) => {
         connection.query(sql,(err, result) => {
-            if (err) return resolve("error");
+            if (err) return resolve(null);
             var item = result[0];
             var code = item["COUNT(*)"];
             return resolve(code);
@@ -49,12 +53,11 @@ exports.saveNewCart = async(user,cart,name,phone,province,district,ward,address,
     let seconds = date_ob.getSeconds();
     var datetime = year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
 
-    if (code != "error"){
+    if (code != null){
         sql = "INSERT INTO hcmus_book_store.order_info VALUES (";
-        var value = "'" + code + "', '" + user.username + "', '" + datetime + "', '" + cart.totalPrice + "', '" + name + "', '" + phone + "', '" + province + "', '" + district + "', '" + ward + "', '" + address + "', '" + method + "');";
+        var value = "'" + code + "', '" + user.username + "', '" + datetime + "', '" + cart.totalPrice + "', '" + name + "', '" + phone + "', '" + province + "', '" + district + "', '" + ward + "', '" + address + "', '" + method + "', '" + cart.totalQty + "');";
         sql = sql + value;
 
-        console.log(sql);
         var checkSaveInfo = await new Promise ((resolve, reject) => {
             connection.query(sql,(err, result) => {
                 if (err) return resolve("error");    
@@ -72,7 +75,7 @@ exports.saveNewCart = async(user,cart,name,phone,province,district,ward,address,
                 sql = "INSERT INTO hcmus_book_store.order_detail VALUES (";
                 value = "'" + code + "', '" + id + "', '" + price + "', '" + qty + "', '0');";
                 sql = sql + value;
-                console.log(sql);
+
                 connection.query(sql,(err, result) => {if (err) return "error";});
             }
 
@@ -143,5 +146,50 @@ exports.reduce = async(curCart,id) => {
     curCart = await reducect(curCart,id);
     
     return curCart;
+}
+
+exports.getHistory = async(username) => {
+    var sql = "SELECT * FROM hcmus_book_store.order_info WHERE user_id = '" + username + "';";
+
+    var result = await new Promise ((resolve, reject) => {
+        connection.query(sql,(err, result) => {
+            if (err) return resolve(null);   
+            return resolve(result);
+        });
+    });
+
+    return result;
+}
+
+exports.getHistoryById = async(id) => {
+    var sql = "SELECT * FROM hcmus_book_store.order_detail WHERE order_id = '" + id + "';";
+
+    var cart_list = await new Promise ((resolve, reject) => {
+        connection.query(sql,(err, result) => {
+            if (err) return resolve(null);   
+            return resolve(result);
+        });
+    });
+
+    if(cart_list != null){
+        var cart = new Array();
+        for(var i in cart_list){
+            var bookId = cart_list[i].product_id;
+            var mprice = cart_list[i].product_price;
+            var mqty = cart_list[i].product_quantity;
+            var totalPrice = mprice * mqty;
+            var book = await getBook(bookId);
+            cart[bookId] = {item: book, qty: mqty, price: mprice, total: totalPrice};
+        }
+        if(cart.length > 0){
+            return cart;
+        }
+        else{
+            return null;
+        }        
+    }
+    else{
+        return cart_list;
+    }
 }
   
