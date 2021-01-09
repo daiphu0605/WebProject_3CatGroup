@@ -178,22 +178,22 @@
 						<!-- Block2 -->
 						<div class="block2">
 							<div class="block2-pic hov-img0">
-								<img class="img-edit1" src="{{image}}" alt="IMG-PRODUCT" >
+								<img class="img-edit1" src="{{book.image}}" alt="IMG-PRODUCT" >
 
-								<a href="/shop/{{id}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+								<a href="/shop/{{book.id}}?title={{str}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 									Xem sản phẩm
 								</a>
 							</div>
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="/shop/{{id}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										{{title}}
+									<a href="/shop/{{book.id}}?title={{str}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										{{book.title}}
 									</a>
 								</div>
 
 								<div class="block2-txt-child2 flex-r p-t-3">
-									<button class="btn-addwish-b2 dis-block pos-relative js-addcart-b2" onclick="AddToCart('{{id}}')">
+									<button class="btn-addwish-b2 dis-block pos-relative js-addcart-b2" onclick="AddToCart('{{book.id}}')">
 										<img class="icon-heart1 dis-block trans-04 view-img1" src="images/icons/add-to-cart.png" alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 view-img1 ab-t-l" src="images/icons/add-to-cart-hov.png" alt="ICON">
 									</button>
@@ -201,10 +201,10 @@
 
 								<div class="block2-txt-child3 flex-w flex-t flex-col-l" style="display: inline-block;">
 									<span class="stext-105 cl3 float-left-item">
-										{{base_price}} VNĐ
+										{{book.base_price}} VNĐ
 									</span>
 									<p class="stext-105 cl6 float-right-item view-text-margin" style="color: color:rgb(148, 148, 148);">
-										{{views}}
+										{{book.views}}
 									</p>
 									<img class="view-img float-right-item" src="images/icons/visibility.png" alt="view" >
 								</div>
@@ -283,22 +283,22 @@ document.getElementById("myFrame").onload = function() {
 			<!-- Block2 -->
 			<div class="block2">
 				<div class="block2-pic hov-img0">
-					<img class="img-edit1" src="\{{this.image}}" alt="IMG-PRODUCT" >
+					<img class="img-edit1" src="\{{this.book.image}}" alt="IMG-PRODUCT" >
 
-					<a href="/shop/\{{this.id}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+					<a href="/shop/\{{this.book.id}}?title=\{{str}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 						Xem sản phẩm
 					</a>
 				</div>
 
 				<div class="block2-txt flex-w flex-t p-t-14">
 					<div class="block2-txt-child1 flex-col-l ">
-						<a href="/shop/\{{this.id}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-							\{{this.title}}
+						<a href="/shop/\{{this.book.id}}?title=\{{str}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+							\{{this.book.title}}
 						</a>
 					</div>
 
 					<div class="block2-txt-child2 flex-r p-t-3">
-						<button class="btn-addwish-b2 dis-block pos-relative js-addcart-b2" onclick="AddToCart('\{{id}}')">
+						<button class="btn-addwish-b2 dis-block pos-relative js-addcart-b2" onclick="AddToCart('\{{this.book.id}}')">
 							<img class="icon-heart1 dis-block trans-04 view-img1" src="images/icons/add-to-cart.png" alt="ICON">
 							<img class="icon-heart2 dis-block trans-04 view-img1 ab-t-l" src="images/icons/add-to-cart-hov.png" alt="ICON">
 						</button>
@@ -306,10 +306,10 @@ document.getElementById("myFrame").onload = function() {
 
 					<div class="block2-txt-child3 flex-w flex-t flex-col-l" style="display: inline-block;">
 						<span class="stext-105 cl3 float-left-item">
-							\{{this.base_price}} VNĐ
+							\{{this.book.base_price}} VNĐ
 						</span>
 						<p class="stext-105 cl6 float-right-item view-text-margin" style="color: color:rgb(148, 148, 148);">
-							\{{this.views}}
+							\{{this.book.views}}
 						</p>
 						<img class="view-img float-right-item" src="images/icons/visibility.png" alt="view" >
 					</div>

@@ -1,5 +1,4 @@
 var bookService = require('../../models/bookService');
-var search = require('../../models/search');
 
 exports.bookapi = async (req, res, next) => {
     res.json(await getbook(req, res, next));
@@ -7,6 +6,18 @@ exports.bookapi = async (req, res, next) => {
 
 exports.pageapi = async (req, res, next) => {
     res.json(await getpage(req, res, next));
+}
+
+exports.oldbookapi = async (req, res, next) => {
+    res.json(await getbook(req, res, next))
+}
+
+exports.addreviewapi = async (req, res, next) => {
+    res.json(await addreview(req, res, next))
+}
+
+exports.reviewapi = async (req, res, next) => {
+    res.json(await getreview(req, res, next))
 }
 
 async function getbook (req, res, next) {
@@ -35,8 +46,9 @@ async function getbook (req, res, next) {
     const publisher = req.query.publisher || "";
 
     // Get books from model
-    const books = await bookService.getBooks(curPage, search, category, sort, price, author, publisher, supplier,);
+    const temp = await bookService.getBooks(curPage, search, category, sort, price, author, publisher, supplier,);
 
+    var books = await bookService.getBooksAndString(temp);
 
     return books;
 };
@@ -71,18 +83,6 @@ async function getpage (req, res, next) {
 
     return page;
 };
-
-exports.oldbookapi = async (req, res, next) => {
-    res.json(await getbook(req, res, next))
-}
-
-exports.addreviewapi = async (req, res, next) => {
-    res.json(await addreview(req, res, next))
-}
-
-exports.reviewapi = async (req, res, next) => {
-    res.json(await getreview(req, res, next))
-}
 
 async function getreview (req, res, next) {
     //Get review

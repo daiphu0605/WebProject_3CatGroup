@@ -9,7 +9,7 @@ function replaceProducts(currentpage, page, search, category, sort, price, suppl
             //get template
             var booktemplate = Handlebars.compile($('#product-list').html());
             var pagetemplate = Handlebars.compile($('#page-list').html());
-
+            
             //get data
             var productHTML = booktemplate({books});
             var pageHTML = pagetemplate(temppage);

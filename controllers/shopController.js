@@ -1,23 +1,31 @@
 var express = require("express");
 var bookService = require('../models/bookService');
-var search = require('../models/search');
 //const Page = require('./PageWeb');
-
-async function Search(req, res, next){
-    var value = req.query.search;
-    var page = 1;
-    //let amount = search.Amount(value);
-    //let totalPage = page.TotalPage(amount);
-    let books = search.Search(value, 1, 12);
-    books.then(function(result){
-        res.render('shop/list', {layout: 'bookshop', books: result, page});
-    });
-
-}
 
 exports.Shop = (req,res,next) => {
     index(req,res,next);
 }
+
+exports.book = async (req, res, next) => {
+    //const item = req.body.book_id;
+    // Get detailbooks from model
+    var BookID = req.params.id;
+    //get book
+    const detail = await bookService.getBookByID(BookID);
+
+    //get related book
+    var books = await bookService.getRelatedBook(detail.id);
+    books = await bookService.getBooksAndString(books);
+
+    //get reviews
+    var reviews = await bookService.getReviews(BookID, 1);
+
+    //get review page
+    var page = await bookService.getPageReview(BookID, 1);
+
+    res.render('detailBook/detail', {layout: 'detaillayout', detail, books, reviews, page});
+};
+
 
 async function index (req, res, next) {
     //Get current page, default by 1
@@ -49,7 +57,8 @@ async function index (req, res, next) {
     const page = await bookService.pageNumber(curPage, search, category, price, author, publisher, supplier,);
 
     // Get books from model
-    const books = await bookService.getBooks(page.currentPage, search, category, sort, price, author, publisher, supplier,);
+    var books = await bookService.getBooks(page.currentPage, search, category, sort, price, author, publisher, supplier,);
+    books = await bookService.getBooksAndString(books);
 
 
     //get new url
@@ -77,23 +86,3 @@ async function index (req, res, next) {
     // Pass data to view to display list of books
     res.render('shop/list', {layout: 'bookshop', books, page, category, defaultcategoryURL, categoryURL, sort, sortCode, defaultsortURL, sortURL, price, priceCode, defaultpriceURL, priceURL, supplier, author, publisher, search});
 };
-
-exports.book = async (req, res, next) => {
-    //const item = req.body.book_id;
-    // Get detailbooks from model
-    var BookID = req.params.id;
-    //get book
-    const detail = await bookService.getBookByID(BookID);
-
-    //get related book
-    var books = await bookService.getRelatedBook(detail.id);
-
-    //get reviews
-    var reviews = await bookService.getReviews(BookID, 1);
-
-    //get review page
-    var page = await bookService.getPageReview(BookID, 1);
-
-    res.render('detailBook/detail', {layout: 'detaillayout', detail, books, reviews, page});
-};
-
