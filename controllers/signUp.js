@@ -10,18 +10,24 @@ exports.signUp = (req,res, next) =>{
         if (err)  {
             return next(err);
         }
-        if (!user) {
-            switch (info) {
-                case "Username has existed":
-                    return res.render('sign_up', {layout: 'layout_sign', ErrorUsername: info});
-                case "Password not match":
-                    return res.render('sign_up', {layout: 'layout_sign', ErrorConfirmPassword: info, username: req.body.username});
-            }
-        }
         req.login(user, function(err) {
             if (err) { return next(err); }
-            return res.render('sign_up_fin', {layout: 'layout_sign'});
+            return;
         });
     }) (req, res, next);
-} 
+}
+
+exports.checkUsername = (req, res, next) => {
+    var Username = req.body.username;
+    account.isUsername(Username, (result) =>{
+        res.send({is: result});
+    });
+}
+
+exports.checkEmail = (req, res, next) => {
+    var Email = req.body.email;
+    account.isEmail(Email, (result) =>{
+        res.send({is: result});
+    });
+}
 
