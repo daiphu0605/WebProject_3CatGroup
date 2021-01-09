@@ -16,6 +16,7 @@ const checkoutRouter = require('./routes/checkout');
 var signIn = require('./routes/sign_in');
 var signUp = require('./routes/sign_up');
 var signOut = require('./routes/sign_out');
+var forgetPass = require('./routes/forget_password')
 
 //api
 var apiShop = require('./routes/api/shop');
@@ -68,9 +69,10 @@ app.use('/cart', cartRouter);
 app.use('/checkout', checkoutRouter);
 
 
-app.use('/signin', signIn);
-app.use('/signup', signUp);
+app.use('/signin?', signIn);
+app.use('/signup?', signUp);
 app.use('/signout', signOut);
+app.use('/forget', forgetPass);
 //api
 app.use('/api/shop', apiShop);
 app.use('/api/cart', apiCart);

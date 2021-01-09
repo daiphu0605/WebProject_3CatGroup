@@ -13,9 +13,8 @@ exports.signIn = (req,res,next) => {
             return next(err);
         }
         if (!user) {
-            return res.render('sign_in',{layout: 'layout_sign', Error: info});
+            return res.render('sign_in',{layout: 'layout_sign', username: info.username, ErrorMessage: info.ErrorMessage});
         }
-        console.log(user.username);
         req.login(user, function(err) {
             if (err) { return next(err); }
             return res.redirect('/shop');
