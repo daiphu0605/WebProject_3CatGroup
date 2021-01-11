@@ -9,10 +9,12 @@ exports.index = async (req, res, next) => {
     var result = account.verifyEmail(id);
     if(result != null)
     {
-        res.end("<h1>Your Email have been successfully verified");
+        var message = 'Your Email have been successfully verified';
+        res.render('sign_up_fin',{layout: 'layout_sign', message});
     }
     else
     {
-        res.end("<h1>Bad Request</h1>");
+        var message = 'Bad request, something went wrong!';
+        res.render('sign_up_fin',{layout: 'layout_sign', message});
     }
 };

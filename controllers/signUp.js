@@ -14,7 +14,8 @@ exports.signUp = (req,res, next) =>{
             if (err) { return next(err); }
             return;
         });
-        return res.render('sign_up_fin',{layout: 'layout_sign'})
+        var message = 'We send a veritified email to you. Please check your email box';
+        return res.render('sign_up_fin',{layout: 'layout_sign', message});
     }) (req, res, next);
 }
 

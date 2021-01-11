@@ -173,7 +173,7 @@ exports.getUserInfoByName = async (username, done) => {
 }
 
 
-exports.updateUserInfo = (user,done)=>{
+exports.updateUserInfo = async (user,done)=>{
     var proc = await new Promise((resolve, reject) => {
         var sql = "UPDATE hcmus_book_store.user_info";
         sql += " SET";
