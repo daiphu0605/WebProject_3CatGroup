@@ -7,10 +7,12 @@ passport.use('local-signup', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
   },
-  function (req, username, password, done) {
+  async function (req, username, password, done) {
     let email = req.body.email;
     let name = req.body.lastName + " " + req.body.firstName;
-    account.AddAccount(username, password, email, name, done);
+    let host = req.get('host');
+    await account.AddAccount(username, password, email, name, done);
+    await account.sentVerifyEmail(username, host, email);
   }));
 
 passport.use('local-signin', new LocalStrategy({

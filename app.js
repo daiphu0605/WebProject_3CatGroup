@@ -4,8 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs = require( 'express-handlebars' );
-var passport = require('./passport/passport')
-var session = require("express-session")
+var passport = require('./passport/passport');
+var session = require("express-session");
+const dotenv = require("dotenv");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -16,7 +17,8 @@ const checkoutRouter = require('./routes/checkout');
 var signIn = require('./routes/sign_in');
 var signUp = require('./routes/sign_up');
 var signOut = require('./routes/sign_out');
-var forgetPass = require('./routes/forget_password')
+var forgetPass = require('./routes/forget_password');
+var verify = require('./routes/verify');
 
 //api
 var apiShop = require('./routes/api/shop');
@@ -28,6 +30,10 @@ var connection=require('./models/connection');
 //
 
 
+//dotenv
+require("dotenv").config({
+  path: path.resolve(__dirname, "./.env"),
+});
 
 // view engine setup
 app.engine('hbs', hbs({ 
@@ -73,6 +79,7 @@ app.use('/signin?', signIn);
 app.use('/signup?', signUp);
 app.use('/signout', signOut);
 app.use('/forget', forgetPass);
+app.use('/verify', verify);
 //api
 app.use('/api/shop', apiShop);
 app.use('/api/cart', apiCart);
