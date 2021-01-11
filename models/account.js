@@ -159,7 +159,7 @@ exports.isUsername = async (username,done) =>{
 
 exports.isEmail  = async (email,done) =>{
     var proc = await getEmail(email).then((result) => {
-        if (email.length > 0) {
+        if (result.length > 0) {
             return done(true);
         }
         return done(false);
