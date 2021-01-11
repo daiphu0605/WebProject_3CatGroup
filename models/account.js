@@ -235,7 +235,7 @@ getUsername = (username) => {
         var sql = new SQL();
         sql.Select("username");
         sql.From("hcmus_book_store.user_info");
-        sql.Where("username = '" + username + "'and status = 'Active'");
+        sql.Where("username = '" + username + "'");
         connection.query(sql.Query(), (err, results) => {
             if (err) return reject(err);
             return resolve(results);
@@ -248,7 +248,7 @@ getEmail = (email) => {
         var sql = new SQL();
         sql.Select("email");
         sql.From("hcmus_book_store.user_info");
-        sql.Where("email = '" + email + "'and status = 'Active'");
+        sql.Where("email = '" + email + "'");
         connection.query(sql.Query(), (err, results) => {
             if (err) return reject(err);
             return resolve(results);
