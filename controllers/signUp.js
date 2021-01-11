@@ -12,8 +12,9 @@ exports.signUp = (req,res, next) =>{
         }
         req.login(user, function(err) {
             if (err) { return next(err); }
-            return res.redirect('/shop')
+            return;
         });
+        return res.render('sign_up_fin',{layout: 'layout_sign'})
     }) (req, res, next);
 }
 
