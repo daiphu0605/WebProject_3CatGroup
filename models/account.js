@@ -77,13 +77,49 @@ exports.getUserInfoByName = async (username, done) => {
         done(result[0]);
     });
 }
-exports.checkPassword = async (username, password, done) => {
-    var proc = await getUser(username).then((result) => {
-        hashPassword = md5(password);
-        if (result[0].password !== hashPassword) {
-            return done(false);
+
+
+exports.updateUserInfo = (user,done)=>{
+    var proc = await new Promise((resolve, reject) => {
+        var sql = "UPDATE hcmus_book_store.user_info";
+        sql += " SET";
+        if (user.email !== null) {
+            sql += " email = '" + user.email +"'";
         }
+        if (user.fullname !== null) {
+            sql += " fullname = '" + user.fullname +"'";
+        }
+        sql += " WHERE username = '" + user.username +"'";
+        connection(sql, (err,result) => {
+            if (err) {
+                return reject(err);
+            }
+            return resolve(result);
+        });
+    }).then((result) => {
         return done(true);
+    }, (err) => {
+        return done(false);
+    });
+}
+
+exports.updatePasswords = async (username, newPassword, done) => {
+    var proc = await new Promise ((resolve, reject) => {
+        var sql;
+        var hashPassword = md5(newPassword)
+        sql = "UPDATE hcmus_book_store.user_info";
+        sql += " SET password = '" + hashPassword +"'";
+        sql += " WHERE username = '" + username + "'";
+        connection.query(sql, (err, result) => {
+            if (err) { 
+                return reject(err);
+            }
+            return resolve(result);
+        });
+    }).then((result) => {
+        return done(true);
+    }, (err) => {
+        return done(false);
     });
 }
 
