@@ -149,7 +149,7 @@ exports.reduce = async(curCart,id) => {
 }
 
 exports.getHistory = async(username) => {
-    var sql = "SELECT * FROM hcmus_book_store.order_info WHERE user_id = '" + username + "';";
+    var sql = "SELECT * FROM hcmus_book_store.order_info WHERE user_id = '" + username + "' ORDER BY order_time DESC;";
 
     var result = await new Promise ((resolve, reject) => {
         connection.query(sql,(err, result) => {
