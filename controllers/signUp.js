@@ -14,6 +14,7 @@ exports.signUp = (req,res, next) =>{
             if (err) { return next(err); }
             return;
         });
+        return res.render('sign_up_fin',{layout: 'layout_sign'})
     }) (req, res, next);
 }
 
