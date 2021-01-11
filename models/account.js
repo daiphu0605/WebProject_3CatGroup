@@ -29,7 +29,7 @@ exports.AddAccount = async (username, password, email, name, done) => {
     var Result = await new Promise((resolve,reject) =>{
         var hashPassword = md5(password);
         var sql = "INSERT INTO hcmus_book_store.user_info (username, password, email, role, status, fullname) VALUES ";
-        sql = sql + "('"+username+"', '"+hashPassword+"'," + email +"', 'user', 'Active', '" + name + "')";
+        sql = sql + "('"+username+"', '"+hashPassword+"', '" + email +"', 'user', 'Active', '" + name + "')";
         connection.query(sql, function (err, results) {
             if (err) {
                 return reject(err)
@@ -70,6 +70,34 @@ exports.isEmail  = async (email,done) =>{
         }
         return done(false);
     });
+}
+
+exports.getUserInfoByName = async (username, done) => {
+    var proc = await getUserInfo(username).then((result) => {
+        done(result[0]);
+    });
+}
+exports.checkPassword = async (username, password, done) => {
+    var proc = await getUser(username).then((result) => {
+        hashPassword = md5(password);
+        if (result[0].password !== hashPassword) {
+            return done(false);
+        }
+        return done(true);
+    });
+}
+
+getUserInfo = (username) => {
+    return new Promise((resolve, reject) => {
+        var sql = new SQL();
+        sql.Select("username, email");
+        sql.From("hcmus_book_store.user_info");
+        sql.Where("username = '" + username + "'and status = 'Active'");
+        connection.query(sql.Query(), (err, results) => {
+            if (err) return reject(err);
+            return resolve(results);
+        });
+    })
 }
 
 getUsername = (username) => {

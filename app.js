@@ -63,7 +63,7 @@ app.use(function(req, res, next){
 
 ////main router
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user?', usersRouter);
 app.use('/shop', shopRouter);
 app.use('/cart', cartRouter);
 app.use('/checkout', checkoutRouter);

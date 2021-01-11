@@ -12,7 +12,7 @@ exports.signUp = (req,res, next) =>{
         }
         req.login(user, function(err) {
             if (err) { return next(err); }
-            return;
+            return res.redirect('/shop')
         });
     }) (req, res, next);
 }
