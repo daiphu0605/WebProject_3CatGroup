@@ -3,7 +3,7 @@ let passport = require('../passport/passport');
 
 
 
-exports.index = async (req, res, next) => {
+exports.index = (req, res, next) => {
     var id = req.query.id || "";
 
     var result = account.verifyEmail(id);
