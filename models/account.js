@@ -10,7 +10,7 @@ exports.sentVerifyEmail = async (username, host, email) => {
         var sql = new SQL();
         sql.Select("verify_id");
         sql.From("hcmus_book_store.user_info");
-        sql.Where("username = '" + username + "'and status = 'Block'");
+        sql.Where("username = '" + username + "'and verify_status = 'Block'");
         connection.query(sql.Query(), (err, results) => {
             if (err) return resolve(null);
             var id;
@@ -72,9 +72,8 @@ exports.verifyEmail = async (id) => {
             return resolve(user);
         });
     });
-    
     if(user != null){
-        var sql = "UPDATE hcmus_book_store.user_info SET status = 'Active' WHERE (verify_id = '" + id +"');";
+        var sql = "UPDATE hcmus_book_store.user_info SET verify_status = 'Active' WHERE (verify_id = '" + id +"');";
         connection.query(sql,(err, temp) => { if (err) return "error"; });
     }
 
@@ -87,7 +86,7 @@ exports.isAccount = async (username, password, done) => {
         var sql = new SQL();
         sql.Select("username, password");
         sql.From("hcmus_book_store.user_info");
-        sql.Where("username = '" + username + "'and status = 'Active' or email = '"+ username + "'");
+        sql.Where("username = '" + username + "' and status = 'Active' and verify_status = 'Active' or email = '"+ username + "'");
         connection.query(sql.Query(), (err, results) => {
             if (err) return reject(err);
             return resolve(results);
@@ -121,8 +120,8 @@ exports.AddAccount = async (username, password, email, name, done) => {
     var Result = await new Promise((resolve,reject) =>{
         var hashPassword = md5(password);
 
-        var sql = "INSERT INTO hcmus_book_store.user_info (username, password, email, role, status, fullname, verify_id) VALUES ";
-        sql = sql + "('"+username+"', '"+hashPassword+"', '" + email +"', 'user', 'Block', '" + name + "', '"+ encrypted + "');";
+        var sql = "INSERT INTO hcmus_book_store.user_info (username, password, email, role, fullname, verify_id) VALUES ";
+        sql = sql + "('"+username+"', '"+hashPassword+"', '" + email +"', 'user', '" + name + "', '"+ encrypted + "');";
         
         connection.query(sql, function (err, results) {
             if (err) {
@@ -159,7 +158,8 @@ exports.isUsername = async (username,done) =>{
 
 exports.isEmail  = async (email,done) =>{
     var proc = await getEmail(email).then((result) => {
-        if (email.length > 0) {
+        console.log(result);
+        if (result.length > 0) {
             return done(true);
         }
         return done(false);
@@ -222,7 +222,7 @@ getUserInfo = (username) => {
         var sql = new SQL();
         sql.Select("username, email");
         sql.From("hcmus_book_store.user_info");
-        sql.Where("username = '" + username + "'and status = 'Active'");
+        sql.Where("username = '" + username + "'and status = 'Active'  and verify_status = 'Active'");
         connection.query(sql.Query(), (err, results) => {
             if (err) return reject(err);
             return resolve(results);
@@ -235,7 +235,7 @@ getUsername = (username) => {
         var sql = new SQL();
         sql.Select("username");
         sql.From("hcmus_book_store.user_info");
-        sql.Where("username = '" + username + "'and status = 'Active'");
+        sql.Where("username = '" + username + "'");
         connection.query(sql.Query(), (err, results) => {
             if (err) return reject(err);
             return resolve(results);
@@ -248,7 +248,7 @@ getEmail = (email) => {
         var sql = new SQL();
         sql.Select("email");
         sql.From("hcmus_book_store.user_info");
-        sql.Where("email = '" + email + "'and status = 'Active'");
+        sql.Where("email = '" + email + "'");
         connection.query(sql.Query(), (err, results) => {
             if (err) return reject(err);
             return resolve(results);
@@ -261,7 +261,7 @@ getUser = (username) => {
         var sql = new SQL();
         sql.Select("username, password");
         sql.From("hcmus_book_store.user_info");
-        sql.Where("username = '" + username + "'and status = 'Active'");
+        sql.Where("username = '" + username + "'and status = 'Active' and verify_status = 'Active'");
         connection.query(sql.Query(), (err, results) => {
             if (err) return reject(err);
             return resolve(results);
