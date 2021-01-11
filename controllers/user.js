@@ -21,10 +21,7 @@ exports.changePassPage = (req, res, next) => {
 exports.changeInfo = (req,res,next) => {
     var user = req.body.newuser;
     account.changeUserInfo(user, function(result) {
-        if (result) { 
-            return res.send({info: "User info is successfully change."});
-        }
-        return res.send({info: "User info change is failed."});
+        return res.send(result);
     })
 }
 

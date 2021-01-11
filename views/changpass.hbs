@@ -2,31 +2,31 @@
     <h1 class="mt-4">Information of User</h1>
     <div class="row justify-content-center">
         <div class="col-lg-7">
-            <form>
+            <form id="myForm">
                 <div class="align-items-start">
-                    <div class="form-group input-group" id="oldPasswordField">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">Old password</div>
-                        </div>
-                        <input type="password" class="form-control" id="oldPassword" required placeholder="Enter old Password"/>
+                    <div class="mb-3 row" id="oldpasswordField">
+                    <label class="col-sm-2 col-form-label">Old password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" name="oldPassword" id="oldPassword" required>
                         <div class="invalid-feedback" id="oldPasswordErr"></div>
                     </div>
-                    <div class="form-group input-group" id="newPasswordField">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">NewPassword</div>
-                        </div>
-                        <input type="password" class="form-control" id="newPassword" required placeholder="Enter new password"/>
+                </div>
+                <div class="mb-3 row" id="newPasswordField">
+                    <label class="col-sm-2 col-form-label">New password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" name="newPassword" id="newPassword" required>
+                                                <div class="invalid-feedback" id="newPasswordErr"></div>
                     </div>
-                    <div class="form-group input-group" id="emailField">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">Confirm New Password</div>
-                        </div>
-                        <input type="password" class="form-control" id="confirmNewPassword" required placeholder="Confirm new password"/>
+                </div>
+                <div class="mb-3 row" id="confirmNewPasswordField">
+                    <label class="col-sm-2 col-form-label">Confirm new password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" name="confirmNewPassword" id="confirmNewPassword" required>
                         <div class="invalid-feedback" id="confirmNewPasswordErr"></div>
                     </div>
-                    <div class="form-group">
-                        
-                    </div>
+                </div>
+                <div class="form-group d-flex justify-content-center">
+                    <input type="submit" class="btn btn-danger col-sm-2" id="btnChange" value="Change">
                 </div>
             </form>
         </div>
