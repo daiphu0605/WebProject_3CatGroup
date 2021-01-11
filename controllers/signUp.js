@@ -1,5 +1,5 @@
 let account =require('../models/account');
-let passport = require('../passport/passport')
+let passport = require('../passport/passport');
 
 exports.signUpPage = (req,res,next) => {
     res.render('sign_up', {layout: 'layout_sign'});
