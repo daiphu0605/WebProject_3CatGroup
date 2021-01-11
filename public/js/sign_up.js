@@ -88,7 +88,7 @@ function validateEmail(email)
             data: {email: Email},
             type: 'POST',
             success: function(data){ 
-                if (!data) { 
+                if (!data.is) { 
                     return document.getElementById("inputEmailAddress").setAttribute("pattern", Email);
                 }
                 else { 
