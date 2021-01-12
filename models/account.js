@@ -216,6 +216,26 @@ exports.updatePasswords = async (username, newPassword, done) => {
     });
 }
 
+exports.updatePasswordByEmail = async (email, password, done) => {
+    var proc = await new Promise ((resolve, reject) => {
+        var sql;
+        var hashPassword = md5(newPassword)
+        sql = "UPDATE hcmus_book_store.user_info";
+        sql += " SET password = '" + hashPassword +"'";
+        sql += " WHERE email = '" + email + "'";
+        connection.query(sql, (err, result) => {
+            if (err) { 
+                return reject(err);
+            }
+            return resolve(result);
+        });
+    }).then((result) => {
+        return done(true);
+    }, (err) => {
+        return done(false);
+    });
+}
+
 getUserInfo = (username) => {
     return new Promise((resolve, reject) => {
         var sql = new SQL();

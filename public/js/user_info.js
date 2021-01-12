@@ -5,7 +5,6 @@ function validateEmail(email)
     return re.test(email);
 }
 var userBackup;
-var newUser;
 (function($) {
     var emailValid = true;
     $(document).on("ready", function(){
@@ -140,7 +139,7 @@ var newUser;
         if ($("#male").prop("checked")) {
             gender = "male";
         }
-        var usernew ={
+        var newuser ={
             username: $("#username").val(),
             email: $("#email").val(),
             birthday: $("#birthday").val(),
