@@ -78,7 +78,7 @@ app.use('/checkout', checkoutRouter);
 app.use('/signin?', signIn);
 app.use('/signup?', signUp);
 app.use('/signout', signOut);
-app.use('/forget', forgetPass);
+app.use('/forget-password?', forgetPass);
 app.use('/verify', verify);
 //api
 app.use('/api/shop', apiShop);
