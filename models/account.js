@@ -165,6 +165,15 @@ exports.isEmail  = async (email,done) =>{
     });
 }
 
+exports.isEmailActive  = async (email,done) =>{
+    var proc = await getEmailActive(email).then((result) => {
+        if (result.length > 0) {
+            return done(true);
+        }
+        return done(false);
+    });
+}
+
 exports.getUserInfoByName = async (username, done) => {
     var proc = await getUserInfo(username).then((result) => {
         done(result[0]);
@@ -241,7 +250,7 @@ getUserInfo = (username) => {
         var sql = new SQL();
         sql.Select("username, email");
         sql.From("hcmus_book_store.user_info");
-        sql.Where("username = '" + username + "'and status = 'Active'  and verify_status = 'Active'");
+        sql.Where("username = '" + username + "'and status = 'Active' and verify_status = 'Active'");
         connection.query(sql.Query(), (err, results) => {
             if (err) return reject(err);
             return resolve(results);
@@ -268,6 +277,19 @@ getEmail = (email) => {
         sql.Select("email");
         sql.From("hcmus_book_store.user_info");
         sql.Where("email = '" + email + "'");
+        connection.query(sql.Query(), (err, results) => {
+            if (err) return reject(err);
+            return resolve(results);
+        });
+    })
+}
+
+getEmailActive = (email) => {
+    return new Promise((resolve, reject) => {
+        var sql = new SQL();
+        sql.Select("email");
+        sql.From("hcmus_book_store.user_info");
+        sql.Where("email = '" + email + "' and status = 'Active' and verify_status = 'Active'");
         connection.query(sql.Query(), (err, results) => {
             if (err) return reject(err);
             return resolve(results);

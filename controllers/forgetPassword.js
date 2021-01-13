@@ -7,7 +7,7 @@ exports.forgetPage = (req, res, next) =>{
 
 exports.forgetHandler = (req, res, next) => {
     var email = req.body.email;
-    account.isEmail(email, (result) => {
+    account.isEmailActive(email, (result) => {
         if (!result) { 
             return res.render('forget_pass', {layout: 'layout_sign', ErrorMessage: "Email is not existed"});
         }
