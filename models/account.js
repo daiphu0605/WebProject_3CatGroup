@@ -228,7 +228,7 @@ exports.updatePasswords = async (username, newPassword, done) => {
 exports.updatePasswordByEmail = async (email, password, done) => {
     var proc = await new Promise ((resolve, reject) => {
         var sql;
-        var hashPassword = md5(newPassword)
+        var hashPassword = md5(password)
         sql = "UPDATE hcmus_book_store.user_info";
         sql += " SET password = '" + hashPassword +"'";
         sql += " WHERE email = '" + email + "';";

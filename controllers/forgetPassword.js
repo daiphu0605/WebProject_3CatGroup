@@ -44,33 +44,33 @@ changePass = (email, response) => {
 }
 
 sendEmail = (email, newPass) => {
-   let transport = nodemailer.createTransport({
+   let transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
             user: process.env.SHOP_GMAIL,
             pass: process.env.SHOP_PASS
       }
     });
-   var html = "Hello,<br>";
-   html += "Your password has been reset!.<br>";
-   html += "Your new password is <span>" + newPass + "<span>.<br>";
-   html += "Please sign in and change your password!<br>"
-   html += "Thank you for using our service."
-   var mailOptions={
+    var html = "Hello,<br>";
+    html += "Your password has been reset!.<br>";
+    html += "Your new password is <span>" + newPass + "<span>.<br>";
+    html += "Please sign in and change your password!<br>"
+    html += "Thank you for using our service."
+    var mailOptions={
       from : process.env.SHOP_GMAIL,
       to : email,
       subject : "Reset password of your account at 3CatsProject",
       html : html
-  }
-  transporter.sendMail(mailOptions, function(error, response){
-   if(error){
-           console.log(error);
-       res.end("error");
-   }else{
-           console.log("Message sent: " + response.message);
-       res.end("sent");
-       }
-   });
+    }
+    transporter.sendMail(mailOptions, function(error, response){
+    if(error){
+            console.log(error);
+        res.end("error");
+    }else{
+            console.log("Message sent: " + response.message);
+        res.end("sent");
+        }
+    });
 }
 
 
