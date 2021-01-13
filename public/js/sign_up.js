@@ -92,7 +92,7 @@ function validateEmail(email)
                     return document.getElementById("inputEmailAddress").setAttribute("pattern", Email);
                 }
                 else { 
-                    document.getElementById("nputEmailAddress").setAttribute("pattern", "");
+                    document.getElementById("inputEmailAddress").setAttribute("pattern", "");
                     return document.getElementById("errEmail").innerHTML = "Email has been used";
                 }
             }
