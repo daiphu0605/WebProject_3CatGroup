@@ -11,6 +11,7 @@ router.get('/signout', (req, res) =>{
 })
 router.get('/changepass',)
 router.get('/changeinfo', user.userPage);
+router.post('/getinfo',user.getInfo);
 router.post('/changinginfo', user.changeInfo);
 router.post('/changingpass', user.changePass);
 module.exports = router;

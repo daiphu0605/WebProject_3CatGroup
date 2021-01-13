@@ -6,9 +6,13 @@ exports.userPage = (req, res, next) => {
     if (typeof req.user === undefined) {
         return next();
     }
-    account.getUserInfoByName(req.user.username, function(user) {
-        return res.render('user', {layout: 'layout_user', user});
-    });
+    return res.render('user', {layout: 'layout_user'});
+}
+exports.getInfo = function(req, res, next) {
+    var username = req.user.username;
+    account.getUserInfoByName(username, function(result){
+        return res.send(result);
+    })
 }
 
 exports.changePassPage = (req, res, next) => {
