@@ -35,7 +35,7 @@ function randString(length) {
 
 changePass = (email, response) => {
    var newPass = randString(8);
-   account.changePass(email, newPass, (result) => {
+   account.updatePasswordByEmail(email, newPass, (result) => {
       if (result) {
          sendEmail(email, newPass);
       }
@@ -50,7 +50,7 @@ sendEmail = (email, newPass) => {
             user: process.env.SHOP_GMAIL,
             pass: process.env.SHOP_PASS
       }
-   });
+    });
    var html = "Hello,<br>";
    html += "Your password has been reset!.<br>";
    html += "Your new password is <span>" + newPass + "<span>.<br>";

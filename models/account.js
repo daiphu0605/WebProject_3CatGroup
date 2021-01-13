@@ -211,7 +211,7 @@ exports.updatePasswords = async (username, newPassword, done) => {
         var hashPassword = md5(newPassword)
         sql = "UPDATE hcmus_book_store.user_info";
         sql += " SET password = '" + hashPassword +"'";
-        sql += " WHERE username = '" + username + "'";
+        sql += " WHERE username = '" + username + "';";
         connection.query(sql, (err, result) => {
             if (err) { 
                 return reject(err);
@@ -231,7 +231,7 @@ exports.updatePasswordByEmail = async (email, password, done) => {
         var hashPassword = md5(newPassword)
         sql = "UPDATE hcmus_book_store.user_info";
         sql += " SET password = '" + hashPassword +"'";
-        sql += " WHERE email = '" + email + "'";
+        sql += " WHERE email = '" + email + "';";
         connection.query(sql, (err, result) => {
             if (err) { 
                 return reject(err);
