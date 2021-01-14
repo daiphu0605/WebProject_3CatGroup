@@ -1,4 +1,5 @@
 <div class="container-fluid">
+    {{#if user}}
     <h1 class="mt-4">Information of User</h1>
     <div class="row justify-content-center">
         <div class="col-lg-7">
@@ -55,6 +56,9 @@
             </form>
         </div>
     </div>
+    {{else}}
+        <h1 class="mt-4">Bạn cần đăng nhập để thực hiện chức năng này</h1>
+    {{/if}}
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="js/user_info.js"></script>

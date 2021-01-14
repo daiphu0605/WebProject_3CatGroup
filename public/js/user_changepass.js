@@ -41,6 +41,7 @@ const validClass = "was-validated";
             },
             success: function(data) {
                 alert(data.info);
+                window.location = "/user";
             }
         });
     })

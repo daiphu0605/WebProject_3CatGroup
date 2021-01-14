@@ -848,10 +848,22 @@ exports.addReview = async(id,review,user) => {
     let seconds = date_ob.getSeconds();
     var datetime = year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
 
-    var result;
+    var tempuser;
     if (code != null){
+        sql = "SELECT * FROM hcmus_book_store.user_info WHERE username = '" + user.username + "';";
+        tempuser = await new Promise ((resolve, reject) => {
+            connection.query(sql,(err, result) => {
+                if (err) return resolve(null);
+                var temp = result[0];    
+                return resolve(temp);
+            })
+        });
+    }
+
+    var result;
+    if (tempuser != null){
         sql = "INSERT INTO hcmus_book_store.book_reviews VALUES (";
-        sql += "'" + id + "', '" + code + "', '" + user.fullname + "', '" + review + "', '" + datetime + "', '" + user.avatar + "');";
+        sql += "'" + id + "', '" + code + "', '" + tempuser.fullname + "', '" + review + "', '" + datetime + "', '" + tempuser.avatar + "');";
         var checkSaveInfo = await new Promise ((resolve, reject) => {
             connection.query(sql,(err, result) => {
                 if (err) return resolve("error");    
