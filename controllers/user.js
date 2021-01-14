@@ -19,7 +19,7 @@ exports.changePassPage = (req, res, next) => {
     if (typeof req.user === undefined) {
         return next();
     }
-    return res.render('changepass', {layout: 'layout_user', user});
+    return res.render('changepass', {layout: 'layout_user'});
 }
 
 exports.changeInfo = (req,res,next) => {

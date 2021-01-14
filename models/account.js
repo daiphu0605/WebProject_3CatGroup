@@ -191,6 +191,16 @@ exports.updateUserInfo = async (user,done)=>{
         if (user.fullname !== null) {
             sql += " fullname = '" + user.fullname +"'";
         }
+        if (user.address !== null) {
+            sql += " address = '" + user.address +"'";
+        }
+        if (user.birthday !== null) {
+            sql += " birthday = '" + user.birthday +"'";
+        }
+        if (user.gender !== null) {
+            sql += " gender = '" + user.gender +"'";
+        }
+
         sql += " WHERE username = '" + user.username +"'";
         connection(sql, (err,result) => {
             if (err) {
@@ -248,7 +258,7 @@ exports.updatePasswordByEmail = async (email, password, done) => {
 getUserInfo = (username) => {
     return new Promise((resolve, reject) => {
         var sql = new SQL();
-        sql.Select("username, email");
+        sql.Select("username, email, address, birthday, gender");
         sql.From("hcmus_book_store.user_info");
         sql.Where("username = '" + username + "'and status = 'Active' and verify_status = 'Active'");
         connection.query(sql.Query(), (err, results) => {
