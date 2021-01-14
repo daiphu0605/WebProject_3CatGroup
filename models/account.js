@@ -185,24 +185,42 @@ exports.updateUserInfo = async (user,done)=>{
     var proc = await new Promise((resolve, reject) => {
         var sql = "UPDATE hcmus_book_store.user_info";
         sql += " SET";
-        if (user.email !== null) {
+        var count = 0;
+        if (user.email !== '') {
             sql += " email = '" + user.email +"'";
+            count++;
         }
-        if (user.fullname !== null) {
+        if (user.fullname !== '') {
+            if (count > 0) {
+                sql += ", "
+                count++;
+            }
             sql += " fullname = '" + user.fullname +"'";
         }
-        if (user.address !== null) {
+        if (user.address !== '') {
+            if (count > 0) {
+                sql += ", "
+                count++;
+            }
             sql += " address = '" + user.address +"'";
         }
-        if (user.birthday !== null) {
+        if (user.birthday !== '') {
+            if (count > 0) {
+                sql += ", "
+                count++;
+            }
             sql += " birthday = '" + user.birthday +"'";
         }
-        if (user.gender !== null) {
+        if (user.gender !== '') {
+            if (count > 0) {
+                sql += ", "
+                count++;
+            }
             sql += " gender = '" + user.gender +"'";
         }
 
         sql += " WHERE username = '" + user.username +"'";
-        connection(sql, (err,result) => {
+        connection.query(sql, (err,result) => {
             if (err) {
                 return reject(err);
             }

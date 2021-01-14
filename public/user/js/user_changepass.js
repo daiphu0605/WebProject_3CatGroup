@@ -1,8 +1,8 @@
 const validClass = "was-validated";
 (function($) {
     $("#confirmNewPassword").on("change", function(){
-        if (!$(this).hasClass(validClass)) {
-            $(this).addClass(validClass);
+        if (!$(confirmNewPasswordField).hasClass(validClass)) {
+            $(confirmNewPasswordField).addClass(validClass);
         }
         if ($(this).val() === null || $(this).val() === ""){
             return $("#confirmNewPasswordErr").text("Please fill out");
@@ -13,14 +13,18 @@ const validClass = "was-validated";
         }
     });
     $("#newPassword").on("change", function() {
-        if (!$(this).hasClass(validClass)) {
-            $(this).addClass(validClass);
+        if (!$(newPasswordField).hasClass(validClass)) {
+            $(newPasswordField).addClass(validClass);
         }
         if ($(this).val() === null || $(this).val() === ""){
             return $("#newPasswordErr").text("Please fill out");
         }
         $("#confirmNewPassword").prop("pattern", $(this).val());
+
         if ($("#confirmNewPassword").val() !== $(this).val() && $("#confirmNewPassword").val() !== "") {
+            if (!$(confirmNewPasswordField).hasClass(validClass)) {
+                $(confirmNewPasswordField).addClass(validClass);
+            }
             return $("#confirmNewPasswordErr").text("Password is mismatched");
         }
     });
@@ -36,7 +40,7 @@ const validClass = "was-validated";
                 newpass: $("#newPassword").val()
             },
             success: function(data) {
-                alert(data);
+                alert(data.info);
             }
         });
     })

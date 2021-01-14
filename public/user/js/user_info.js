@@ -49,7 +49,8 @@ var userBackup;
             return $("#emailErr").text("Email is invalid");
         }
         $.ajax({
-            url: "/checkemail",
+            url: "/user/checkemail",
+            type: "POST",
             data: {email: $(this).val()},
             success: function(data){
                 if (!data.is){
@@ -148,9 +149,9 @@ var userBackup;
             gender: gender
         }
         $.ajax({
-            url: "user/changinginfo",
+            url: "/user/changinginfo",
             type: "POST",
-            data: {newuser: newuser},
+            data: newuser,
             success: function(data){
                 if (data){
                     userbackup = newuser;

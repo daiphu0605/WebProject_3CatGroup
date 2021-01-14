@@ -12,10 +12,9 @@ router.get('/signout', (req, res) =>{
 router.get('/changepass',user.changePassPage);
 router.get('/changeinfo', user.userPage);
 router.post('/getinfo',user.getInfo);
+router.post('/checkemail', user.checkingEmail)
 router.post('/changinginfo', user.changeInfo);
 router.post('/changingpass', user.changePass);
-router.get('/js', (req,res, next) =>{
-  return;
-});
+
 module.exports = router;
 

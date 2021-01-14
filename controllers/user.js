@@ -15,6 +15,13 @@ exports.getInfo = function(req, res, next) {
     })
 }
 
+exports.checkingEmail = function(req,res,next) {
+    var email = req.body.email;
+    account.isEmailActive(email, function(result){
+        return res.send({is: !result});
+    })
+}
+
 exports.changePassPage = (req, res, next) => {
     if (typeof req.user === undefined) {
         return next();
@@ -23,8 +30,8 @@ exports.changePassPage = (req, res, next) => {
 }
 
 exports.changeInfo = (req,res,next) => {
-    var user = req.body.newuser;
-    account.changeUserInfo(user, function(result) {
+    var user = req.body;
+    account.updateUserInfo(user, function(result) {
         return res.send(result);
     })
 }
@@ -36,13 +43,15 @@ exports.changePass = (req,res,next) => {
         return res.send({info: "Old password is not correct. Please try again."});
     }
     var newPass = req.body.newpass;
-    account.changePass(req.user.username, newPass, function(result){
+    account.updatePasswords(req.user.username, newPass, function(result){
         if (result){
             var user = {
                 username: req.user.username, 
                 password: md5(newPass)
             }
-            req.logIn(user);
+            req.logIn(user, function(err) {
+                if (err){ return next(err)}
+            });
             return res.send({info: "Password is successfully changed."});
         }
         return res.send({info: "Password change is failed."})
