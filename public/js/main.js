@@ -182,6 +182,7 @@ function check(value, id){
             //var phoneno = /^\d{10}$/;
             var phoneno = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
             if(value.match(phoneno) && value.length <= 12){
+                $("#phone-info").removeClass('error').html('');
                 return true;
             }
             else{

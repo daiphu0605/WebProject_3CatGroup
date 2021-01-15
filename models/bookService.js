@@ -348,7 +348,7 @@ exports.getBooks = async(page, search, category, sort, price, author, publisher,
 
     result = await new Promise ((resolve, reject)=>{
         connection.query(sql,(err, result) => {
-            if (err) return resolve("error");
+            if (err) return resolve(null);
             return resolve(result);
         })
     });

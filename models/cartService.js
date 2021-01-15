@@ -54,7 +54,7 @@ exports.saveNewCart = async(user,cart,name,phone,province,district,ward,address,
     var datetime = year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
 
     if (code != null){
-        sql = "INSERT INTO hcmus_book_store.order_info VALUES (";
+        sql = "INSERT INTO hcmus_book_store.order_info (order_id, user_id, order_time, total_money, name, phone, province, district, ward, address, pay_method, quantity) VALUES (";
         var value = "'" + code + "', '" + user.username + "', '" + datetime + "', '" + cart.totalPrice + "', '" + name + "', '" + phone + "', '" + province + "', '" + district + "', '" + ward + "', '" + address + "', '" + method + "', '" + cart.totalQty + "');";
         sql = sql + value;
 
