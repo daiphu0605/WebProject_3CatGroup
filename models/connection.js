@@ -1,7 +1,7 @@
 var mysql=require('mysql')
 
 var connection=mysql.createConnection({
-    host:'45.77.129.37',
+    host:'139.180.209.220',
     user:'hcmus_book_store',
     password:'fBGHJJdjS8WaEjJB',
     database:'hcmus_book_store'
